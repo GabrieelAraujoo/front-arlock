@@ -9,43 +9,43 @@ function Home() {
       <Container>
         <Flex
           backgroundColor="white.100"
-          width="17%"
+          width="14%"
           height="full"
           direction="column"
           alignItems="center"
         >
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 fontSize="25px" fontWeight="bold" marginBottom="-15px">
             Home
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center"
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center"
                 fontSize="25px" fontWeight="bold" marginBottom="-15px">
             Perfil
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 fontSize="25px" fontWeight="bold" marginBottom="-10px">
             Pessoas
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 marginBottom="-25px">
             Alunos
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 marginBottom="-15px">
             Usuários
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 fontSize="25px" fontWeight="bold" marginBottom="-15px">
             Armários
           </Flex>
 
-          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#00D4FF" alignItems="center" 
+          <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 fontSize="25px" fontWeight="bold">
             Aluguéis
           </Flex>
@@ -60,14 +60,14 @@ function Home() {
         >
           <Flex 
           backgroundColor="white.100" 
-          width="95%" 
+          width="100%" 
           height="80px" 
           borderRadius="15px" 
-          marginLeft="10px"
-          marginTop="-25px"
+          marginLeft="35px"
+          marginTop="-40px"
           alignItems="center">
 
-              <Text marginLeft="20px" fontSize="25px" textColor="#00D4FF" fontWeight="bold">
+              <Text marginLeft="20px" fontSize="25px" textColor="#558085" fontWeight="bold">
                   Home
               </Text>
 
@@ -79,19 +79,19 @@ function Home() {
 
         <Flex 
               backgroundColor="white.100"
-              width="22%"
-              height="70%"
+              width="334px"
+              height="600px"
               direction="column"
               alignItems=""
               marginTop="90px"
               marginLeft="-1160px"
               borderRadius="15px">
 
-                <Text marginLeft="20px" marginTop="20px"  fontSize="20px" textColor="#00D4FF" fontWeight="bold" >
+                <Text marginLeft="20px" marginTop="20px"  fontSize="20px" textColor="#558085" fontWeight="bold" >
                   Notificações
                 </Text>
 
-                <Flex backgroundColor="#00B9FF" marginInline="20px" marginTop="35px"  height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px"  height="80px" borderRadius="20px" alignItems="center">
 
                   <Text marginLeft="20px">
                     Novo Usuário Ativo
@@ -99,7 +99,7 @@ function Home() {
 
                 </Flex>
 
-                <Flex backgroundColor="#00B9FF" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
 
                   <Text marginLeft="20px">
                     Aluguel Pendente
@@ -107,7 +107,7 @@ function Home() {
 
                 </Flex>
 
-                <Flex backgroundColor="#00B9FF" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
 
                   <Text marginLeft="20px">
                     Pagamento Liberado
@@ -118,131 +118,167 @@ function Home() {
         </Flex>
 
         <Flex backgroundColor="white.100" 
-              width="50%" 
-              height="38%" 
+              width="52%" 
+              height="41%" 
               borderRadius="15px" 
-              marginLeft="50px"
-              marginTop="-150px"
+              marginLeft="49px"
+              marginTop="-200px"    
               >
-
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
+                <Flex direction="column">  
+                <Flex backgroundColor="#BFDDE0" 
+                      width="355px" 
+                      height="144px" 
                       borderRadius="15px"
                       margin="15px"
                       >
 
-                          <Text fontSize="60px">
+                        <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
                             0000
                           </Text>
 
-                          <Text>
+                          <Text textColor="#558085">
                             Total de Armários
                           </Text>
+
+                        </Flex>  
                         
                 </Flex>
                 
 
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
+                <Flex backgroundColor="#BFDDE0" 
+                      width="355px" 
+                      height="144px" 
                       borderRadius="15px"
                       margin="15px"
+                      direction="column"
                       >
 
-                          <Text fontSize="60px">
+                          <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
                             0000
                           </Text>
 
-                          <Text>
-                            Armarios Disponíveis
+                          <Text textColor="#558085">
+                            Armarios Alugados
                           </Text>
+
+                          </Flex>
+
+                </Flex> 
+                </Flex>
+
+                <Flex direction="column">
+
+                <Flex backgroundColor="#BFDDE0" 
+                      width="355px" 
+                      height="144px" 
+                      borderRadius="15px"
+                      margin="15px"
+                      direction="column"
+                      >
+
+                          <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
+                            0000
+                          </Text>
+
+                          <Text textColor="#558085">
+                            Armários Disponíveis
+                          </Text>
+
+                          </Flex>
 
                 </Flex> 
 
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
-                      borderRadius="15px"
+                <Flex backgroundColor="#BFDDE0" 
+                      width="355px" 
+                      height="144px" 
+                      borderRadius="12px"
                       margin="15px"
+                      direction="column"
                       >
 
-                          <Text fontSize="60px">
+                          <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
                             0000
                           </Text>
 
-                          <Text>
-                            Armários Alugados
-                          </Text>
-
-                </Flex> 
-
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      >
-
-                          <Text fontSize="60px">
-                            0000
-                          </Text>
-
-                          <Text>
+                          <Text textColor="#558085">
                             Armários Inativos
                           </Text>
 
-                </Flex>   
+                          </Flex>
 
+                </Flex>   
+                </Flex>        
               
         </Flex>
 
         <Flex backgroundColor="white.100" 
-              width="50%" 
-              height="30%" 
+              width="52%" 
+              height="35%" 
               borderRadius="15px" 
-              marginLeft="-750px"
-              marginTop="390px"
+              marginLeft="-777px"
+              marginTop="420px"
+              direction="column"
               >
                 
                 
-                <Text marginLeft="15px" marginTop="15px" fontSize="25px" fontWeight="bold" textColor="#00D4FF">
+                <Text marginLeft="15px" marginTop="15px" fontSize="25px" fontWeight="bold" textColor="#558085" 
+                borderBottom="1px" borderBottomColor="#558085">
                   Painel Financeiro
                 </Text>
 
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
+              <Flex alignItems="baseline">
+
+                <Flex backgroundColor="#BFDDE0" 
+                      width="45%" 
+                      height="140px" 
                       borderRadius="15px"
                       margin="15px"
                       >
 
-                          <Text fontSize="60px">
+                          <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
                             R$0000,00
                           </Text>
 
-                          <Text>
+                          <Text textColor="#558085">
                             Valor total
                           </Text>
+
+                          </Flex>
 
 
                 </Flex>
 
-                <Flex backgroundColor="#c5c5c5" 
-                      width="30%" 
-                      height="100px" 
+                <Flex backgroundColor="#BFDDE0" 
+                      width="45%" 
+                      height="140px" 
                       borderRadius="15px"
                       margin="15px"
                       >
 
-                          <Text fontSize="60px">
+                          <Flex marginLeft="20px" direction="column">
+
+                          <Text fontSize="60px" textColor="#558085">
                             00000
                           </Text>
 
-                          <Text>
+                          <Text textColor="#558085">
                             Alugueis Pendentes
                           </Text>
 
+                          </Flex>
+
+
+                </Flex>
 
                 </Flex>
 
