@@ -2,6 +2,7 @@ import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text } from "@chakra-ui/react";
+import { LockIcon, BellIcon, UnlockIcon, CheckIcon } from '@chakra-ui/icons';
 
 function Home() {
   return (
@@ -15,33 +16,50 @@ function Home() {
           alignItems="center"
         >
 
+          <Flex marginTop="35px">
+
+          <LockIcon color="#558085" height="70px" width="70px" />
+
+          <Flex direction="column" alignItems="flex-start" marginTop="25px" marginLeft="5px">
+
+          <Text fontWeight="bold" textColor="#A3CCB8"> ARLOCK </Text>
+          <Text fontWeight="bold" fontSize="10px"> ETECIA </Text>
+
+          </Flex>
+
+          </Flex>
+
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
-                fontSize="25px" fontWeight="bold" marginBottom="-15px">
+                fontSize="25px" fontWeight="bold" marginBottom="-20px">
             Home
           </Flex>
 
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center"
-                fontSize="25px" fontWeight="bold" marginBottom="-15px">
+                fontSize="25px" fontWeight="bold" marginBottom="-20px">
             Perfil
           </Flex>
 
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
-                fontSize="25px" fontWeight="bold" marginBottom="-10px">
+                fontSize="25px" fontWeight="bold" marginBottom="-20px">
             Pessoas
           </Flex>
 
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
-                marginBottom="-25px">
-            Alunos
+                marginBottom="-35px">
+
+          <li> Alunos </li>      
+            
           </Flex>
 
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
                 marginBottom="-15px">
-            Usuários
+            
+           <li> Usuários </li>
+
           </Flex>
 
           <Flex backgroundColor="white.100" width="95%" height="80px" textColor="#558085" alignItems="center" 
-                fontSize="25px" fontWeight="bold" marginBottom="-15px">
+                fontSize="25px" fontWeight="bold" marginBottom="-20px">
             Armários
           </Flex>
 
@@ -87,31 +105,64 @@ function Home() {
               marginLeft="-1160px"
               borderRadius="15px">
 
-                <Text marginLeft="20px" marginTop="20px"  fontSize="20px" textColor="#558085" fontWeight="bold" >
+                <Text marginLeft="20px" marginTop="20px"  fontSize="26px" textColor="#558085" fontWeight="bold" >
                   Notificações
                 </Text>
 
-                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px"  height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px"  height="100px" 
+                      borderRadius="12px" alignItems="center">
 
-                  <Text marginLeft="20px">
+                  <BellIcon height="25px" width="30px" marginLeft="10px"/>     
+
+                  <Flex direction="column">
+
+                  <Text marginLeft="15px" >
                     Novo Usuário Ativo
                   </Text>
 
+                  <Text marginLeft="15px">
+                    RM: 12345
+                  </Text>
+                  
+                  </Flex>
+
                 </Flex>
 
-                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="100px" 
+                      borderRadius="12px" alignItems="center">
 
-                  <Text marginLeft="20px">
-                    Aluguel Pendente
+                <UnlockIcon height="20px" width="30px" marginLeft="10px"/>        
+
+                <Flex direction="column">
+
+                  <Text marginLeft="15px" >
+                      Aluguel Pendente
                   </Text>
 
+                  <Text marginLeft="15px">
+                      Pedido n°104
+                  </Text>
+
+                  </Flex>
+
                 </Flex>
 
-                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="80px" borderRadius="20px" alignItems="center">
+                <Flex backgroundColor="#BFDDE0" marginInline="20px" marginTop="35px" height="100px" 
+                      borderRadius="12px" alignItems="center">
 
-                  <Text marginLeft="20px">
+                <CheckIcon height="20px" width="30px" marginLeft="10px"/>        
+
+                <Flex direction="column">
+
+                  <Text marginLeft="15px">
                     Pagamento Liberado
                   </Text>
+
+                  <Text marginLeft="15px">
+                    Pedido n°10
+                  </Text>
+
+                  </Flex>
 
                 </Flex>
 
@@ -132,13 +183,13 @@ function Home() {
                       margin="15px"
                       >
 
-                        <Flex marginLeft="20px" direction="column">
+                        <Flex marginLeft="20px" marginTop="10px" direction="column">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            0000
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            00400
                           </Text>
 
-                          <Text textColor="#558085">
+                          <Text textColor="#558085" fontWeight="bold">
                             Total de Armários
                           </Text>
 
@@ -155,13 +206,13 @@ function Home() {
                       direction="column"
                       >
 
-                          <Flex marginLeft="20px" direction="column">
+                          <Flex marginLeft="20px" marginTop="10px" direction="column">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            0000
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            00150
                           </Text>
 
-                          <Text textColor="#558085">
+                          <Text textColor="#558085" fontWeight="bold">
                             Armarios Alugados
                           </Text>
 
@@ -180,13 +231,13 @@ function Home() {
                       direction="column"
                       >
 
-                          <Flex marginLeft="20px" direction="column">
+                          <Flex marginLeft="20px" marginTop="10px" direction="column">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            0000
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            00150
                           </Text>
 
-                          <Text textColor="#558085">
+                          <Text textColor="#558085" fontWeight="bold">
                             Armários Disponíveis
                           </Text>
 
@@ -202,13 +253,13 @@ function Home() {
                       direction="column"
                       >
 
-                          <Flex marginLeft="20px" direction="column">
+                          <Flex marginLeft="20px" marginTop="10px" direction="column">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            0000
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            00100
                           </Text>
 
-                          <Text textColor="#558085">
+                          <Text textColor="#558085" fontWeight="bold">
                             Armários Inativos
                           </Text>
 
@@ -237,19 +288,19 @@ function Home() {
               <Flex alignItems="baseline">
 
                 <Flex backgroundColor="#BFDDE0" 
-                      width="45%" 
-                      height="140px" 
+                      width="355px" 
+                      height="144px" 
                       borderRadius="15px"
                       margin="15px"
                       >
 
-                          <Flex marginLeft="20px" direction="column">
+                          <Flex marginLeft="20px" marginTop="10px" direction="column">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            R$0000,00
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            R$2.000,10
                           </Text>
 
-                          <Text textColor="#558085">
+                          <Text textColor="#558085" fontWeight="bold">
                             Valor total
                           </Text>
 
@@ -259,16 +310,16 @@ function Home() {
                 </Flex>
 
                 <Flex backgroundColor="#BFDDE0" 
-                      width="45%" 
-                      height="140px" 
+                      width="345px" 
+                      height="144px" 
                       borderRadius="15px"
                       margin="15px"
                       >
 
-                          <Flex marginLeft="20px" direction="column">
+                          <Flex marginLeft="20px" marginTop="10px" direction="column" fontWeight="bold">
 
-                          <Text fontSize="60px" textColor="#558085">
-                            00000
+                          <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+                            00020
                           </Text>
 
                           <Text textColor="#558085">
