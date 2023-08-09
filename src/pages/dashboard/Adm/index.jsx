@@ -8,13 +8,7 @@ function Home() {
   return (
     <Main>
       <Container>
-        <Flex
-          backgroundColor="white.100"
-          width="14%"
-          height="full"
-          direction="column"
-          alignItems="center"
-        >
+        <Flex backgroundColor="white.100" width="14%" height="full" direction="column" alignItems="center">
 
           <Flex marginTop="35px">
 
@@ -70,20 +64,10 @@ function Home() {
 
         </Flex>
 
-        <Flex
-          width="80%"
-          height="91%"
-          marginTop="4rem"
-          justifyContent="space-around"
-        >
-          <Flex 
-          backgroundColor="white.100" 
-          width="100%" 
-          height="80px" 
-          borderRadius="15px" 
-          marginLeft="35px"
-          marginTop="-40px"
-          alignItems="center">
+        <Flex width="80%" height="91%" marginTop="4rem" justifyContent="space-around">
+
+          <Flex backgroundColor="white.100" width="100%" height="80px" borderRadius="15px" marginLeft="35px"
+          marginTop="-40px" alignItems="center">
 
               <Text marginLeft="20px" fontSize="25px" textColor="#558085" fontWeight="bold">
                   Home
@@ -91,19 +75,10 @@ function Home() {
 
               </Flex>
 
-              
-
         </Flex>
 
-        <Flex 
-              backgroundColor="white.100"
-              width="334px"
-              height="600px"
-              direction="column"
-              alignItems=""
-              marginTop="90px"
-              marginLeft="-1160px"
-              borderRadius="15px">
+        <Flex backgroundColor="white.100" width="334px" height="600px" direction="column" marginTop="90px"
+              marginLeft="-1160px" borderRadius="15px">
 
                 <Text marginLeft="20px" marginTop="20px"  fontSize="26px" textColor="#558085" fontWeight="bold" >
                   Notificações
@@ -168,20 +143,11 @@ function Home() {
 
         </Flex>
 
-        <Flex backgroundColor="white.100" 
-              width="52%" 
-              height="41%" 
-              borderRadius="15px" 
-              marginLeft="49px"
-              marginTop="-200px"    
-              >
+        <Flex backgroundColor="white.100" width="52%" height="41%" borderRadius="15px" marginLeft="49px" marginTop="-200px">
+                
                 <Flex direction="column">  
-                <Flex backgroundColor="#BFDDE0" 
-                      width="355px" 
-                      height="144px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      >
+                
+                <Flex backgroundColor="#BFDDE0" width="355px" height="144px" borderRadius="15px" margin="15px">
 
                         <Flex marginLeft="20px" marginTop="10px" direction="column">
 
@@ -197,14 +163,7 @@ function Home() {
                         
                 </Flex>
                 
-
-                <Flex backgroundColor="#BFDDE0" 
-                      width="355px" 
-                      height="144px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      direction="column"
-                      >
+                <Flex backgroundColor="#BFDDE0" width="355px" height="144px" borderRadius="15px" margin="15px" direction="column">
 
                           <Flex marginLeft="20px" marginTop="10px" direction="column">
 
@@ -219,17 +178,12 @@ function Home() {
                           </Flex>
 
                 </Flex> 
+
                 </Flex>
 
                 <Flex direction="column">
 
-                <Flex backgroundColor="#BFDDE0" 
-                      width="355px" 
-                      height="144px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      direction="column"
-                      >
+                <Flex backgroundColor="#BFDDE0" width="355px" height="144px" borderRadius="15px" margin="15px" direction="column">
 
                           <Flex marginLeft="20px" marginTop="10px" direction="column">
 
@@ -245,13 +199,7 @@ function Home() {
 
                 </Flex> 
 
-                <Flex backgroundColor="#BFDDE0" 
-                      width="355px" 
-                      height="144px" 
-                      borderRadius="12px"
-                      margin="15px"
-                      direction="column"
-                      >
+                <Flex backgroundColor="#BFDDE0" width="355px" height="144px" borderRadius="12px" margin="15px" direction="column">
 
                           <Flex marginLeft="20px" marginTop="10px" direction="column">
 
@@ -266,20 +214,14 @@ function Home() {
                           </Flex>
 
                 </Flex>   
+
                 </Flex>        
               
         </Flex>
 
-        <Flex backgroundColor="white.100" 
-              width="52%" 
-              height="35%" 
-              borderRadius="15px" 
-              marginLeft="-777px"
-              marginTop="420px"
-              direction="column"
-              >
-                
-                
+        <Flex backgroundColor="white.100" width="52%" height="35%" borderRadius="15px" marginLeft="-777px" marginTop="420px" 
+              direction="column">
+                  
                 <Text marginLeft="15px" marginTop="15px" fontSize="25px" fontWeight="bold" textColor="#558085" 
                 borderBottom="1px" borderBottomColor="#558085">
                   Painel Financeiro
@@ -287,12 +229,7 @@ function Home() {
 
               <Flex alignItems="baseline">
 
-                <Flex backgroundColor="#BFDDE0" 
-                      width="355px" 
-                      height="144px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      >
+                <Flex backgroundColor="#BFDDE0" width="355px" height="144px" borderRadius="15px" margin="15px">
 
                           <Flex marginLeft="20px" marginTop="10px" direction="column">
 
@@ -306,15 +243,9 @@ function Home() {
 
                           </Flex>
 
-
                 </Flex>
 
-                <Flex backgroundColor="#BFDDE0" 
-                      width="345px" 
-                      height="144px" 
-                      borderRadius="15px"
-                      margin="15px"
-                      >
+                <Flex backgroundColor="#BFDDE0" width="345px" height="144px" borderRadius="15px" margin="15px">
 
                           <Flex marginLeft="20px" marginTop="10px" direction="column" fontWeight="bold">
 
@@ -328,24 +259,11 @@ function Home() {
 
                           </Flex>
 
-
                 </Flex>
 
                 </Flex>
-
-                
-                
-                 
-
-                 
-
               
         </Flex>
-
-        
-
-
-
       </Container>
     </Main>
   );
