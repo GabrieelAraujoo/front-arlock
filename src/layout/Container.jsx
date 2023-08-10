@@ -1,5 +1,6 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
+import MenuLateral from "../components/Menu/MenuLateral";
 
 export function Container({ children, ...rest }) {
   return (
@@ -10,6 +11,7 @@ export function Container({ children, ...rest }) {
       align="center"
       {...rest}
     >
+      <MenuLateral />
       {children}
     </Flex>
   );
