@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import React from "react";
+import { Flex, useBreakpointValue } from "@chakra-ui/react";
 import MenuLateral from "../components/Menu/MenuLateral";
 import { useLocation } from "react-router-dom";
 
 export function Container({ children, ...rest }) {
   const { pathname } = useLocation();
+  const variant = useBreakpointValue({
+    base: false,
+    md: false,
+    lg: true,
+  });
 
   return (
     <Flex
@@ -13,7 +18,7 @@ export function Container({ children, ...rest }) {
       h="auto"
       {...rest}
     >
-      {pathname !== "/" && <MenuLateral />}
+      {pathname !== "/" && variant === true && <MenuLateral />}
       {children}
     </Flex>
   );
