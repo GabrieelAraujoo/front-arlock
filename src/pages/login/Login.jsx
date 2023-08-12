@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../layout/Main";
 import { Container } from "../../layout/Container";
-import { Flex, Text, Input, Button ,Stack, InputGroup,InputRightElement,Checkbox,Divider} from "@chakra-ui/react";
+import { Flex, Text, Input, Button ,Stack, InputGroup,InputRightElement,Checkbox} from "@chakra-ui/react";
 import { ViewIcon} from '@chakra-ui/icons'
 
 function Login() {
@@ -11,7 +11,7 @@ function Login() {
       <Container>
         <Flex
           width="100%"
-          height="91%"
+          height="100%"
           justifyContent="center"
           alignItems="center"
           boxShadow=" 15px 15px 25px rgb(0, 0, 0, .5);"
@@ -30,15 +30,15 @@ function Login() {
               </InputGroup>
               </Stack> }
               </Flex>
-              <Flex width="full" justifyContent="space-between">
-                  <Checkbox Spacer="2" color="blueblack" defaultChecked align="left" >Lembre-se de mim</Checkbox>
+              <Flex   width="full" justifyContent="space-between">
+                  <Checkbox w="full" marginLeft="10px" color="blueblack" defaultChecked align="left" ><Text fontSize="15px"> Lembre-se de mim</Text></Checkbox>
                   
-                  <Button  color="#558085" variant='link'>Esqueceu a senha ? </Button>
+                  <Button marginRight="29px" color="#558085" variant='link'> <Text fontSize="15px" > Esqueceu a senha ?</Text></Button>
               </Flex>
                      
                   <Button colorScheme='teal' boxShadow=" 0 15px 25px rgb(0, 0, 0, .5);" size='lg' width="428px" height="60px" margin="20px 0 40px">Entrar</Button>
-                  <Divider  />
-                  <Button color="#558085" variant='link'> Ainda não possui uma conta ? </Button>
+                  
+                  <Flex justifyContent="center" paddingTop="1rem" w="full" borderTop="2px" color="#558085" variant='link'><Text>Ainda não possui uma conta ? </Text> </Flex>
                     
                     
           </Flex>
