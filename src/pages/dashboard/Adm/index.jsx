@@ -42,7 +42,7 @@ function Home() {
               </Text>
 
               <BoxNotificationAlert
-                title={"Novo usuário ativo"}
+                title={"Novo Aluno Aprovado"}
                 subtitle={"RM:12345"}
               />
 
@@ -116,8 +116,8 @@ function Home() {
                   gridColumnGap="1rem"
                   gridRowGap={{ base: "1rem", lg: "0" }}
                 >
-                  <BoxGeral number={"R$2.000,10"} text={"Valor total"} />
                   <BoxGeral number={"00020"} text={"Alugueis Pendentes"} />
+                  <BoxGeral number={"R$2.000,10"} text={"Valor total"}  />
                 </Flex>
               </Flex>
             </Flex>

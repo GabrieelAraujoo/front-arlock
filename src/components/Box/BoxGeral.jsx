@@ -1,16 +1,17 @@
 import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
 
-export function BoxGeral({ number, text }) {
+export function BoxGeral({ number, text, ...rest }) {
   return (
     <Flex
-      backgroundColor="#BFDDE0"
-      minWidth={{ base: "full", lg: "410px" }}
+      backgroundColor="#BFDDE0"     
       height="130px"
       borderRadius="15px"
+      width="full"
+      {...rest}
     >
       <Flex marginLeft="20px" marginTop="10px" direction="column">
-        <Text fontSize="48px" textColor="#558085" fontWeight="bold">
+        <Text fontSize="3rem" textColor="#558085" fontWeight="bold">
           {number}
         </Text>
 

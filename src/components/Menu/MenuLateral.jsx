@@ -15,7 +15,7 @@ export default function MenuLateral() {
   return (
     <Flex backgroundColor="white.100" width="14%" height="full" direction="column" alignItems="center" >
 
-          <Flex marginTop="35px">
+          <Flex marginTop="35px" marginBottom="2rem">
 
           <LockIcon color="#558085" height="70px" width="70px" />
 
