@@ -42,8 +42,8 @@ function Home() {
               </Text>
 
               <BoxNotificationAlert
-                title={"Teste Titulo"}
-                subtitle={"Teste Subtitle"}
+                title={"Novo usuário ativo"}
+                subtitle={"RM:12345"}
               />
 
               <BoxNotificationRent
