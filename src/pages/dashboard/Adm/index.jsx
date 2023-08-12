@@ -33,7 +33,7 @@ function Home() {
               padding="1rem"
             >
               <Text
-                marginTop="20px"
+                marginTop="10px"
                 fontSize="26px"
                 textColor="#558085"
                 fontWeight="bold"

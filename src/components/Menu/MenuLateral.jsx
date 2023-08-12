@@ -19,7 +19,7 @@ export default function MenuLateral() {
 
           <LockIcon color="#558085" height="70px" width="70px" />
 
-          <Flex direction="column" alignItems="flex-start" marginTop="25px" marginLeft="5px" marginBottom="2rem">
+          <Flex direction="column" alignItems="flex-start" marginTop="25px" marginLeft="5px" marginBottom="1rem">
 
           <Text fontWeight="bold" textColor="#A3CCB8"> ARLOCK </Text>
           <Text fontWeight="bold" fontSize="10px"> ETECIA </Text>
