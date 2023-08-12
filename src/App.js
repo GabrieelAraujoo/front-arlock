@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
 import NotFound from "./pages/NotFound";
 import HomeAdm from "./pages/dashboard/Adm/index";
+import PerfilAdm from "./pages/dashboard/Adm/perfil";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/Adm/Home" element={<HomeAdm />} />
+        <Route path="/Adm/Perfil" element={<PerfilAdm />} />
       </Routes>
     </div>
   );
