@@ -1,11 +1,18 @@
 import React from "react";
-import { Button, ButtonGroup } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/react";
 
-export function ButtonExit({title}){
-    return(
-        <Button colorScheme='teal' variant='outline' marginLeft="20px" marginTop="40px" width="590px" height="45px">
-                  {title}
-               </Button>
-
- );
+export function ButtonExit({ title, ...rest }) {
+  return (
+    <Button
+      w="full"
+      colorScheme="teal"
+      variant="outline"
+      height="45px"
+      alignItems="center"
+      justifyContent="center"
+      {...rest}
+    >
+      {title}
+    </Button>
+  );
 }

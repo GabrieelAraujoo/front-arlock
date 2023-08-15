@@ -1,12 +1,13 @@
 import React from "react";
 import { Text, Input, InputGroup } from "@chakra-ui/react";
 
-export function InputLabel({ label, ...rest }) {
+export function InputLabel({ label, marginLeft, ...rest }) {
   return (
     <InputGroup
       display="Flex"
       flexDir="column"
-      mt="4%"
+      marginLeft={marginLeft}
+      mt="1rem"
       p="10px"
       color="black"
       borderRadius="12px"
