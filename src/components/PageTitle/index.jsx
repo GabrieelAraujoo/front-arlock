@@ -1,6 +1,5 @@
 import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
-import { LockIcon, BellIcon, UnlockIcon, CheckIcon } from "@chakra-ui/icons";
 
 export default function PageTitle({ title }) {
   return (
