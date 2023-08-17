@@ -13,16 +13,16 @@ import {MenuTitle, MenuSubtitle} from "./MenuTitle";
 
 export default function MenuLateral() {
   return (
-    <Flex backgroundColor="white.100" width="14%" height="full" direction="column" alignItems="center" >
+    <Flex backgroundColor="white.100" width="14%" height="full" direction="column" alignItems="center">
 
-          <Flex marginTop="35px" marginBottom="2rem">
+          <Flex marginTop="35px" marginBottom="2rem" >
 
-          <LockIcon color="#558085" height="70px" width="70px" />
+          <LockIcon color="#558085" height="65px" width="65px" />
 
           <Flex direction="column" alignItems="flex-start" marginTop="25px" marginLeft="5px" marginBottom="1rem">
 
-          <Text fontWeight="bold" textColor="#A3CCB8"> ARLOCK </Text>
-          <Text fontWeight="bold" fontSize="10px"> ETECIA </Text>
+          <Text fontWeight="bold" textColor="#A3CCB8" fontSize="14px"> ARLOCK </Text>
+          <Text fontWeight="bold" fontSize="9px"> ETECIA </Text>
 
           </Flex>
 
