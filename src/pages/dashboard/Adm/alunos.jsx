@@ -25,7 +25,7 @@ function Alunos() {
           <Flex
             backgroundColor="white.100"
             width="full"
-            height="470px"
+            height="full"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1rem"
