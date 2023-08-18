@@ -15,7 +15,7 @@ export function BoxGeral({ number, text, ...rest }) {
           {number}
         </Text>
 
-        <Text textColor="#558085" fontWeight="bold" fontSize="1rem">
+        <Text textColor="#558085" fontWeight="bold" fontSize="1.2rem">
           {text}
         </Text>
       </Flex>
