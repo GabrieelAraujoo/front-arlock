@@ -5,6 +5,9 @@ import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
+import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
+import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
+import { listAprovacao } from "../../../Mock/listAprovacao";
 
 function Alugueis(){
     return(
@@ -47,6 +50,21 @@ function Alugueis(){
                             {/* componente pesquisa */}
                             <InputPesquisa />
                         </Flex>
+
+                        <Flex
+                            w="full"
+                            marginTop="3rem"
+                            direction="column"
+                            overflowX={{ base: "scroll", lg: "hidden" }}
+                        >
+                            <Table>
+                                <HeadListAprovacao/>
+
+                                {listAprovacao.map((item, index) => (
+                                <BodyListAprovacao key={index} aprovacao={item} />
+                                ))}
+                            </Table> 
+                        </Flex>    
                     </Flex>    
                 </Flex>        
             </Container>
