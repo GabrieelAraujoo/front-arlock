@@ -1,16 +1,19 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text,IconButton, Table} from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
-import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
+import { AddIcon } from '@chakra-ui/icons'
 
 function Armarios(){
+    // const { isOpen, onOpen, onClose } = useDisclosure()
+
     return(
+        <>
         <Main>
             <Container>
                 <Flex
@@ -43,12 +46,22 @@ function Armarios(){
                         <Flex
                             justify="space-between"
                             align="center"
-                            marginLeft="20px"
+                            paddingLeft="20px"
                             w="full"
                             alignItems="baseline"
                             >
                             {/* componente pesquisa */}
                             <InputPesquisa />
+
+                            <IconButton
+                                isRound={true}
+                                variant='solid'
+                                colorScheme='teal'
+                                aria-label='Done'
+                                fontSize='20px'
+                                marginRight="20px"
+                                icon={<AddIcon />}
+                            />
                         </Flex>
 
                         <Flex
@@ -69,6 +82,26 @@ function Armarios(){
                 </Flex>    
             </Container>
         </Main>
+        
+        {/* <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent background="#fff">
+          <ModalHeader>Modal Title</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text>oi</Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='ghost'>Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal> */}
+        </>
+        
  );
 }
 

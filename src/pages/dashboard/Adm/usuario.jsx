@@ -1,16 +1,21 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
-import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
 import { BodyListUsuarios } from "../../../components/Table/Usuarios/BodyListUsuarios";
 import { listUsuarios } from "../../../Mock/listUsuarios";
+import { AddIcon } from '@chakra-ui/icons'
+import { useNavigate } from "react-router-dom";
+
 
 function Usuarios(){
+    const navigate = useNavigate()
+
     return(
+        
         <Main>
             <Container>
                 <Flex
@@ -43,12 +48,23 @@ function Usuarios(){
                         <Flex
                             justify="space-between"
                             align="center"
-                            marginLeft="20px"
+                            paddingLeft="20px"
                             w="full"
                             alignItems="baseline"
                             >
                             {/* componente pesquisa */}
                             <InputPesquisa />
+
+                            <IconButton
+                                onClick={() => navigate("/Adm/NovoUsuario")}
+                                isRound={true}
+                                variant='solid'
+                                colorScheme='teal'
+                                aria-label='Done'
+                                fontSize='20px'
+                                marginRight="20px"
+                                icon={<AddIcon />}
+                            />
 
                         </Flex>
 
@@ -70,6 +86,9 @@ function Usuarios(){
                 </Flex>
             </Container>
         </Main>
+        
+        
+        
  );
 }
 
