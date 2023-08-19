@@ -5,8 +5,11 @@ import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
+import { useNavigate } from "react-router-dom";
 
 function Perfil() {
+  const navigate = useNavigate()
+
   return (
     <Main>
       <Container>
@@ -48,8 +51,8 @@ function Perfil() {
               paddingX="1.3rem"
               marginTop="3.5rem"
             >
-              <ButtonExit title={"Voltar"} />
-              <ButtonExit title={"Sair"} marginLeft="2rem" />
+              <ButtonExit title={"Voltar"} onClick={() => navigate("/Adm/Home")}/>
+              <ButtonExit title={"Sair"} marginLeft="2rem" onClick={() => navigate("/")}/>
             </Flex>
           </Flex>
         </Flex>
