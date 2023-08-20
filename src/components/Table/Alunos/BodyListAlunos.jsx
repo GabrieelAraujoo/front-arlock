@@ -1,9 +1,9 @@
-import {  Text, Button, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Flex } from "@chakra-ui/react";
+import { Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure, Flex } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
 
 export function BodyListAlunos({ aluno }) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
     <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
@@ -27,51 +27,52 @@ export function BodyListAlunos({ aluno }) {
       )}
     </Tbody>
 
-        <Flex justifyContent="center">
+    {/*Box para Bloqueio do Aluno*/ }
+    {aluno.status === "ativo" ? (
 
-    <Modal  isOpen={isOpen} onClose={onClose}>
+<Flex >
+
+<Modal  isOpen={isOpen} onClose={onClose} >
+          <ModalOverlay />
+          <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
+            <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Bloquear Aluno?</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody textAlign="center">
+              <Text marginBottom="1.1rem" fontSize="14px">Ao bloquear este aluno, você impossibilita o acesso dele dentro da plataforma.</Text>
+              <Text fontSize="14px">Você realmente deseja bloquear?</Text>
+            </ModalBody>
+              <Flex  marginBottom="1.4rem" textAlign="center">
+              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
+              <ButtonExit title={"Bloquear"} marginLeft="20px" paddingRight="80px" paddingLeft="80px"/>
+              </Flex>
+          </ModalContent>
+        </Modal> 
+
+        </Flex>  
+
+) : ( 
+
+    /*Box para Desbloqueio do Aluno*/ 
+    <Flex >
+
+    <Modal  isOpen={isOpen} onClose={onClose} >
               <ModalOverlay />
-              <ModalContent background="#fff" >
-                <ModalHeader>Bloquear Aluno?</ModalHeader>
+              <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
+                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Desbloquear Aluno?</ModalHeader>
                 <ModalCloseButton />
-                <ModalBody>
-                  <Text>Ao bloquear este aluno, você impossibilita o acesso dele dentro da plataforma.</Text>
-                  <Text>Você realmente deseja bloquear?</Text>
+                <ModalBody textAlign="center">
+                  <Text marginBottom="1.1rem" fontSize="14px">Ao desbloquear este aluno, você possibilita o acesso dele dentro da plataforma.</Text>
+                  <Text fontSize="14px">Você realmente deseja desbloquear?</Text>
                 </ModalBody>
-                  <Flex alignItems={"baseline"}>
-                  <ButtonExit title={"Voltar"}/>
-                  <ButtonExit title={"Bloquear"}/>
+                  <Flex  marginBottom="1.4rem" textAlign="center">
+                  <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px"/>
+                  <ButtonExit title={"Desbloquear"} marginLeft="20px" paddingRight="80px" paddingLeft="80px"/>
                   </Flex>
-                <ModalFooter>
-                  
-                </ModalFooter>
               </ModalContent>
             </Modal> 
 
-            </Flex>  
-
-    <Flex justifyContent="center">
-
-    <Modal  isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent background="#fff" >
-                <ModalHeader>Desbloquear Aluno?</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                  <Text>Ao bloquear este aluno, você impossibilita o acesso dele dentro da plataforma.</Text>
-                  <Text>Você realmente deseja bloquear?</Text>
-                </ModalBody>
-                  <Flex alignItems={"baseline"}>
-                  <ButtonExit title={"Voltar"}/>
-                  <ButtonExit title={"Bloquear"}/>
-                  </Flex>
-                <ModalFooter>
-                  
-                </ModalFooter>
-              </ModalContent>
-            </Modal> 
-
-            </Flex>          
+            </Flex>    
+            )}      
     </>
   );
 }

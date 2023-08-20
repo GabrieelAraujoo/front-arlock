@@ -1,4 +1,6 @@
 import { Tbody, Td } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+
 
 export function BodyListArmarios({ armarios }){
     return(
@@ -8,6 +10,13 @@ export function BodyListArmarios({ armarios }){
             <Td width="25%">{armarios.curso}</Td>
             <Td width="15%">{armarios.manutencao}</Td>
             <Td width="15%">{armarios.alugados}</Td>
+            <Td><DeleteIcon 
+                    marginLeft="9px"
+                    height="20px"
+                    width="20px"
+                    color="gray.400"/>
+            </Td>
         </Tbody>    
  );
 }
+

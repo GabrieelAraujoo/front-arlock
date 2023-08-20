@@ -8,8 +8,10 @@ import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArm
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from '@chakra-ui/icons'
+import { useNavigate } from "react-router-dom";
 
 function Armarios(){
+    const navigate = useNavigate()
     // const { isOpen, onOpen, onClose } = useDisclosure()
 
     return(
@@ -54,6 +56,7 @@ function Armarios(){
                             <InputPesquisa />
 
                             <IconButton
+                                onClick={() => navigate("/Adm/NovoArmario")}
                                 isRound={true}
                                 variant='solid'
                                 colorScheme='teal'
