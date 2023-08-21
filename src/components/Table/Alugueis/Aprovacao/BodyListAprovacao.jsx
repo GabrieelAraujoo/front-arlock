@@ -1,6 +1,5 @@
 import { Flex, Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
-import { BsFillCheckCircleFill, BsFillXCircleFill } from "react-icons/bs";
-import { ButtonExit } from "../../../components/Button";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 
 export function BodyListAprovacao({ aprovacao }){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -15,14 +14,15 @@ export function BodyListAprovacao({ aprovacao }){
             <Td width="15%">
 
                 <Flex alignItems="baseline">
-                <BsFillCheckCircleFill 
-                    marginLeft="9px"
+                <CheckIcon 
                     height="20px"
                     width="50px"
                     color="gray.400"
-                    onClick={onOpen}/>
-                <BsFillXCircleFill 
-                marginLeft="20px"
+                    onClick={onOpen}
+                    />
+                <CloseIcon 
+                    marginLeft="15px"
+                    marginRight="10px"
                     height="20px"
                     width="20px"
                     color="gray.400"
@@ -43,8 +43,7 @@ export function BodyListAprovacao({ aprovacao }){
               <Text fontSize="14px">Você realmente deseja aprovar?</Text>
             </ModalBody>
               <Flex  marginBottom="1.4rem" textAlign="center">
-              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
-              <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px"/>
+              
               </Flex>
           </ModalContent>
         </Modal> 
@@ -53,3 +52,8 @@ export function BodyListAprovacao({ aprovacao }){
         </>
  );
 }
+
+// import { ButtonExit } from "../../../components/Button";
+
+// <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
+// <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" />
