@@ -5,6 +5,9 @@ import NotFound from "./pages/NotFound";
 import HomeAdm from "./pages/dashboard/Adm/index";
 import PerfilAdm from "./pages/dashboard/Adm/perfil";
 import AlunosAdm from "./pages/dashboard/Adm/alunos";
+import HomeAluno from "./pages/dashboard/Aluno";
+import PerfilAluno from "./pages/dashboard/Aluno/perfil";
+import { Armarios } from "./pages/dashboard/Aluno/Armarios";
 
 function App() {
   return (
@@ -15,6 +18,9 @@ function App() {
         <Route path="/Adm/Home" element={<HomeAdm />} />
         <Route path="/Adm/Perfil" element={<PerfilAdm />} />
         <Route path="/Adm/Alunos" element={<AlunosAdm />} />
+        <Route path="/Aluno/Home" element={<HomeAluno />} />
+        <Route path="/Aluno/Perfil" element={<PerfilAluno />} />
+        <Route path="/Aluno/Armarios" element={<Armarios />} />
       </Routes>
     </div>
   );
