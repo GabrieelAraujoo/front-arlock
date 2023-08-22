@@ -1,5 +1,7 @@
 import { Flex, Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { ButtonExit } from "../../../Button";
+
 
 export function BodyListAprovacao({ aprovacao }){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -43,7 +45,10 @@ export function BodyListAprovacao({ aprovacao }){
               <Text fontSize="14px">Você realmente deseja aprovar?</Text>
             </ModalBody>
               <Flex  marginBottom="1.4rem" textAlign="center">
-              
+
+              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
+              <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" />
+
               </Flex>
           </ModalContent>
         </Modal> 
@@ -54,6 +59,3 @@ export function BodyListAprovacao({ aprovacao }){
 }
 
 // import { ButtonExit } from "../../../components/Button";
-
-// <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
-// <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" />
