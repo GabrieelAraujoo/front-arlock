@@ -1,4 +1,4 @@
-import { Flex, Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure } from "@chakra-ui/react";
+import { Flex, Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../Button";
 
@@ -39,15 +39,14 @@ export function BodyListAprovacao({ aprovacao }){
           <ModalOverlay />
           <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
             <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Aprovar Aluguel?</ModalHeader>
-            <ModalCloseButton />
             <ModalBody textAlign="center">
               <Text marginBottom="1.1rem" fontSize="14px">Ao aprovar esse aluguel, você confirma o pagamento e libera o aluno para usar o armário durante o semestre.</Text>
               <Text fontSize="14px">Você realmente deseja aprovar?</Text>
             </ModalBody>
               <Flex  marginBottom="1.4rem" textAlign="center">
 
-              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" />
-              <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" />
+              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+              <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
 
               </Flex>
           </ModalContent>

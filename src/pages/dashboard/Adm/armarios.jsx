@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text,IconButton, Table} from "@chakra-ui/react";
+import { Flex, Text,IconButton, Table, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure} from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
@@ -9,10 +9,11 @@ import { listArmarios } from "../../../Mock/listArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
+import { ButtonExit } from "../../../components/Button";
 
 function Armarios(){
     const navigate = useNavigate()
-    // const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen,  onClose } = useDisclosure()
 
     return(
         <>
@@ -86,23 +87,24 @@ function Armarios(){
             </Container>
         </Main>
         
-        {/* <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent background="#fff">
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text>oi</Text>
-          </ModalBody>
+        <Flex >
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant='ghost'>Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal> */}
+<Modal  isOpen={isOpen} onClose={onClose} >
+          <ModalOverlay />
+          <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
+            <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Desbloquear Aluno?</ModalHeader>
+            <ModalBody textAlign="center">
+              <Text marginBottom="1.1rem" fontSize="14px">Ao desbloquear este aluno, você possibilita o acesso dele dentro da plataforma.</Text>
+              <Text fontSize="14px">Você realmente deseja desbloquear?</Text>
+            </ModalBody>
+              <Flex  marginBottom="1.4rem" textAlign="center">
+              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+              <ButtonExit title={"Desbloquear"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+              </Flex>
+          </ModalContent>
+        </Modal> 
+
+        </Flex> 
         </>
         
  );
