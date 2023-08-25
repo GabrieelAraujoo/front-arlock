@@ -81,7 +81,7 @@ function NewArmarios (){
         </ModalBody>
             <Flex  marginBottom="1.4rem" textAlign="center">
             <ButtonExit title={"Voltar"} paddingRight="90px" paddingLeft="90px" onClick={onClose}/>
-            <ButtonExit title={"Criar"} marginLeft="20px" paddingRight="90px" paddingLeft="90px" onClick={() => navigate("/Adm/Armarios")}/>
+            <ButtonExit title={"Criar"} marginLeft="1rem" paddingRight="90px" paddingLeft="90px" onClick={() => navigate("/Adm/Armarios")}/>
             </Flex>
         </ModalContent>
         </Modal> 

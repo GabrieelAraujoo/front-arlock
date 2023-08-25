@@ -108,6 +108,7 @@ function Home() {
                   borderRadius="15px"
                   display="grid"
                   gridTemplateColumns={{
+
                     sm: "auto",
                     base: "auto",
                     lg: "auto auto",
@@ -117,7 +118,7 @@ function Home() {
                   gridRowGap={{ base: "1rem", lg: "0" }}
                 >
                   <BoxGeral number={"00020"} text={"Alugueis Pendentes"} />
-                  <BoxGeral number={"R$2.000,10"} text={"Valor total"}  />
+                  <BoxGeral number={"R$2.000"} text={"Valor total"}  />
                 </Flex>
               </Flex>
             </Flex>

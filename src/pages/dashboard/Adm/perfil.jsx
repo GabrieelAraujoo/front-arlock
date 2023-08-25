@@ -19,7 +19,7 @@ function Perfil() {
           <Flex
             backgroundColor="white.100"
             width="full"
-            height="280px"
+            height={{sm: "280px", base: "330px"}}
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="2rem"

@@ -13,4 +13,5 @@ export const listArmarios = [
         manutencao: "12,19,23",
         alugados: "10",
     },
+    
 ];

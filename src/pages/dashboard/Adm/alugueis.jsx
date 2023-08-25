@@ -8,6 +8,10 @@ import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
 import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
 import { listAprovacao } from "../../../Mock/listAprovacao";
+import { HeadListAprovados } from "../../../components/Table/Alugueis/Aprovados/HeadListAprovados";
+import { BodyListAprovados } from "../../../components/Table/Alugueis/Aprovados/BodyListAprovados";
+import { listAprovados } from "../../../Mock/listAprovados";
+
 
 function Alugueis(){
     return(
@@ -64,12 +68,64 @@ function Alugueis(){
                                 <BodyListAprovacao key={index} aprovacao={item} />
                                 ))}
                             </Table> 
-                        </Flex>    
-                    </Flex>    
-                </Flex>        
+                        </Flex> 
+
+                         
+                        </Flex>          
+
+                        <Flex
+                        backgroundColor="white.100"
+                        width="full"
+                        height="full"
+                        borderRadius="15px"
+                        alignItems="flex-start"
+                        marginTop="1.3rem"
+                        direction="column"
+                    >
+                        <Text
+                        fontSize="35px"
+                        textColor="#558085"
+                        fontWeight="bold"
+                        marginLeft="1.3rem"
+                        marginTop="1.3rem"
+                        >
+                        Aprovados
+                        </Text>
+
+                        <Flex
+                            justify="space-between"
+                            align="center"
+                            marginLeft="20px"
+                            w="full"
+                            alignItems="baseline"
+                            >
+                            {/* componente pesquisa */}
+                            <InputPesquisa />
+                        </Flex>
+
+                        <Flex
+                            w="full"
+                            marginTop="3rem"
+                            direction="column"
+                            overflowX={{ base: "scroll", lg: "hidden" }}
+                        >
+                            <Table>
+                                <HeadListAprovados/>
+
+                                {listAprovados.map((item, index) => (
+                                <BodyListAprovados key={index} aprovado={item} />
+                                ))}
+                            </Table> 
+                        </Flex> 
+
+                         </Flex>
+
+                        </Flex>   
+                            
             </Container>
         </Main>
  );
 }
 
 export default Alugueis;
+
