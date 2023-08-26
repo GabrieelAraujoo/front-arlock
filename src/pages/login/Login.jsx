@@ -4,9 +4,11 @@ import { Container } from "../../layout/Container";
 import { Flex, Text, Button, Checkbox } from "@chakra-ui/react";
 import { InputLabelIcon } from "../../components/Input/Login";
 import { InputLabel } from "../../components/Input/Geral";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [status, setStatus] = useState(true);
+  const navigate = useNavigate();
 
   function changeShowPassword() {
     if (status === true) {
@@ -14,6 +16,10 @@ function Login() {
     } else {
       setStatus(true);
     }
+  }
+
+  function sendRoute(route) {
+    navigate(route);
   }
 
   return (
@@ -39,7 +45,7 @@ function Login() {
               color="#558085"
               fontWeight="bold"
               marginBottom="1rem"
-              fontSize={{ sm: "0.8", md: "1.5rem", lg: "1.8rem" }}
+              fontSize={{ base: "1.5rem", lg: "1.8rem" }}
             >
               Seja bem-vindo (a)
             </Text>
@@ -60,13 +66,18 @@ function Login() {
               fontSize={{ base: "11px", md: ".8rem", lg: ".8rem" }}
             >
               <Flex width="50%" direction="row" justifyContent="flex-start">
-                <Checkbox w="auto" color="blueblack" defaultChecked></Checkbox>
-                <Text marginLeft=".5rem" fontWeight="bold" cursor="pointer">
+                <Checkbox w="auto" color="blueblack" defaultChecked />
+                <Text marginLeft=".5rem" fontWeight="bold">
                   Lembre-se de mim
                 </Text>
               </Flex>
 
-              <Flex width="50%" direction="row" justifyContent="flex-end">
+              <Flex
+                width="50%"
+                direction="row"
+                justifyContent="flex-end"
+                onClick={() => sendRoute("/EsqueceuSenha")}
+              >
                 <Text color="#558085" fontWeight="bold" cursor="pointer">
                   Esqueceu a senha?
                 </Text>
@@ -80,6 +91,7 @@ function Login() {
               width="100%"
               marginY="1.5rem"
               fontWeight="normal"
+              onClick={() => sendRoute("/aluno/home")}
             >
               Entrar
             </Button>
@@ -90,6 +102,7 @@ function Login() {
               borderTop="2px solid #558085"
               fontSize=".8rem"
               paddingTop="1rem"
+              onClick={() => sendRoute("/Cadastro")}
             >
               <Text color="#558085" fontWeight="bold" cursor="pointer">
                 Ainda não possui uma conta?

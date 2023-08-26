@@ -2,13 +2,14 @@ import React from "react";
 import { Text, Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
-export function InputLabelIcon({ label, status, showPassword, ...rest }) {
+export function InputLabelIcon({ label, status, showPassword, ml, ...rest }) {
   return (
     <InputGroup
       display="Flex"
       flexDir="column"
-      mt="4%"
+      mt="1rem"
       p="10px"
+      marginLeft={ml}
       color="black"
       borderRadius="12px"
       border="1px solid #EDE7F6"

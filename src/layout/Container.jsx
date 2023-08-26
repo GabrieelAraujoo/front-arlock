@@ -18,7 +18,11 @@ export function Container({ children, ...rest }) {
       h="auto"
       {...rest}
     >
-      {pathname !== "/" && pathname !== "/cadastro" && pathname !== "/esqueceusenha" && pathname !== "/mensagememail" && variant === true && <MenuLateral />}
+      {pathname !== "/" &&
+        pathname !== "/Cadastro" &&
+        pathname !== "/EsqueceuSenha" &&
+        pathname !== "/MensagemEmail" &&
+        variant === true && <MenuLateral />}
       {children}
     </Flex>
   );

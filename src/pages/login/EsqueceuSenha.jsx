@@ -2,9 +2,14 @@ import { Main } from "../../layout/Main";
 import { Container } from "../../layout/Container";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { InputLabel } from "../../components/Input/Geral";
+import { useNavigate } from "react-router-dom";
 
-export default function Esqueceu() {
- 
+export default function EsqueceuSenha() {
+  const navigate = useNavigate();
+
+  function sendRoute(route) {
+    navigate(route);
+  }
 
   return (
     <Main>
@@ -19,7 +24,7 @@ export default function Esqueceu() {
             boxShadow=" 15px 25px 35px rgb(0, 0, 0, .5);"
             backgroundColor="#fff"
             width={{ base: "80%", lg: "508px" }}
-            height="40%"
+            height="auto"
             direction="column"
             padding="2rem"
             alignItems="center"
@@ -30,25 +35,19 @@ export default function Esqueceu() {
               color="#558085"
               fontWeight="bold"
               marginBottom="1rem"
-              fontSize={{ sm: "0.8", md: "1.5rem", lg: "1.8rem" }}
+              fontSize={{ base: "1.5rem", lg: "1.8rem" }}
             >
               Esqueceu a senha ?
             </Text>
-          
-           <Text align="center" >
-            Para recuperar seu acesso ao sistema, por favor 
-           </Text>
-             
-           <Text align="center" >
-           informe o e-mail cadastrado 
-           </Text>
 
+            <Text w={{ base: "100%", lg: "80%" }} align="center">
+              Para recuperar seu acesso ao sistema, por favor, informe o e-mail
+              cadastrado
+            </Text>
 
             <Flex width="100%" direction="column" marginBottom="10px">
               <InputLabel label={"E-mail"} type="email" placeholder="E-mail" />
-             
             </Flex>
-          
 
             <Button
               height="50px"
@@ -57,6 +56,7 @@ export default function Esqueceu() {
               width="100%"
               marginY="1.5rem"
               fontWeight="normal"
+              onClick={() => sendRoute("/MensagemEmail")}
             >
               Enviar
             </Button>
@@ -67,9 +67,10 @@ export default function Esqueceu() {
               borderTop="2px solid #558085"
               fontSize=".8rem"
               paddingTop="1rem"
+              onClick={() => sendRoute("/")}
             >
               <Text color="#558085" fontWeight="bold" cursor="pointer">
-               Já possui uma conta ?
+                Já possui uma conta ?
               </Text>
             </Flex>
           </Flex>
@@ -78,5 +79,3 @@ export default function Esqueceu() {
     </Main>
   );
 }
-
-

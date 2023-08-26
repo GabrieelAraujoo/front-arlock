@@ -13,10 +13,9 @@ import NewUsuarioAdm from "./pages/dashboard/Adm/usuario_novo";
 import ArmariosAdm from "./pages/dashboard/Adm/armarios";
 import NewArmarioAdm from "./pages/dashboard/Adm/armario_novo";
 import AlugueisAdm from "./pages/dashboard/Adm/alugueis";
-import Cadastro from "./pages/login/Cadastro";
-
-import Esqueceu from "./pages/login/Esqueceu";
-import Mensagem from "./pages/login/Mensagem";
+import Cadastro from "./pages/login/CadastroAlunos";
+import EsqueceuSenha from "./pages/login/EsqueceuSenha";
+import MensagemEmail from "./pages/login/MensagemEmail";
 
 function App() {
   return (
@@ -36,8 +35,8 @@ function App() {
         <Route path="/Adm/NovoArmario" element={<NewArmarioAdm />} />
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
         <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/EsqueceuSenha" element={<Esqueceu />} />
-        <Route path="/MensagemEmail" element={<Mensagem />} />
+        <Route path="/EsqueceuSenha" element={<EsqueceuSenha />} />
+        <Route path="/MensagemEmail" element={<MensagemEmail />} />
       </Routes>
     </div>
   );
