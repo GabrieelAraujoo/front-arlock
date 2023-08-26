@@ -18,7 +18,7 @@ export function Container({ children, ...rest }) {
       h="auto"
       {...rest}
     >
-      {pathname !== "/" && variant === true && <MenuLateral />}
+      {pathname !== "/" || pathname !== "/cadastro"  && variant === true && <MenuLateral />}
       {children}
     </Flex>
   );
