@@ -13,6 +13,7 @@ import NewUsuarioAdm from "./pages/dashboard/Adm/usuario_novo";
 import ArmariosAdm from "./pages/dashboard/Adm/armarios";
 import NewArmarioAdm from "./pages/dashboard/Adm/armario_novo";
 import AlugueisAdm from "./pages/dashboard/Adm/alugueis";
+import Cadastro from "./pages/login/Cadastro";
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/Adm/Armarios" element={<ArmariosAdm />} />
         <Route path="/Adm/NovoArmario" element={<NewArmarioAdm />} />
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
+        <Route path="/Cadastro" element={<Cadastro />} />
       </Routes>
     </div>
   );
