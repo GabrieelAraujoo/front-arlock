@@ -37,7 +37,7 @@ function App() {
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
         <Route path="/Cadastro" element={<Cadastro />} />
         <Route path="/EsqueceuSenha" element={<Esqueceu />} />
-        <Route path="/Mensagem" element={<Mensagem />} />
+        <Route path="/MensagemEmail" element={<Mensagem />} />
       </Routes>
     </div>
   );

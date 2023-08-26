@@ -18,7 +18,7 @@ export default function Esqueceu() {
             boxShadow=" 15px 25px 35px rgb(0, 0, 0, .5);"
             backgroundColor="#fff"
             width={{ base: "80%", lg: "508px" }}
-            height="43%"
+            height="35%"
             direction="column"
             padding="2rem"
             alignItems="center"
