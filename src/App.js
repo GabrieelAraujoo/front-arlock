@@ -16,6 +16,7 @@ import AlugueisAdm from "./pages/dashboard/Adm/alugueis";
 import Cadastro from "./pages/login/Cadastro";
 
 import Esqueceu from "./pages/login/Esqueceu";
+import Mensagem from "./pages/login/Mensagem";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
         <Route path="/Cadastro" element={<Cadastro />} />
         <Route path="/EsqueceuSenha" element={<Esqueceu />} />
+        <Route path="/Mensagem" element={<Mensagem />} />
       </Routes>
     </div>
   );
