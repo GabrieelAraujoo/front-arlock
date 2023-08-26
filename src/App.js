@@ -15,6 +15,7 @@ import NewArmarioAdm from "./pages/dashboard/Adm/armario_novo";
 import AlugueisAdm from "./pages/dashboard/Adm/alugueis";
 import Cadastro from "./pages/login/Cadastro";
 
+import Esqueceu from "./pages/login/Esqueceu";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/Adm/NovoArmario" element={<NewArmarioAdm />} />
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
         <Route path="/Cadastro" element={<Cadastro />} />
+        <Route path="/Esqueceu" element={<Esqueceu />} />
       </Routes>
     </div>
   );
