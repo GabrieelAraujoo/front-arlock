@@ -35,7 +35,7 @@ function App() {
         <Route path="/Adm/NovoArmario" element={<NewArmarioAdm />} />
         <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
         <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/Esqueceu" element={<Esqueceu />} />
+        <Route path="/EsqueceuSenha" element={<Esqueceu />} />
       </Routes>
     </div>
   );
