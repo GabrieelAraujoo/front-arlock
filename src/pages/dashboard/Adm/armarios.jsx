@@ -5,10 +5,10 @@ import { Flex, Text,IconButton, Table, Modal, ModalOverlay, ModalContent, ModalH
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
-import { listArmarios } from "../../../Mock/listArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from '@chakra-ui/icons'
 import { useNavigate } from "react-router-dom";
+import { listArmariosAdm } from "../../../Mock/listArmariosAdm";
 import { ButtonExit } from "../../../components/Button";
 
 function Armarios(){
@@ -77,7 +77,7 @@ function Armarios(){
                             <Table>
                                 <HeadListArmarios/>
 
-                                {listArmarios.map((item, index) => (
+                                {listArmariosAdm.map((item, index) => (
                                 <BodyListArmarios key={index} armarios={item} />
                                 ))}
                             </Table> 
