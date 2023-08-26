@@ -6,7 +6,7 @@ export default function PageTitle({ title }) {
     <Flex
       backgroundColor="white.100"
       width="full"
-      height="80px"
+      minHeight="80px"
       borderRadius="15px"
       alignItems="center"
     >
