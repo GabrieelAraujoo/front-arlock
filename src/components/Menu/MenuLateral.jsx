@@ -16,7 +16,7 @@ export default function MenuLateral() {
   return (
     <Flex
       backgroundColor="white.100"
-      width="14%"
+      width="14% "
       height="full"
       direction="column"
       alignItems="center"
