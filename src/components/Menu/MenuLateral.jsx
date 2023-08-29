@@ -27,8 +27,8 @@ export default function MenuLateral() {
         <Flex
           direction="column"
           alignItems="flex-start"
-          marginTop="25px"
-          marginLeft="5px"
+          marginTop="27px"
+          marginLeft="3px"
           marginBottom="1rem"
         >
           <Text fontWeight="bold" textColor="#A3CCB8">

@@ -70,23 +70,29 @@ function NewArmarios (){
         </Main>
     
 
-        <Flex>
-        <Modal  isOpen={isOpen} onClose={onClose} >
-        <ModalOverlay />
-        <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
-        <ModalHeader marginBottom="2.6rem" fontSize="20px" textColor="#558085" marginTop="5px">Criar Novo Armário?</ModalHeader>
-        <ModalBody textAlign="center">
-            <Text marginBottom="1.1rem" fontSize="14px">Ao criar novos armários, você possibilita o aluguel deles pelos alunos do curso selecionado.</Text>
-            <Text fontSize="14px">Você realmente deseja criar?</Text>
-        </ModalBody>
-            <Flex  marginBottom="1.4rem" textAlign="center">
-            <ButtonExit title={"Voltar"} paddingRight="90px" paddingLeft="90px" onClick={onClose}/>
-            <ButtonExit title={"Criar"} marginLeft="1rem" paddingRight="90px" paddingLeft="90px" onClick={() => navigate("/Adm/Armarios")}/>
-            </Flex>
-        </ModalContent>
-        </Modal> 
+        <Flex >
 
-        </Flex>
+    <Modal  isOpen={isOpen} onClose={onClose} >
+              <ModalOverlay />
+              <ModalContent 
+                background="#fff" 
+                alignItems="center" 
+                height={{base: "360px", sm:"330px"}} 
+                width={{base: "90%", sm: "90%"}} 
+                marginY="auto">
+                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Criar Novo Armário?</ModalHeader>
+                <ModalBody textAlign="center">
+                  <Text marginBottom="1.1rem" fontSize="14px">Ao criar novos armários, você possibilita o aluguel deles pelos alunos do curso selecionado.</Text>
+                  <Text fontSize="14px">Você realmente deseja criar?</Text>
+                </ModalBody>
+                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "195%", sm: "95%"}} paddingLeft={{base: "195%", sm: "95%"}} onClick={onClose}/>
+                  <ButtonExit title={"Criar"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "195%", sm: "95%"}} paddingLeft={{base: "195%", sm: "95%"}} onClick={() => navigate("/Adm/Armarios")}/>
+                  </Flex>
+              </ModalContent>
+            </Modal> 
+
+            </Flex>
         </>
  );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
 
-export default function PageTitle({ title }) {
+export default function PageTitle({ title, subtitle }) {
   return (
     <Flex
       backgroundColor="white.100"
@@ -17,6 +17,7 @@ export default function PageTitle({ title }) {
         fontWeight="bold"
       >
         {title}
+        
       </Text>
     </Flex>
   );

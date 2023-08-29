@@ -33,26 +33,53 @@ export function BodyListAprovacao({ aprovacao }){
             </Td>
         </Tbody>
 
-        <Flex>
-        
-        <Modal  isOpen={isOpen} onClose={onClose} >
-          <ModalOverlay />
-          <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
-            <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Aprovar Aluguel?</ModalHeader>
-            <ModalBody textAlign="center">
-              <Text marginBottom="1.1rem" fontSize="14px">Ao aprovar esse aluguel, você confirma o pagamento e libera o aluno para usar o armário durante o semestre.</Text>
-              <Text fontSize="14px">Você realmente deseja aprovar?</Text>
-            </ModalBody>
-              <Flex  marginBottom="1.4rem" textAlign="center">
+        <Flex >
 
-              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
-              <ButtonExit title={"Aprovar"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+    <Modal  isOpen={isOpen} onClose={onClose} >
+              <ModalOverlay />
+              <ModalContent 
+                background="#fff" 
+                alignItems="center" 
+                height={{base: "360px", sm:"330px"}} 
+                width={{base: "90%", sm: "90%"}} 
+                marginY="auto">
+                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Aprovar Aluguel?</ModalHeader>
+                <ModalBody textAlign="center">
+                  <Text marginBottom="1.1rem" fontSize="14px">Ao aprovar esse aluguel, você confirma o pagamento e libera o aluno para usar o armário durante o semestre.</Text>
+                  <Text fontSize="14px">Você realmente deseja aprovar?</Text>
+                </ModalBody>
+                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  </Flex>
+              </ModalContent>
+            </Modal> 
 
-              </Flex>
-          </ModalContent>
-        </Modal> 
+            </Flex>
 
-        </Flex>     
+            <Flex >
+
+    <Modal  isOpen={isOpen} onClose={onClose} >
+              <ModalOverlay />
+              <ModalContent 
+                background="#fff" 
+                alignItems="center" 
+                height={{base: "360px", sm:"330px"}} 
+                width={{base: "90%", sm: "90%"}} 
+                marginY="auto">
+                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Anular Aluguel?</ModalHeader>
+                <ModalBody textAlign="center">
+                  <Text marginBottom="1.1rem" fontSize="14px">Ao anular esse aluguel, você reprova o pagamento do aluno e libera o armário para reserva.</Text>
+                  <Text fontSize="14px">Você realmente deseja anular?</Text>
+                </ModalBody>
+                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  </Flex>
+              </ModalContent>
+            </Modal> 
+
+            </Flex>   
         </>
  );
 }

@@ -33,6 +33,8 @@ function Armarios(){
                         alignItems="flex-start"
                         marginTop="1rem"
                         direction="column"
+                        overflowX={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
+                        overflowY={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
                     >
                         <Text
                         fontSize="35px"
@@ -70,7 +72,6 @@ function Armarios(){
                             w="full"
                             marginTop="3rem"
                             direction="column"
-                            overflowX={{ base: "scroll", lg: "hidden" }}
                         >
                             <Table>
                                 <HeadListArmarios/>
