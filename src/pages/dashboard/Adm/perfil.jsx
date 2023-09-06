@@ -19,7 +19,7 @@ function Perfil() {
           <Flex
             backgroundColor="white.100"
             width="full"
-            height={{sm: "280px", base: "330px"}}
+            height={{sm: "280px", base: "460px"}}
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="2rem"
@@ -35,13 +35,13 @@ function Perfil() {
               Configurações da Conta
             </Text>
 
-            <Flex w="full" paddingX="1.3rem">
+            <Flex w="full" paddingX="1.3rem" direction={{base: "column", sm: "row", lg: "row"}}>
               <InputLabel label={"Nome"} value={"John Deo"} />
 
               <InputLabel
                 label={"Email"}
                 value={"JohnDeo@gmail.com"}
-                marginLeft="2rem"
+                marginLeft={{sm: "2rem"}}
               />
             </Flex>
 
@@ -49,10 +49,11 @@ function Perfil() {
               w="full"
               alignItems="baseline"
               paddingX="1.3rem"
-              marginTop="3.5rem"
+              marginTop="2.7rem"
+              direction={{base: "column", sm: "row", lg: "row"}}
             >
-              <ButtonExit title={"Voltar"} onClick={() => navigate("/Adm/Home")}/>
-              <ButtonExit title={"Sair"} marginLeft="2rem" onClick={() => navigate("/")}/>
+              <ButtonExit title={"Voltar"} onClick={() => navigate("/Adm/Home")} />
+              <ButtonExit title={"Sair"} marginLeft={{sm: "2rem"}} marginTop="1rem" onClick={() => navigate("/")}/>
             </Flex>
           </Flex>
         </Flex>

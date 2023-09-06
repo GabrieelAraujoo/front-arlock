@@ -24,22 +24,27 @@ export function BodyListArmarios({ armarios }){
 
 <Flex >
 
-<Modal  isOpen={isOpen} onClose={onClose} >
-          <ModalOverlay />
-          <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
-            <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Excluir Armários?</ModalHeader>
-            <ModalBody textAlign="center">
-              <Text marginBottom="1.1rem" fontSize="14px">Ao excluir esses armários, você impossibilita o acesso para eles dentro da plataforma.</Text>
-              <Text fontSize="14px">Você realmente deseja excluir?</Text>
-            </ModalBody>
-              <Flex  marginBottom="1.4rem" textAlign="center">
-              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
-              <ButtonExit title={"Excluir"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
-              </Flex>
-          </ModalContent>
-        </Modal> 
+    <Modal  isOpen={isOpen} onClose={onClose} >
+              <ModalOverlay />
+              <ModalContent 
+                background="#fff" 
+                alignItems="center" 
+                height={{base: "360px", sm:"330px"}} 
+                width={{base: "90%", sm: "90%"}} 
+                marginY="auto">
+                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Excluir Armários?</ModalHeader>
+                <ModalBody textAlign="center">
+                  <Text marginBottom="1.1rem" fontSize="14px">Ao excluir esses armários, você impossibilita o acesso para eles dentro da plataforma.</Text>
+                  <Text fontSize="14px">Você realmente deseja excluir?</Text>
+                </ModalBody>
+                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  </Flex>
+              </ModalContent>
+            </Modal> 
 
-        </Flex>
+            </Flex>
         </>
  );
 }
