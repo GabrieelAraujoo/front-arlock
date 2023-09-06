@@ -3,7 +3,7 @@ import { Main } from "../../layout/Main";
 import { Container } from "../../layout/Container";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { InputLabelIcon } from "../../components/Input/Login";
-import { InputLabel } from "../../components/Input/Geral";
+import Teste, { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
 import SelectLabel from "../../components/Select/SelectCurso";
 import { listCursos } from "../../Mock/listCursos";
@@ -64,43 +64,43 @@ export default function CadastroAlunos() {
             </Text>
 
             <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabel label={"Nome"} placeholder={"John Deo"} />
+              {/* <InputLabel label={"Nome"} placeholder={"John Deo"} /> */}
+              <Teste label={"Nome"}/>
 
-              <InputLabel
+              {/* <InputLabel */}
+              <Teste 
                 label={"Email"}
-                placeholder={"JohnDeo@gmail.com"}
                 marginLeft={{ lg: "2rem", base: "0" }}
+                
               />
             </Flex>
             <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabel label={"RM"} placeholder={"11225"} type="number" />
-
+              <Teste label={"RM"}  type="number" />
+              
               <SelectLabel
+              placeholder=" "
                 label={"Curso"}
-                placeholder={"Curso"}
                 options={listCursos}
-                ml={{ lg: "2rem", base: "0" }}
+                ml={{ lg: "3rem", base: "0" }}
               />
             </Flex>
 
-            <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabelIcon
+            <Flex  w="full" direction={{ lg: "row", base: "column" }}>
+              <Teste
                 label={"Senha"}
                 showPassword={changeShowPassword}
                 status={showPassword}
                 type={showPassword ? "password" : "text"}
-                placeholder="Senha"
+                
               />
 
-              <InputLabelIcon
-                ml={{ lg: "2rem", base: "0" }}
-                label={"Confirmar Senha"}
-                showPassword={changeShowConfirmPassword}
-                status={confirmShowPassword}
-                type={confirmShowPassword ? "password" : "text"}
-                placeholder="Senha"
-              />
+             <Flex ml={{ lg: "3rem", base: "0" }} w="full" direction={{ lg: "row", base: "column" }}>
+              <Teste  label={"Confirmar Senha"} status={confirmShowPassword} type={confirmShowPassword ? "password" : "text"} showPassword={changeShowPassword} />
+
+        
             </Flex>
+            </Flex>
+            
 
             <Flex
               w="full"
