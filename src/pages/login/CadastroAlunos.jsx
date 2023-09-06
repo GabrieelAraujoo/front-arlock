@@ -3,15 +3,24 @@ import { Main } from "../../layout/Main";
 import { Container } from "../../layout/Container";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { InputLabelIcon } from "../../components/Input/Login";
-import Teste, { InputLabel } from "../../components/Input/Geral";
+import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
-import SelectLabel from "../../components/Select/SelectCurso";
+import { SelectLabel } from "../../components/Select/SelectCurso";
 import { listCursos } from "../../Mock/listCursos";
+import { baseFormCadastro } from "../../utils/baseFormCadastro";
 
 export default function CadastroAlunos() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const [confirmShowPassword, setConfirmShowPassword] = useState(true);
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState("");
+  const [formData, setformData] = useState(baseFormCadastro);
+
+  const changeValue = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+    setformData(userData);
+  };
 
   function changeShowPassword() {
     if (showPassword === true) {
@@ -27,6 +36,11 @@ export default function CadastroAlunos() {
     } else {
       setConfirmShowPassword(true);
     }
+  }
+
+  function sendUser() {
+    console.log(formData);
+    navigate("/");
   }
 
   function sendRoute(route) {
@@ -57,55 +71,71 @@ export default function CadastroAlunos() {
               color="#558085"
               fontWeight="bold"
               direction="left"
-              marginBottom="1rem"
               fontSize={{ base: "1.5rem", lg: "1.8rem" }}
             >
               Cadastre-se
             </Text>
 
             <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              {/* <InputLabel label={"Nome"} placeholder={"John Deo"} /> */}
-              <Teste label={"Nome"}/>
+              <InputLabel
+                label={"Nome"}
+                marginRight={{ lg: "2rem", base: "0" }}
+                name="nome"
+                value={userData.nome}
+                onChange={changeValue}
+                // isInvalid={error && error.errorName}
+              />
 
-              {/* <InputLabel */}
-              <Teste 
+              <InputLabel
                 label={"Email"}
-                marginLeft={{ lg: "2rem", base: "0" }}
-                
+                name="email"
+                value={userData.email}
+                onChange={changeValue}
               />
             </Flex>
             <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <Teste label={"RM"}  type="number" />
-              
+              <InputLabel
+                label={"RM"}
+                type="number"
+                marginRight={{ lg: "2rem", base: "0" }}
+                name="rm"
+                value={userData.rm}
+                onChange={changeValue}
+              />
+
               <SelectLabel
-              placeholder=" "
                 label={"Curso"}
                 options={listCursos}
-                ml={{ lg: "3rem", base: "0" }}
+                name="curso"
+                value={userData.curso}
+                onChange={changeValue}
               />
             </Flex>
 
-            <Flex  w="full" direction={{ lg: "row", base: "column" }}>
-              <Teste
+            <Flex w="full" direction={{ lg: "row", base: "column" }}>
+              <InputLabelIcon
                 label={"Senha"}
                 showPassword={changeShowPassword}
                 status={showPassword}
                 type={showPassword ? "password" : "text"}
-                
+                marginRight={{ lg: "2rem", base: "0" }}
+                name="senha"
+                value={userData.senha}
+                onChange={changeValue}
               />
 
-             <Flex ml={{ lg: "3rem", base: "0" }} w="full" direction={{ lg: "row", base: "column" }}>
-              <Teste  label={"Confirmar Senha"} status={confirmShowPassword} type={confirmShowPassword ? "password" : "text"} showPassword={changeShowPassword} />
-
-        
+              <InputLabelIcon
+                label={"Confirmar Senha"}
+                status={confirmShowPassword}
+                type={confirmShowPassword ? "password" : "text"}
+                showPassword={changeShowConfirmPassword}
+              />
             </Flex>
-            </Flex>
-            
 
             <Flex
               w="full"
               direction="column"
-              justifyContent="center"
+              justifyContent="space-between"
               alignItems="center"
               marginTop="1.5rem"
             >
@@ -116,7 +146,7 @@ export default function CadastroAlunos() {
                 width="60%"
                 marginY="1.5rem"
                 fontWeight="normal"
-                onClick={() => sendRoute("/")}
+                onClick={() => sendUser()}
               >
                 Cadastre-se
               </Button>

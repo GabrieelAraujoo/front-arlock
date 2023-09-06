@@ -46,7 +46,7 @@ export default function EsqueceuSenha() {
             </Text>
 
             <Flex width="100%" direction="column" marginBottom="10px">
-              <InputLabel label={"E-mail"} type="email" placeholder="E-mail" />
+              <InputLabel label={"E-mail"} type="email" />
             </Flex>
 
             <Button

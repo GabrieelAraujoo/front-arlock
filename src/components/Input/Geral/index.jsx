@@ -1,45 +1,50 @@
 import React from "react";
-import { Text, Input, InputGroup,  ChakraProvider,
+import {
+  Input,
+  InputGroup,
+  ChakraProvider,
   FormControl,
-  FormLabel,extendTheme,
-  Box } from "@chakra-ui/react";
+  FormLabel,
+  extendTheme,
+  Box,
+} from "@chakra-ui/react";
 
-export function InputLabel({ label, marginLeft, ...rest }) {
-  return (
-    <InputGroup
-      display="Flex"
-      flexDir="column"
-      marginLeft={marginLeft}
-      mt="1rem"
-      p="10px"
-      color="black"
-      borderRadius="12px"
-      border="1px solid #EDE7F6"
-      boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-      _hover={{ border: "1px solid", borderColor: "#558085" }}
-    >
-      <Text textStyle="Bold" fontSize="0.7rem" pl="3%" color="gray.500">
-        {label}
-      </Text>
-      <Input
-        w="100%"
-        h="30px"
-        borderRadius="12px"
-        borderColor="none"
-        fontSize="16px"
-        border="none"
-        fontWeight="bold"
-        color="#000"
-        _focusVisible={{ border: "none" }}
-        _focus={{ border: "none" }}
-        {...rest}
-      />
-    </InputGroup>
-  );
-}
+// export function InputLabel({ label, marginLeft, ...rest }) {
+//   return (
+//     <InputGroup
+//       display="Flex"
+//       flexDir="column"
+//       marginLeft={marginLeft}
+//       mt="1rem"
+//       p="10px"
+//       color="black"
+//       borderRadius="12px"
+//       border="1px solid #EDE7F6"
+//       boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
+//       _hover={{ border: "1px solid", borderColor: "#558085" }}
+//     >
+//       <Text textStyle="Bold" fontSize="0.7rem" pl="3%" color="gray.500">
+//         {label}
+//       </Text>
+//       <Input
+//         w="100%"
+//         h="30px"
+//         borderRadius="12px"
+//         borderColor="none"
+//         fontSize="16px"
+//         border="none"
+//         fontWeight="bold"
+//         color="#000"
+//         _focusVisible={{ border: "none" }}
+//         _focus={{ border: "none" }}
+//         {...rest}
+//       />
+//     </InputGroup>
+//   );
+// }
 
 const activeLabelStyles = {
-  transform: "scale(0.85) translateY(-24px)"
+  transform: "scale(0.85) translateY(-24px)",
 };
 
 export const theme = extendTheme({
@@ -50,12 +55,13 @@ export const theme = extendTheme({
           container: {
             _focusWithin: {
               label: {
-                ...activeLabelStyles
-              }
+                ...activeLabelStyles,
+              },
             },
-            "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label, textarea:not(:placeholder-shown) ~ label": {
-              ...activeLabelStyles
-            },
+            "input:not(:placeholder-shown) + label, .chakra-select__wrapper + label, textarea:not(:placeholder-shown) ~ label":
+              {
+                ...activeLabelStyles,
+              },
             label: {
               top: 0,
               left: 0,
@@ -66,35 +72,31 @@ export const theme = extendTheme({
               mx: 3,
               px: 1,
               my: 2,
-              transformOrigin: "left top"
-            }
-          }
-        }
-      }
-    }
-  }
+              transformOrigin: "left top",
+            },
+          },
+        },
+      },
+    },
+  },
 });
 
-export default function Teste({ label, marginLeft, ...rest }) {
+export function InputLabel({ label, marginRight, ...rest }) {
   return (
-    <InputGroup display="Flex"
-    flexDir="column"
-    marginLeft={marginLeft}
-    mt="3rem"
-    color="black"
-    borderRadius="12px"
-    border="1px solid #EDE7F6"
-    boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-    _hover={{ border: "1px solid", borderColor: "#558085" }}>
-    
-    <ChakraProvider theme={theme} marginLeft={marginLeft}>
-      <Box >
-        <FormControl variant="floating" id="first-name" isRequired >
-          <Input placeholder=" " padding="28px"  {...rest}/>
-          <FormLabel>{label}</FormLabel>
-        </FormControl>
-      </Box>
-    </ChakraProvider>
+    <InputGroup
+      display="Flex"
+      flexDir="column"
+      marginRight={marginRight}
+      mt="1.5rem"
+    >
+      <ChakraProvider theme={theme}>
+        <Box>
+          <FormControl variant="floating" id="first-name" isRequired>
+            <Input placeholder=" " paddingY="18px" {...rest} />
+            <FormLabel>{label}</FormLabel>
+          </FormControl>
+        </Box>
+      </ChakraProvider>
     </InputGroup>
   );
 }

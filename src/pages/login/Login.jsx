@@ -50,13 +50,13 @@ function Login() {
               Seja bem-vindo (a)
             </Text>
             <Flex width="100%" direction="column" marginBottom="10px">
-              <InputLabel label={"E-mail"} type="email" placeholder="E-mail" />
+              <InputLabel label={"E-mail"} type="email" name="email" />
               <InputLabelIcon
                 label={"Senha"}
                 showPassword={changeShowPassword}
                 status={status}
                 type={status ? "password" : "text"}
-                placeholder="Senha"
+                name="email"
               />
             </Flex>
             <Flex
