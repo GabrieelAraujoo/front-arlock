@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../layout/Main";
-import { Container } from "../../layout/Container";
+import { ContainerLogOff } from "../../layout/Container";
 import {
   Flex,
   Text,
@@ -26,6 +26,9 @@ export default function Login() {
   const [errorPassword, setErrorPassword] = useBoolean();
 
   const [loading, setLoading] = useBoolean();
+
+  //para mudar o nivel de user é só mudar o nome de adm para aluno ou o contrario
+  const [type] = useState("aluno");
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
 
@@ -87,9 +90,12 @@ export default function Login() {
 
       setErrorPassword.on();
     } else {
-      const type = "aluno";
+      const typeLocal = {
+        type,
+      };
+
       localStorage.setItem("token", JSON.stringify("123456"));
-      localStorage.setItem("type", JSON.stringify(type));
+      localStorage.setItem("type", JSON.stringify(typeLocal));
 
       if (type === "adm") {
         navigate("/Adm/Home");
@@ -130,7 +136,7 @@ export default function Login() {
 
   return (
     <Main>
-      <Container>
+      <ContainerLogOff>
         <Flex
           width="100%"
           height="100%"
@@ -241,7 +247,7 @@ export default function Login() {
             </Flex>
           </Flex>
         </Flex>
-      </Container>
+      </ContainerLogOff>
     </Main>
   );
 }

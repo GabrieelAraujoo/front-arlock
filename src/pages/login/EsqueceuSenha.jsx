@@ -1,5 +1,5 @@
 import { Main } from "../../layout/Main";
-import { Container } from "../../layout/Container";
+import { ContainerLogOff } from "../../layout/Container";
 import { Flex, Text, Button } from "@chakra-ui/react";
 import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ export default function EsqueceuSenha() {
 
   return (
     <Main>
-      <Container>
+      <ContainerLogOff>
         <Flex
           width="100%"
           height="100%"
@@ -75,7 +75,7 @@ export default function EsqueceuSenha() {
             </Flex>
           </Flex>
         </Flex>
-      </Container>
+      </ContainerLogOff>
     </Main>
   );
 }

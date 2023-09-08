@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Main } from "../../layout/Main";
-import { Container } from "../../layout/Container";
+import { ContainerLogOff } from "../../layout/Container";
 import { Flex, Text, Button, useToast } from "@chakra-ui/react";
 import { InputLabelIcon } from "../../components/Input/Login";
 import { InputLabel } from "../../components/Input/Geral";
@@ -90,7 +90,7 @@ export default function CadastroAlunos() {
 
   return (
     <Main>
-      <Container>
+      <ContainerLogOff>
         <Flex
           width="100%"
           height="100%"
@@ -218,7 +218,7 @@ export default function CadastroAlunos() {
             </Flex>
           </Flex>
         </Flex>
-      </Container>
+      </ContainerLogOff>
     </Main>
   );
 }

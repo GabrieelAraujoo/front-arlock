@@ -1,22 +1,25 @@
 import { useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function LoginContainer({ children }) {
   const token = localStorage.getItem("token");
-
+  const type = JSON.parse(localStorage.getItem("type"));
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
-      console.log(1);
       setTimeout(() => {
         navigate("/");
       }, 500);
     }
-  }, [navigate, token]);
+  }, [navigate, token, type]);
 
   if (token) {
-    return children;
+    if (type.type === "aluno") {
+      return children;
+    } else {
+      return null;
+    }
   } else {
     return null;
   }
@@ -24,19 +27,23 @@ export function LoginContainer({ children }) {
 
 export function LoginAdmContainer({ children }) {
   const token = localStorage.getItem("token");
+  const type = JSON.parse(localStorage.getItem("type"));
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
-      console.log(2);
       setTimeout(() => {
         navigate("/");
       }, 500);
     }
-  }, [navigate, token]);
+  }, [navigate, token, type]);
 
   if (token) {
-    return children;
+    if (type.type === "adm") {
+      return children;
+    } else {
+      return null;
+    }
   } else {
     return null;
   }
@@ -44,15 +51,26 @@ export function LoginAdmContainer({ children }) {
 
 export function LogOff({ children }) {
   const token = localStorage.getItem("token");
-  const type = localStorage.getItem("type");
+  const type = JSON.parse(localStorage.getItem("type"));
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (token) {
+      if (type.type === "adm") {
+        setTimeout(() => {
+          navigate("/Adm/Home");
+        }, 500);
+      } else {
+        setTimeout(() => {
+          navigate("/Aluno/Home");
+        }, 500);
+      }
+    }
+  }, [navigate, token, type]);
 
   if (!token) {
     return children;
   } else {
-    if (type) {
-      return <Navigate to="/Adm/Home" />;
-    } else {
-      return <Navigate to="/Aluno/Home" />;
-    }
+    return null;
   }
 }

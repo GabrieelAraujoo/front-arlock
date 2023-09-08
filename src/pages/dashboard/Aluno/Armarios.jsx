@@ -24,10 +24,11 @@ export function Armarios() {
             height="550px"
             borderRadius="15px"
             alignItems="flex-start"
-            marginTop="1rem"
+            marginTop="2rem"
             direction="column"
+            paddingY="1rem"
           >
-            <Text
+            {/* <Text
               fontSize="35px"
               textColor="#558085"
               fontWeight="bold"
@@ -35,20 +36,20 @@ export function Armarios() {
               marginTop="1.3rem"
             >
               Armários Disponíveis
-            </Text>
+            </Text> */}
 
             <Flex
               w="full"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
-              marginBottom="2rem"
             >
               <Flex
                 width="100%"
                 display="grid"
                 gridTemplateColumns={{
-                  sm: "auto",
-                  base: "auto",
+                  base: "auto auto",
+                  sm: "auto auto auto auto",
+                  md: "auto auto auto auto auto",
                   lg: "auto auto auto auto auto auto auto auto",
                 }}
                 gridGap="1rem"
