@@ -98,6 +98,7 @@ export const theme = extendTheme({
 });
 
 export function InputLabelIcon({
+  erro,
   label,
   status,
   showPassword,
@@ -113,7 +114,12 @@ export function InputLabelIcon({
     >
       <ChakraProvider theme={theme}>
         <Box>
-          <FormControl variant="floating" id="first-name" isRequired>
+          <FormControl
+            variant="floating"
+            id="first-name"
+            isRequired
+            borderColor={erro ? "red" : "gray.200"}
+          >
             <Input placeholder=" " paddingY="18px" {...rest} />
             <FormLabel>{label}</FormLabel>
             <InputRightElement

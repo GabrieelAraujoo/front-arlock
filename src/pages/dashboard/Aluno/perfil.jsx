@@ -5,8 +5,17 @@ import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
+import { useNavigate } from "react-router-dom";
 
 function Perfil() {
+  const navigate = useNavigate();
+
+  function handleSair() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("type");
+    navigate("/");
+  }
+
   return (
     <Main>
       <Container>
@@ -68,7 +77,11 @@ function Perfil() {
               marginBottom={{ base: "1rem", lg: "0" }}
             >
               <ButtonExit title={"Voltar"} />
-              <ButtonExit title={"Sair"} marginLeft="2rem" />
+              <ButtonExit
+                title={"Sair"}
+                marginLeft="2rem"
+                onClick={() => handleSair()}
+              />
             </Flex>
           </Flex>
         </Flex>

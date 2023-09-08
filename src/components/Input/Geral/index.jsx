@@ -81,7 +81,7 @@ export const theme = extendTheme({
   },
 });
 
-export function InputLabel({ label, marginRight, ...rest }) {
+export function InputLabel({ erro, label, marginRight, ...rest }) {
   return (
     <InputGroup
       display="Flex"
@@ -91,7 +91,12 @@ export function InputLabel({ label, marginRight, ...rest }) {
     >
       <ChakraProvider theme={theme}>
         <Box>
-          <FormControl variant="floating" id="first-name" isRequired>
+          <FormControl
+            variant="floating"
+            id="first-name"
+            isRequired
+            borderColor={erro ? "red" : "gray.200"}
+          >
             <Input placeholder=" " paddingY="18px" {...rest} />
             <FormLabel>{label}</FormLabel>
           </FormControl>
