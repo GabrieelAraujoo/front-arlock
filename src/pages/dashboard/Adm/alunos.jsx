@@ -10,6 +10,8 @@ import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos"
 import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
+
+
   return (
     <Main>
       <Container>
@@ -47,6 +49,7 @@ function Alunos() {
               align="center"
               marginLeft="20px"
               w="full"
+              
             >
               {/* componente pesquisa */}
               <InputPesquisa />
@@ -57,6 +60,7 @@ function Alunos() {
               marginTop="3rem"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
+              
             >
               <Table>
                 {/* titulo tabela */}
