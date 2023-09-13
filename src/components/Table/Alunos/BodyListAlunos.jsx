@@ -6,7 +6,7 @@ export function BodyListAlunos({ aluno }) {
   const {isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-    <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
+    <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px" id="tabela-alunos">
       <Td width="25%">{aluno.rm}</Td>
       <Td width="25%">{aluno.nome}</Td>
       <Td width="25%">{aluno.curso}</Td>

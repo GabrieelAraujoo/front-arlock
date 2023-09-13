@@ -10,6 +10,29 @@ import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos"
 import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
+
+  const INPUT_BUSCA = document.getElementById('input-pesquisa-aluno') 
+  const TABELA_ALUNOS = document.getElementById('tabela-alunos') 
+  
+  INPUT_BUSCA.addEventListener('keyup', () => { 
+    
+    let expressao = INPUT_BUSCA.value 
+    
+    let linhas = TABELA_ALUNOS.getElementsByTagName('Td') 
+      console.log(linhas) 
+      
+      for (let posicao in linhas) { 
+        if (true === isNaN(posicao)){ 
+          continue; 
+        } 
+        
+        let conteudoDaLinha = linhas[posicao].innerHTML.toLowerCase(); 
+        if (true === conteudoDaLinha.includes(expressao)){ linhas[posicao].style.display = '' 
+      } else { 
+        linhas[posicao].style.display = 'none' 
+    } console.log(posicao) } 
+  })
+
   return (
     <Main>
       <Container>
@@ -49,6 +72,7 @@ function Alunos() {
               align="center"
               marginLeft="20px"
               w="full"
+              id="input-pesquisa-aluno"
             >
               {/* componente pesquisa */}
               <InputPesquisa />
