@@ -81,6 +81,7 @@ function Alunos() {
               marginLeft="20px"
               marginTop="15px"
               w="full"
+              id="input-pesquisa-aluno"
             >
               {/* componente pesquisa */}
               <InputPesquisa />
