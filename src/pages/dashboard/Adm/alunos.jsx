@@ -15,9 +15,28 @@ function Alunos() {
   const TABELA_ALUNO = document.getElementById('tabela-aluno');
 
   INPUT_BUSCA.addEventListener('keyup', () => {
-    let expressao = INPUT_BUSCA.value;
+    let expressao = INPUT_BUSCA.value.toLowerCase()
 
-    console.log(expressao);
+    if (expressao.length === 1) {
+      return
+    }
+
+    let linhas = TABELA_ALUNO.getElementsByTagName('Td')
+    console.log(linhas);
+    for (let posicao in linhas) {
+      if (true === isNaN(posicao)) {
+        continue
+      }
+
+      let conteudoDaLinha = linhas[posicao].innerHTML
+
+      if (true === conteudoDaLinha.includes(expressao)) {
+        linhas[posicao].style.display = ''
+      } else {
+        linhas[posicao].style.display = 'none'
+      }
+    }
+     
   })
 
 
