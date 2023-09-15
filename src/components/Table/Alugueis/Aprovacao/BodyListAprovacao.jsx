@@ -1,10 +1,12 @@
 import { Flex, Text, Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../Button";
+import React from "react";
 
 
-export function BodyListAprovacao({ aprovacao }){
+export function BodyListAprovacao({ aprovacao  }){
     const {isOpen, onOpen, onClose } = useDisclosure()
+
     return(
         <>
         <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">

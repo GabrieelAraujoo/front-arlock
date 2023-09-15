@@ -25,7 +25,7 @@ function Usuarios(){
                     direction="column"
                     textColor="#558085"
                 >
-                    <PageTitle title={"Pessoas > Usuários"} />
+                    <PageTitle title={"Usuários"} />
 
                     <Flex
                         backgroundColor="white.100"

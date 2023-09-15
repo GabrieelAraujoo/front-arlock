@@ -20,7 +20,7 @@ function NewUsuarios(){
                         direction="column"
                         textColor="#558085"
                     >
-                        <PageTitle title={"Pessoas > Usuários > Novo Usuário"} />
+                        <PageTitle title={"Usuários > Novo Usuário"} />
 
                         <Flex
                             backgroundColor="white.100"
@@ -83,7 +83,7 @@ function NewUsuarios(){
                 </ModalBody>
                   <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
                   <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "195%", sm: "95%"}} paddingLeft={{base: "195%", sm: "95%"}} onClick={onClose}/>
-                  <ButtonExit title={"Criar"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "195%", sm: "95%"}} paddingLeft={{base: "195%", sm: "95%"}} onClick={() => navigate("/Adm/Armarios")}/>
+                  <ButtonExit title={"Criar"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "195%", sm: "95%"}} paddingLeft={{base: "195%", sm: "95%"}} onClick={() => navigate("/Adm/Usuarios")}/>
                   </Flex>
               </ModalContent>
             </Modal> 

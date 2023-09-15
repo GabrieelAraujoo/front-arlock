@@ -1,10 +1,20 @@
 import { Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure, Flex, Text } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
+import React, { useState } from "react";
+import { listArmariosAdm } from "../../../Mock/listArmariosAdm";
 
 
 export function BodyListArmarios({ armarios }){
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const [lockers, SetLockers] = useState(listArmariosAdm.map((item, index) => (
+      <listArmariosAdm key={index} armarios={item} />)))
+
+  const handleDelete = (deletingLocker) => {
+      const newLockers = lockers.filter((locker) => locker !== deletingLocker)
+      SetLockers(newLockers)
+  }
     return(
         <>
         <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
@@ -18,6 +28,7 @@ export function BodyListArmarios({ armarios }){
                     height="20px"
                     width="20px"
                     color="gray.400"
+                    cursor="pointer"
                     onClick={onOpen}/>
             </Td>
         </Tbody>    
@@ -39,7 +50,7 @@ export function BodyListArmarios({ armarios }){
                 </ModalBody>
                   <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
                   <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
-                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={() => handleDelete(lockers) && onClose} />
                   </Flex>
               </ModalContent>
             </Modal> 
