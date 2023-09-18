@@ -3,7 +3,6 @@ import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure, useToast } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
-import { InputLabel } from "../../../components/Input/Geral";
 import { ButtonExit } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,6 +10,7 @@ import {
     errorFormNewUser,
   } from "../../../JS/baseFormNewUser";
   import { validateFormNewUser } from "../../../JS/validateFormNewUser";
+import { InputLabelAdm } from "../../../components/Input/Geral/InputAdm";
 
 function NewUsuarios(){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -29,6 +29,7 @@ function NewUsuarios(){
       async function createUser() {
         console.log(formData);
         const errors = await validateFormNewUser(formData, error, setError);
+        
         if (errors.length !== 0) {
           toast({
             title: "Erro!",
@@ -57,6 +58,7 @@ function NewUsuarios(){
             status: "success",
             duration: 5000,
             isClosable: true,
+            
           })
         }
     };  
@@ -92,7 +94,7 @@ function NewUsuarios(){
                             </Text> 
 
                             <Flex w="full" paddingX="1.3rem">
-                                <InputLabel 
+                                <InputLabelAdm 
                                 label={"Nome"} 
                                 name="nome"
                                 id="nome"
@@ -100,14 +102,13 @@ function NewUsuarios(){
                                 onChange={changeValue}
                                 isInvalid={error && error.errorNome}/>   
 
-                                <InputLabel
+                                <InputLabelAdm
                                 label={"Email"}
                                 name="email"
                                 id="email"
                                 value={userData.email}
                                 onChange={changeValue}
-                                isInvalid={error && error.errorEmail}
-                                
+                                isInvalid={error && error.errorEmail}                               
                                 marginLeft="2rem"
                                 />
                             </Flex>
