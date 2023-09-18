@@ -45,7 +45,7 @@ function Usuarios(){
                         marginLeft="1.3rem"
                         marginTop="1.3rem"
                         >
-                        Usuários
+                        Lista de Usuários
                         </Text>
 
                         <Flex

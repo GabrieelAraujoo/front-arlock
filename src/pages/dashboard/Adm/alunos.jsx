@@ -11,7 +11,7 @@ import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
 
-  const INPUT_BUSCA = document.getElementById('input-busca'); 
+  {/*const INPUT_BUSCA = document.getElementById('input-busca'); 
   const TABELA_ALUNO = document.getElementById('tabela-aluno');
 
   INPUT_BUSCA.addEventListener('keyup', () => {
@@ -37,7 +37,7 @@ function Alunos() {
       }
     }
      
-  })
+  })*/}
 
 
 
@@ -64,15 +64,15 @@ function Alunos() {
             overflowX={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
             overflowY={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
           >
-            {/*<Text
+            <Text
               fontSize="35px"
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"
               marginTop="1.3rem"
             >
-              Alunos
-            </Text>/*}
+              Lista de Alunos
+            </Text>
 
             {/* input pesquisa */}
             <Flex
@@ -81,7 +81,6 @@ function Alunos() {
               marginLeft="20px"
               marginTop="15px"
               w="full"
-              id="input-pesquisa-aluno"
             >
               {/* componente pesquisa */}
               <InputPesquisa />

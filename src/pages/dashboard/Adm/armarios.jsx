@@ -43,7 +43,7 @@ function Armarios(){
                         marginLeft="1.3rem"
                         marginTop="1.3rem"
                         >
-                        Armários
+                        Lista de Armários
                         </Text>
 
                         <Flex

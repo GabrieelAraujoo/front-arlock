@@ -38,7 +38,7 @@ function NewArmarios (){
                             marginLeft="1.3rem"
                             marginTop="1rem"
                             >
-                            Novos Armários
+                            Criar Novos Armários
                             </Text>
 
                             <Flex w="full" paddingX="1.3rem">

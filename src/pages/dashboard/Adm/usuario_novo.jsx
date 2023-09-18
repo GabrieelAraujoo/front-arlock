@@ -38,7 +38,7 @@ function NewUsuarios(){
                             marginLeft="1.3rem"
                             marginTop="1rem"
                             >
-                            Novo Usuário
+                            Criar Novo Usuário
                             </Text> 
 
                             <Flex w="full" paddingX="1.3rem">
