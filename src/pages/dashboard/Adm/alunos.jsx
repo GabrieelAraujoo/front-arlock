@@ -11,7 +11,7 @@ import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
 
-  {/*const INPUT_BUSCA = document.getElementById('input-busca'); 
+  /*const INPUT_BUSCA = document.getElementById('input-busca'); 
   const TABELA_ALUNO = document.getElementById('tabela-aluno');
 
   INPUT_BUSCA.addEventListener('keyup', () => {
@@ -37,7 +37,7 @@ function Alunos() {
       }
     }
      
-  })*/}
+  })*/
 
 
 

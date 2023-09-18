@@ -11,6 +11,8 @@ import {
     errorFormNewLocker,
   } from "../../../JS/baseFormNewLocker";
   import { validateFormNewLocker } from "../../../JS/validateFormNewLocker";
+import { SelectCurso } from "../../../components/SelectAdm/SelectCurso";
+import { listCursos } from "../../../Mock/listCursos";
 
 function NewArmarios (){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -107,6 +109,7 @@ function NewArmarios (){
                                 label={"Quantidade"}
                                 name="quantidade"
                                 id="quantidade" 
+                                type="number"
                                 value={userData.quantidade}
                                 onChange={changeValue}
                                 isInvalid={error && error.errorQuantidade}
@@ -115,9 +118,14 @@ function NewArmarios (){
                             </Flex>
 
                             <Flex w="full" paddingX="1.3rem">
-                                <InputLabelAdm 
+                                <SelectCurso 
                                 label={"Concurso"} 
-                                value={"Química"} />   
+                                options={listCursos}
+                                name="curso"
+                                id="curso"
+                                value={userData.curso}
+                                onChange={changeValue}
+                                isInvalid={error && error.errorCurso}/>   
 
                                 <InputLabelAdm 
                                 label={"Manutenção"} 
