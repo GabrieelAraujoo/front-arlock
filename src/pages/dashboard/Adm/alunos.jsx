@@ -81,6 +81,7 @@ function Alunos() {
               marginLeft="20px"
               marginTop="15px"
               w="full"
+              
             >
               {/* componente pesquisa */}
               <InputPesquisa />
@@ -90,6 +91,8 @@ function Alunos() {
               w="full"
               marginTop="3rem"
               direction="column"
+              overflowX={{ base: "scroll", lg: "hidden" }}
+              
             >
               <Table>
                 {/* titulo tabela */}
