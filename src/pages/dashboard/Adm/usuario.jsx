@@ -25,7 +25,7 @@ function Usuarios(){
                     direction="column"
                     textColor="#558085"
                 >
-                    <PageTitle title={"Pessoas > Usuários"} />
+                    <PageTitle title={"Usuários"} />
 
                     <Flex
                         backgroundColor="white.100"
@@ -35,6 +35,8 @@ function Usuarios(){
                         alignItems="flex-start"
                         marginTop="1rem"
                         direction="column"
+                        overflowX={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
+                        overflowY={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
                     >
                         <Text
                         fontSize="35px"
@@ -43,7 +45,7 @@ function Usuarios(){
                         marginLeft="1.3rem"
                         marginTop="1.3rem"
                         >
-                        Usuários
+                        Lista de Usuários
                         </Text>
 
                         <Flex
@@ -73,7 +75,6 @@ function Usuarios(){
                             w="full"
                             marginTop="3rem"
                             direction="column"
-                            overflowX={{ base: "scroll", lg: "hidden" }}
                         >
                             <Table>
                                 <HeadListUsuarios/>

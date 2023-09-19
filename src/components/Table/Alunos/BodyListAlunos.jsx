@@ -6,7 +6,7 @@ export function BodyListAlunos({ aluno }) {
   const {isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-    <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px" >
+    <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px" id="tabela-aluno">
       <Td width="25%">{aluno.rm}</Td>
       <Td width="25%">{aluno.nome}</Td>
       <Td width="25%">{aluno.curso}</Td>
@@ -34,15 +34,20 @@ export function BodyListAlunos({ aluno }) {
 
 <Modal  isOpen={isOpen} onClose={onClose} >
           <ModalOverlay />
-          <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
+          <ModalContent 
+          background="#fff" 
+          alignItems="center" 
+          height={{base: "360px", sm:"330px"}} 
+          width={{base: "90%", sm: "90%"}} 
+          marginY="auto">
             <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Bloquear Aluno?</ModalHeader>
             <ModalBody textAlign="center">
               <Text marginBottom="1.1rem" fontSize="14px">Ao bloquear este aluno, você impossibilita o acesso dele dentro da plataforma.</Text>
               <Text fontSize="14px">Você realmente deseja bloquear?</Text>
             </ModalBody>
-              <Flex  marginBottom="1.4rem" textAlign="center">
-              <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
-              <ButtonExit title={"Bloquear"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+              <Flex  marginBottom="1.4rem" textAlign="center" marginTop={{base: "10px"}} direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+              <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "125%", sm: "65%"}} paddingLeft={{base: "125%", sm: "65%"}} onClick={onClose}/>
+              <ButtonExit title={"Bloquear"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "125%", sm: "65%"}} paddingLeft={{base: "125%", sm: "65%"}} onClick={onClose}/>
               </Flex>
           </ModalContent>
         </Modal> 
@@ -56,15 +61,20 @@ export function BodyListAlunos({ aluno }) {
 
     <Modal  isOpen={isOpen} onClose={onClose} >
               <ModalOverlay />
-              <ModalContent background="#fff" alignItems="center" height="330px" maxWidth="35%" marginY="auto">
+              <ModalContent 
+                background="#fff" 
+                alignItems="center" 
+                height={{base: "360px", sm:"330px"}} 
+                width={{base: "90%", sm: "90%"}} 
+                marginY="auto">
                 <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Desbloquear Aluno?</ModalHeader>
                 <ModalBody textAlign="center">
                   <Text marginBottom="1.1rem" fontSize="14px">Ao desbloquear este aluno, você possibilita o acesso dele dentro da plataforma.</Text>
                   <Text fontSize="14px">Você realmente deseja desbloquear?</Text>
                 </ModalBody>
-                  <Flex  marginBottom="1.4rem" textAlign="center">
-                  <ButtonExit title={"Voltar"} paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
-                  <ButtonExit title={"Desbloquear"} marginLeft="20px" paddingRight="80px" paddingLeft="80px" onClick={onClose}/>
+                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "125%", sm: "65%"}} paddingLeft={{base: "125%", sm: "65%"}} onClick={onClose}/>
+                  <ButtonExit title={"Desbloquear"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "125%", sm: "65%"}} paddingLeft={{base: "125%", sm: "65%"}} onClick={onClose}/>
                   </Flex>
               </ModalContent>
             </Modal> 

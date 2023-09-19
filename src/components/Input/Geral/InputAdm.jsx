@@ -1,26 +1,22 @@
 import React from "react";
 import {
-  Select,
+  Input,
   InputGroup,
-  extendTheme,
+  ChakraProvider,
   FormControl,
+  FormLabel,
+  extendTheme,
   Box,
 } from "@chakra-ui/react";
 
-// export default function SelectLabel({
-//   label,
-//   ml,
-//   placeholder,
-//   options,
-//   ...rest
-// }) {
+// export function InputLabel({ label, marginLeft, ...rest }) {
 //   return (
 //     <InputGroup
 //       display="Flex"
 //       flexDir="column"
+//       marginLeft={marginLeft}
 //       mt="1rem"
 //       p="10px"
-//       marginLeft={ml}
 //       color="black"
 //       borderRadius="12px"
 //       border="1px solid #EDE7F6"
@@ -30,24 +26,19 @@ import {
 //       <Text textStyle="Bold" fontSize="0.7rem" pl="3%" color="gray.500">
 //         {label}
 //       </Text>
-//       <Select
+//       <Input
 //         w="100%"
 //         h="30px"
+//         borderRadius="12px"
 //         borderColor="none"
+//         fontSize="16px"
 //         border="none"
+//         fontWeight="bold"
+//         color="#000"
 //         _focusVisible={{ border: "none" }}
 //         _focus={{ border: "none" }}
-//         placeholder={placeholder}
 //         {...rest}
-//       >
-//         {options.map((item) => {
-//           return (
-//             <option key={item.id} value={item.name}>
-//               {item.nome}
-//             </option>
-//           );
-//         })}
-//       </Select>
+//       />
 //     </InputGroup>
 //   );
 // }
@@ -90,28 +81,45 @@ export const theme = extendTheme({
   },
 });
 
-export function SelectLabel({
-  label,
-  marginLeft,
-  placeholder,
-  options,
-  ...rest
-}) {
+export function InputLabelAdm({ erro, label, marginLeft, ...rest }) {
   return (
-    <InputGroup display="Flex" flexDir="column" mt="1.5rem">
-      <Box>
-        <FormControl variant="floating" id="first-name" isRequired>
-          <Select placeholder="Curso" {...rest}>
-            {options.map((item) => {
-              return (
-                <option key={item.id} value={item.name}>
-                  {item.nome}
-                </option>
-              );
-            })}
-          </Select>
-        </FormControl>
-      </Box>
+    <InputGroup
+    display="Flex"
+    flexDir="column"
+    marginLeft={marginLeft}
+    mt="1rem"
+    color="black"
+    borderRadius="12px"
+    border="1px solid #EDE7F6"
+    boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
+    _hover={{ border: "1px solid", borderColor: "#558085" }}
+    >
+      <ChakraProvider theme={theme}>
+        <Box>
+          <FormControl
+            variant="floating"
+            id="first-name"
+            isRequired
+            borderColor={erro ? "red" : "gray.200"}
+          >
+            <Input 
+            placeholder=""
+            paddingY="28px" 
+            w="100%"
+            h="30px"
+            borderRadius="12px"
+            borderColor="none"
+            fontSize="16px"
+            border="none"
+            fontWeight="bold"
+            color="#000"
+            _focusVisible={{ border: "none" }}
+            _focus={{ border: "none" }}
+            {...rest} />
+            <FormLabel>{label}</FormLabel>
+          </FormControl>
+        </Box>
+      </ChakraProvider>
     </InputGroup>
   );
 }

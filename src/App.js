@@ -16,27 +16,133 @@ import AlugueisAdm from "./pages/dashboard/Adm/alugueis";
 import Cadastro from "./pages/login/CadastroAlunos";
 import EsqueceuSenha from "./pages/login/EsqueceuSenha";
 import MensagemEmail from "./pages/login/MensagemEmail";
+import { LogOff, LoginContainer, LoginAdmContainer } from "./layout/Auth";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <LogOff>
+              <Login />
+            </LogOff>
+          }
+        />
+        <Route
+          path="/Cadastro"
+          element={
+            <LogOff>
+              <Cadastro />
+            </LogOff>
+          }
+        />
+        <Route
+          path="/EsqueceuSenha"
+          element={
+            <LogOff>
+              <EsqueceuSenha />
+            </LogOff>
+          }
+        />
+        <Route
+          path="/MensagemEmail"
+          element={
+            <LogOff>
+              <MensagemEmail />
+            </LogOff>
+          }
+        />
+        <Route
+          path="/Aluno/Home"
+          element={
+            <LoginContainer>
+              <HomeAluno />
+            </LoginContainer>
+          }
+        />
+        <Route
+          path="/Aluno/Perfil"
+          element={
+            <LoginContainer>
+              <PerfilAluno />
+            </LoginContainer>
+          }
+        />
+        <Route
+          path="/Aluno/Armarios"
+          element={
+            <LoginContainer>
+              <Armarios />
+            </LoginContainer>
+          }
+        />
+        <Route
+          path="/Adm/Home"
+          element={
+            <LoginAdmContainer>
+              <HomeAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/Perfil"
+          element={
+            <LoginAdmContainer>
+              <PerfilAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/Alunos"
+          element={
+            <LoginAdmContainer>
+              <AlunosAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/Usuarios"
+          element={
+            <LoginAdmContainer>
+              <UsuariosAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/NovoUsuario"
+          element={
+            <LoginAdmContainer>
+              <NewUsuarioAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/Armarios"
+          element={
+            <LoginAdmContainer>
+              <ArmariosAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/NovoArmario"
+          element={
+            <LoginAdmContainer>
+              <NewArmarioAdm />
+            </LoginAdmContainer>
+          }
+        />
+        <Route
+          path="/Adm/Alugueis"
+          element={
+            <LoginAdmContainer>
+              <AlugueisAdm />
+            </LoginAdmContainer>
+          }
+        />
         <Route path="*" element={<NotFound />} />
-        <Route path="/Adm/Home" element={<HomeAdm />} />
-        <Route path="/Adm/Perfil" element={<PerfilAdm />} />
-        <Route path="/Adm/Alunos" element={<AlunosAdm />} />
-        <Route path="/Aluno/Home" element={<HomeAluno />} />
-        <Route path="/Aluno/Perfil" element={<PerfilAluno />} />
-        <Route path="/Aluno/Armarios" element={<Armarios />} />
-        <Route path="/Adm/Usuarios" element={<UsuariosAdm />} />
-        <Route path="/Adm/NovoUsuario" element={<NewUsuarioAdm />} />
-        <Route path="/Adm/Armarios" element={<ArmariosAdm />} />
-        <Route path="/Adm/NovoArmario" element={<NewArmarioAdm />} />
-        <Route path="/Adm/Alugueis" element={<AlugueisAdm />} />
-        <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/EsqueceuSenha" element={<EsqueceuSenha />} />
-        <Route path="/MensagemEmail" element={<MensagemEmail />} />
       </Routes>
     </div>
   );

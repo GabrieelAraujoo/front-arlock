@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Image } from "@chakra-ui/react";
+import { Flex, Text, Image, useBreakpointValue } from "@chakra-ui/react";
 import {
   BoxNotificationAlert,
   BoxNotificationPayment,

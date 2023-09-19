@@ -5,8 +5,17 @@ import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
+import { useNavigate } from "react-router-dom";
 
 function Perfil() {
+  const navigate = useNavigate();
+
+  function handleSair() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("type");
+    navigate("/");
+  }
+
   return (
     <Main>
       <Container>
@@ -37,13 +46,13 @@ function Perfil() {
               paddingX="1.3rem"
               direction={{ lg: "row", base: "column" }}
             >
-              <InputLabel label={"Nome"} value={"John Deo"} />
-
               <InputLabel
-                label={"Email"}
-                value={"JohnDeo@gmail.com"}
-                marginLeft={{ lg: "2rem", base: "0" }}
+                label={"Nome"}
+                value={"John Deo"}
+                marginRight={{ lg: "2rem", base: "0" }}
               />
+
+              <InputLabel label={"Email"} value={"JohnDeo@gmail.com"} />
             </Flex>
 
             <Flex
@@ -51,12 +60,15 @@ function Perfil() {
               paddingX="1.3rem"
               direction={{ lg: "row", base: "column" }}
             >
-              <InputLabel label={"RM"} value={"11225"} />
+              <InputLabel
+                label={"RM"}
+                value={"11225"}
+                marginRight={{ lg: "2rem", base: "0" }}
+              />
 
               <InputLabel
                 label={"Curso"}
                 value={"Desenvolvimento de Sistemas"}
-                marginLeft={{ lg: "2rem", base: "0" }}
               />
             </Flex>
 
@@ -67,8 +79,15 @@ function Perfil() {
               marginTop="3.5rem"
               marginBottom={{ base: "1rem", lg: "0" }}
             >
-              <ButtonExit title={"Voltar"} />
-              <ButtonExit title={"Sair"} marginLeft="2rem" />
+              <ButtonExit
+                title={"Voltar"}
+                onClick={() => navigate("/Aluno/Home")}
+              />
+              <ButtonExit
+                title={"Sair"}
+                marginLeft="2rem"
+                onClick={() => handleSair()}
+              />
             </Flex>
           </Flex>
         </Flex>

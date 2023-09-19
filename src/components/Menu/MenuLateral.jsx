@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
 import { LockIcon } from "@chakra-ui/icons";
 import { MenuTitle } from "./MenuTitle";
@@ -7,7 +7,8 @@ import { useLocation, useNavigate } from "react-router";
 export default function MenuLateral() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [type] = useState("adm");
+
+  const type = JSON.parse(localStorage.getItem("type"));
 
   function sendRoute(route) {
     navigate(route);
@@ -16,7 +17,7 @@ export default function MenuLateral() {
   return (
     <Flex
       backgroundColor="white.100"
-      width="14%"
+      width="200px"
       height="full"
       direction="column"
       alignItems="center"
@@ -27,8 +28,8 @@ export default function MenuLateral() {
         <Flex
           direction="column"
           alignItems="flex-start"
-          marginTop="25px"
-          marginLeft="5px"
+          marginTop="27px"
+          marginLeft="3px"
           marginBottom="1rem"
         >
           <Text fontWeight="bold" textColor="#A3CCB8">
@@ -40,7 +41,7 @@ export default function MenuLateral() {
         </Flex>
       </Flex>
 
-      {type === "adm" ? (
+      {type.type === "adm" ? (
         <>
           <MenuTitle
             title={"Home"}
