@@ -25,7 +25,7 @@ function Usuarios(){
                     direction="column"
                     textColor="#558085"
                 >
-                    <PageTitle title={"Pessoas > Usuários"} />
+                    <PageTitle title={"Usuários"} />
 
                     <Flex
                         backgroundColor="white.100"
@@ -45,7 +45,7 @@ function Usuarios(){
                         marginLeft="1.3rem"
                         marginTop="1.3rem"
                         >
-                        Usuários
+                        Lista de Usuários
                         </Text>
 
                         <Flex

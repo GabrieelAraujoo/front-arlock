@@ -42,18 +42,18 @@ function Home() {
               </Text>
 
               <BoxNotificationAlert
-                title={"Novo Aluno Aprovado"}
+                title={"Novo Aluno Cadastrado"}
                 subtitle={"RM:12345"}
               />
 
               <BoxNotificationRent
-                title={"Aluguel Pendente"}
-                subtitle={"n° pedido 14"}
+                title={"Novo Armário Reservado"}
+                subtitle={"Armário:C20"}
               />
 
               <BoxNotificationPayment
-                title={"Pagamento Aprovado"}
-                subtitle={"Pedido n°10"}
+                title={"Aprovação Pendente"}
+                subtitle={"Aluno: John Deo"}
               />
             </Flex>
 
@@ -79,10 +79,10 @@ function Home() {
                 padding="1rem"
                 marginBottom="2rem"
               >
-                <BoxGeral number={"00400"} text={"Total de Armários"} />
-                <BoxGeral number={"00150"} text={"Armarios Alugados"} />
-                <BoxGeral number={"00150"} text={"Armários Disponíveis"} />
-                <BoxGeral number={"00100"} text={"Armários Inativos"} />
+                <BoxGeral number={"100"} text={"Armários Reservados"} />
+                <BoxGeral number={"150"} text={"Armarios Alugados"} />
+                <BoxGeral number={"50"} text={"Armários Disponíveis"} />
+                <BoxGeral number={"100"} text={"Armários Inativos"} />
               </Flex>
 
               {/* Financeiro */}
@@ -117,7 +117,7 @@ function Home() {
                   gridColumnGap="1rem"
                   gridRowGap={{ base: "1rem", lg: "0" }}
                 >
-                  <BoxGeral number={"00020"} text={"Alugueis Pendentes"} />
+                  <BoxGeral number={"20"} text={"Pagamentos Pendentes"} height={{base: "135px", sm: "130px"}}/>
                   <BoxGeral number={"R$2.000"} text={"Valor total"}  />
                 </Flex>
               </Flex>

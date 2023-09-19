@@ -10,6 +10,37 @@ import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos"
 import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
+
+  /*const INPUT_BUSCA = document.getElementById('input-busca'); 
+  const TABELA_ALUNO = document.getElementById('tabela-aluno');
+
+  INPUT_BUSCA.addEventListener('keyup', () => {
+    let expressao = INPUT_BUSCA.value.toLowerCase()
+
+    if (expressao.length === 1) {
+      return
+    }
+
+    let linhas = TABELA_ALUNO.getElementsByTagName('Td')
+    console.log(linhas);
+    for (let posicao in linhas) {
+      if (true === isNaN(posicao)) {
+        continue
+      }
+
+      let conteudoDaLinha = linhas[posicao].innerHTML
+
+      if (true === conteudoDaLinha.includes(expressao)) {
+        linhas[posicao].style.display = ''
+      } else {
+        linhas[posicao].style.display = 'none'
+      }
+    }
+     
+  })*/
+
+
+
   return (
     <Main>
       <Container>
@@ -19,7 +50,7 @@ function Alunos() {
           direction="column"
           textColor="#558085"
         >
-          <PageTitle title={"Pessoas > Alunos"} />
+          <PageTitle title={"Alunos"} />
 
           {/* novo */}
           <Flex
@@ -40,7 +71,7 @@ function Alunos() {
               marginLeft="1.3rem"
               marginTop="1.3rem"
             >
-              Alunos
+              Lista de Alunos
             </Text>
 
             {/* input pesquisa */}
@@ -48,6 +79,7 @@ function Alunos() {
               justify="space-between"
               align="center"
               marginLeft="20px"
+              marginTop="15px"
               w="full"
             >
               {/* componente pesquisa */}

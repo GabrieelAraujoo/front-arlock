@@ -94,7 +94,7 @@ function Alugueis(){
                         marginLeft="1.3rem"
                         marginTop="1.3rem"
                         >
-                        Aprovados
+                        Aluguéis Aprovados
                         </Text>
 
                         <Flex
