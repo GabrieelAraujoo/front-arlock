@@ -98,10 +98,10 @@ export function SelectLabel({
   ...rest
 }) {
   return (
-    <InputGroup display="Flex" flexDir="column" mt="1.5rem">
+    <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="35px">
       <Box>
         <FormControl variant="floating" id="first-name" isRequired>
-          <Select placeholder="Curso" {...rest}>
+          <Select placeholder="Curso" h="45px" {...rest}>
             {options.map((item) => {
               return (
                 <option key={item.id} value={item.name}>

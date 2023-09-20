@@ -20,7 +20,6 @@ export function BodyListAprovacao({ aprovacao  }){
                 <Flex alignItems="baseline">
                 <CheckIcon 
                     height="20px"
-                    width="50px"
                     color="gray.400"
                     onClick={onOpen}
                     />
@@ -28,7 +27,6 @@ export function BodyListAprovacao({ aprovacao  }){
                     marginLeft="15px"
                     marginRight="10px"
                     height="20px"
-                    width="20px"
                     color="gray.400"
                     onClick={onOpen}/>
                 </Flex>    

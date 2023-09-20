@@ -46,13 +46,20 @@ function Perfil() {
               paddingX="1.3rem"
               direction={{ base: "column", sm: "row", lg: "row" }}
             >
-              <InputLabel label={"Nome"} value={"John Deo"} />
+              <InputLabel 
+              label={"Nome"} 
+              value={"John Deo"}
+              paddingX="1.5rem"
+              w="101%"
+              marginRight="10px" />
 
               <InputLabel
                 label={"Email"}
                 value={"JohnDeo@gmail.com"}
-                marginLeft={{ sm: "2rem" }}
-              />
+                marginLeft={{ sm: "1.8rem" }}
+                paddingX="1.3rem" 
+                w="101%"            
+                marginRight="35px" />
             </Flex>
 
             <Flex

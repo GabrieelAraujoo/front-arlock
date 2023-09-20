@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
