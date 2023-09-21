@@ -28,7 +28,7 @@ export default function Login() {
   const [loading, setLoading] = useBoolean();
 
   //para mudar o nivel de user é só mudar o nome de adm para aluno ou o contrario
-  const [type] = useState("aluno");
+  const [type] = useState("adm");
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
 

@@ -67,7 +67,7 @@ export const theme = extendTheme({
               left: 0,
               zIndex: 2,
               position: "absolute",
-              backgroundColor: "white",
+              backgroundColor: "",
               pointerEvents: "none",
               mx: 3,
               px: 1,
@@ -97,7 +97,7 @@ export function InputLabel({ erro, label, marginRight, ...rest }) {
             isRequired
             borderColor={erro ? "red" : "gray.200"}
           >
-            <Input placeholder=" " paddingY="18px" {...rest} />
+            <Input placeholder="" paddingY="22px" {...rest} />
             <FormLabel>{label}</FormLabel>
           </FormControl>
         </Box>

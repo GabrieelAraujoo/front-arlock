@@ -5,12 +5,9 @@ import { Flex, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
-import {
-    baseFormNewUser,
-    errorFormNewUser,
-  } from "../../../JS/baseFormNewUser";
-  import { validateFormNewUser } from "../../../JS/validateFormNewUser";
-import { InputLabelAdm } from "../../../components/Input/Geral/InputAdm";
+import { baseFormNewUser, errorFormNewUser } from "../../../utils/baseFormNewUser";
+import { validateFormNewUser } from "../../../utils/validateFormNewUser";
+import { InputLabel } from "../../../components/Input/Geral";
 
 function NewUsuarios(){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -94,7 +91,7 @@ function NewUsuarios(){
                             </Text> 
 
                             <Flex w="full" paddingX="1.3rem">
-                                <InputLabelAdm 
+                                <InputLabel
                                 label={"Nome"} 
                                 name="nome"
                                 id="nome"
@@ -102,10 +99,11 @@ function NewUsuarios(){
                                 onChange={changeValue}
                                 isInvalid={error && error.errorNome}/>   
 
-                                <InputLabelAdm
+                                <InputLabel
                                 label={"Email"}
                                 name="email"
                                 id="email"
+                                marginRight="35px"
                                 value={userData.email}
                                 onChange={changeValue}
                                 isInvalid={error && error.errorEmail}                               
