@@ -90,13 +90,7 @@ export const theme = extendTheme({
   },
 });
 
-export function SelectLabel({
-  label,
-  marginLeft,
-  placeholder,
-  options,
-  ...rest
-}) {
+export function SelectLabel({ placeholder, options, ...rest }) {
   return (
     <InputGroup display="Flex" flexDir="column" mt="1.5rem">
       <Box>
