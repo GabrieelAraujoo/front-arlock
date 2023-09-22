@@ -23,7 +23,7 @@ function Perfil() {
           <PageTitle title={"Perfil"} />
 
           <Flex
-            backgroundColor="white.100"
+            backgroundColor="white"
             width="full"
             minHeight="380px"
             borderRadius="15px"
@@ -32,7 +32,7 @@ function Perfil() {
             direction="column"
           >
             <Text
-              fontSize="35px"
+              fontSize={{ lg: "35px", base: "25px", md: "35px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"

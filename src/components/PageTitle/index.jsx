@@ -20,7 +20,7 @@ export default function PageTitle({ title, subtitle }) {
   return (
     <>
       <Flex
-        backgroundColor="white.100"
+        backgroundColor="white"
         width="full"
         minHeight="80px"
         borderRadius="15px"

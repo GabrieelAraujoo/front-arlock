@@ -23,7 +23,7 @@ function Perfil() {
           <PageTitle title={"Perfil"} />
 
           <Flex
-            backgroundColor="white.100"
+            backgroundColor="white"
             width="full"
             height={{ sm: "280px", base: "460px" }}
             borderRadius="15px"
@@ -32,7 +32,7 @@ function Perfil() {
             direction="column"
           >
             <Text
-              fontSize="35px"
+              fontSize={{ lg: "35px", base: "25px", md: "35px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"
@@ -46,20 +46,16 @@ function Perfil() {
               paddingX="1.3rem"
               direction={{ base: "column", sm: "row", lg: "row" }}
             >
-              <InputLabel 
-              label={"Nome"} 
-              value={"John Deo"}
-              paddingX="1.5rem"
-              w="101%"
-              marginRight="10px" />
+              <InputLabel label={"Nome"} value={"John Deo"} />
 
               <InputLabel
                 label={"Email"}
                 value={"JohnDeo@gmail.com"}
                 marginLeft={{ sm: "1.8rem" }}
-                paddingX="1.3rem" 
-                w="101%"            
-                marginRight="35px" />
+                paddingX="1.3rem"
+                w="101%"
+                marginRight="35px"
+              />
             </Flex>
 
             <Flex

@@ -26,7 +26,7 @@ function Home() {
           >
             {/* Flex de notificações */}
             <Flex
-              backgroundColor="white.100"
+              backgroundColor="white"
               width={{ base: "full", lg: "30%" }}
               direction="column"
               borderRadius="15px"
@@ -66,7 +66,7 @@ function Home() {
             >
               {/* Relatório de Armários */}
               <Flex
-                backgroundColor="white.100"
+                backgroundColor="white"
                 width="100%"
                 borderRadius="15px"
                 display="grid"
@@ -87,7 +87,7 @@ function Home() {
 
               {/* Financeiro */}
               <Flex
-                backgroundColor="white.100"
+                backgroundColor="white"
                 width="100%"
                 borderRadius="15px"
                 padding="1rem"
@@ -108,7 +108,6 @@ function Home() {
                   borderRadius="15px"
                   display="grid"
                   gridTemplateColumns={{
-
                     sm: "auto",
                     base: "auto",
                     lg: "auto auto",
@@ -117,8 +116,12 @@ function Home() {
                   gridColumnGap="1rem"
                   gridRowGap={{ base: "1rem", lg: "0" }}
                 >
-                  <BoxGeral number={"20"} text={"Pagamentos Pendentes"} height={{base: "135px", sm: "130px"}}/>
-                  <BoxGeral number={"R$2.000"} text={"Valor total"}  />
+                  <BoxGeral
+                    number={"20"}
+                    text={"Pagamentos Pendentes"}
+                    height={{ base: "135px", sm: "130px" }}
+                  />
+                  <BoxGeral number={"R$2.000"} text={"Valor total"} />
                 </Flex>
               </Flex>
             </Flex>

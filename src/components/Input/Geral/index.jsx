@@ -81,12 +81,13 @@ export const theme = extendTheme({
   },
 });
 
-export function InputLabel({ erro, label, marginRight, ...rest }) {
+export function InputLabel({ erro, label, marginRight, marginLeft, ...rest }) {
   return (
     <InputGroup
       display="Flex"
       flexDir="column"
       marginRight={marginRight}
+      marginLeft={marginLeft}
       mt="1.5rem"
     >
       <ChakraProvider theme={theme}>
