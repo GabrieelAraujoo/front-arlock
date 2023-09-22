@@ -5,7 +5,6 @@ import { Flex, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { InputLabelAdm } from "../../../components/Input/Geral/InputAdm";
 import {
     baseFormNewLocker,
     errorFormNewLocker,
@@ -13,6 +12,7 @@ import {
   import { validateFormNewLocker } from "../../../JS/validateFormNewLocker";
 import { SelectCurso } from "../../../components/SelectAdm/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
+import { InputLabel } from "../../../components/Input/Geral";
 
 function NewArmarios (){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -97,7 +97,7 @@ function NewArmarios (){
                             </Text>
 
                             <Flex w="full" paddingX="1.3rem">
-                                <InputLabelAdm 
+                                <InputLabel
                                 label={"Letra"} 
                                 name="letra"
                                 id="letra"
@@ -105,7 +105,7 @@ function NewArmarios (){
                                 onChange={changeValue}
                                 isInvalid={error && error.errorLetra} />   
 
-                                <InputLabelAdm 
+                                <InputLabel
                                 label={"Quantidade"}
                                 name="quantidade"
                                 id="quantidade" 
@@ -127,7 +127,7 @@ function NewArmarios (){
                                 onChange={changeValue}
                                 isInvalid={error && error.errorCurso}/>   
 
-                                <InputLabelAdm 
+                                <InputLabel 
                                 label={"Manutenção"} 
                                 name="manutencao"
                                 id="manutencao" 
