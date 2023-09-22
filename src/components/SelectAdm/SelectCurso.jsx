@@ -90,39 +90,12 @@ export const theme = extendTheme({
   },
 });
 
-export function SelectCurso({
-  label,
-  marginLeft,
-  placeholder,
-  options,
-  ...rest
-}) {
+export function SelectLabel({ placeholder, options, ...rest }) {
   return (
-    <InputGroup 
-    display="Flex" 
-    flexDir="column"
-     marginLeft={marginLeft}
-     mt="1rem"
-     color="black"
-     borderRadius="12px"
-     border="1px solid #EDE7F6"
-     boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-     _hover={{ border: "1px solid", borderColor: "#558085" }}>
+    <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="35px">
       <Box>
         <FormControl variant="floating" id="first-name" isRequired>
-          <Select placeholder="Curso" 
-          paddingY="14px" 
-          w="100%"
-          h="30px"
-          borderRadius="12px"
-          borderColor="none"
-          fontSize="16px"
-          border="none"
-          fontWeight="bold"
-          color="#000"
-          _focusVisible={{ border: "none" }}
-          _focus={{ border: "none" }}
-          {...rest}>
+          <Select placeholder="Curso" h="45px" {...rest}>
             {options.map((item) => {
               return (
                 <option key={item.id} value={item.name}>
