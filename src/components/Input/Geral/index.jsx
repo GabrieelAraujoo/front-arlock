@@ -81,17 +81,14 @@ export const theme = extendTheme({
   },
 });
 
-export function InputLabel({ erro, label, marginLeft, ...rest }) {
+export function InputLabel({ erro, label, marginRight, marginLeft, ...rest }) {
   return (
     <InputGroup
-    display="Flex"
-    flexDir="column"
-    marginLeft={marginLeft}
-    mt="1rem"
-    color="black"
-    borderRadius="12px"
-    border="1px solid #EDE7F6"
-    _hover={{ border: "1px solid", borderColor: "#558085" }}
+      display="Flex"
+      flexDir="column"
+      marginRight={marginRight}
+      marginLeft={marginLeft}
+      mt="1.5rem"
     >
       <ChakraProvider theme={theme}>
         <Box>
@@ -101,20 +98,7 @@ export function InputLabel({ erro, label, marginLeft, ...rest }) {
             isRequired
             borderColor={erro ? "red" : "gray.200"}
           >
-            <Input 
-            placeholder=""
-            paddingY="28px" 
-            w="100%"
-            h="30px"
-            borderRadius="12px"
-            borderColor="none"
-            fontSize="16px"
-            border="none"
-            fontWeight="bold"
-            color="#000"
-            _focusVisible={{ border: "none" }}
-            _focus={{ border: "none" }}
-            {...rest} />
+            <Input placeholder="" paddingY="22px" {...rest} />
             <FormLabel>{label}</FormLabel>
           </FormControl>
         </Box>

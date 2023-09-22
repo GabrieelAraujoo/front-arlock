@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import {
     baseFormNewLocker,
     errorFormNewLocker,
-  } from "../../../JS/baseFormNewLocker";
-  import { validateFormNewLocker } from "../../../JS/validateFormNewLocker";
+  } from "../../../utils/baseFormNewLocker";
+  import { validateFormNewLocker } from "../../../utils/validateFormNewLocker";
 import { SelectCurso } from "../../../components/SelectAdm/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
@@ -78,7 +78,7 @@ function NewArmarios (){
                     <PageTitle title={"Armários > Novo Armário"} />
 
                     <Flex
-                            backgroundColor="white.100"
+                            backgroundColor="white"
                             width="full"
                             height="380px"
                             borderRadius="15px"

@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import {
     baseFormNewUser,
     errorFormNewUser,
-  } from "../../../JS/baseFormNewUser";
-  import { validateFormNewUser } from "../../../JS/validateFormNewUser";
-import { InputLabelAdm } from "../../../components/Input/Geral/InputAdm";
+  } from "../../../utils/baseFormNewUser";
+  import { validateFormNewUser } from "../../../utils/validateFormNewUser";
+import { InputLabel } from "../../../components/Input/Geral";
 
 function NewUsuarios(){
     const {isOpen, onOpen, onClose } = useDisclosure()
@@ -75,7 +75,7 @@ function NewUsuarios(){
                         <PageTitle title={"Usuários > Novo Usuário"} />
 
                         <Flex
-                            backgroundColor="white.100"
+                            backgroundColor="white"
                             width="full"
                             height="280px"
                             borderRadius="15px"
@@ -94,7 +94,7 @@ function NewUsuarios(){
                             </Text> 
 
                             <Flex w="full" paddingX="1.3rem">
-                                <InputLabelAdm 
+                                <InputLabel 
                                 label={"Nome"} 
                                 name="nome"
                                 id="nome"
@@ -102,7 +102,7 @@ function NewUsuarios(){
                                 onChange={changeValue}
                                 isInvalid={error && error.errorNome}/>   
 
-                                <InputLabelAdm
+                                <InputLabel
                                 label={"Email"}
                                 name="email"
                                 id="email"

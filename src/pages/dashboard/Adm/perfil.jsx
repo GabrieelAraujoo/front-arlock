@@ -17,7 +17,7 @@ function Perfil() {
           <PageTitle title={"Perfil"} />
 
           <Flex
-            backgroundColor="white.100"
+            backgroundColor="white"
             width="full"
             height={{sm: "280px", base: "460px"}}
             borderRadius="15px"
@@ -36,7 +36,9 @@ function Perfil() {
             </Text>
 
             <Flex w="full" paddingX="1.3rem" direction={{base: "column", sm: "row", lg: "row"}}>
-              <InputLabel label={"Nome"} value={"John Deo"} />
+              <InputLabel 
+              label={"Nome"} 
+              value={"John Deo"} />
 
               <InputLabel
                 label={"Email"}
