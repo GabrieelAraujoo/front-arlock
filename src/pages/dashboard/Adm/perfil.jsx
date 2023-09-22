@@ -53,8 +53,7 @@ function Perfil() {
                 value={"JohnDeo@gmail.com"}
                 marginLeft={{ sm: "1.8rem" }}
                 paddingX="1.3rem"
-                w="101%"
-                marginRight="35px"
+                w="100%"
               />
             </Flex>
 
