@@ -10,8 +10,7 @@ import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos"
 import { listAlunos } from "../../../Mock/listAlunos";
 
 function Alunos() {
-
-  /*const INPUT_BUSCA = document.getElementById('input-busca'); 
+  /*const INPUT_BUSCA = document.getElementById('input-busca');
   const TABELA_ALUNO = document.getElementById('tabela-aluno');
 
   INPUT_BUSCA.addEventListener('keyup', () => {
@@ -36,10 +35,8 @@ function Alunos() {
         linhas[posicao].style.display = 'none'
       }
     }
-     
+
   })*/
-
-
 
   return (
     <Main>
@@ -54,15 +51,15 @@ function Alunos() {
 
           {/* novo */}
           <Flex
-            backgroundColor="white.100"
+            backgroundColor="white"
             width="full"
             height="full"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
-            overflowX={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden" , lg: "hidden" }}
+            // overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
+            // overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
             <Text
               fontSize="35px"
@@ -81,7 +78,6 @@ function Alunos() {
               marginLeft="20px"
               marginTop="15px"
               w="full"
-              
             >
               {/* componente pesquisa */}
               <InputPesquisa />
@@ -92,7 +88,6 @@ function Alunos() {
               marginTop="3rem"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
-              
             >
               <Table>
                 {/* titulo tabela */}
