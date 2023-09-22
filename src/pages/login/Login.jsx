@@ -27,9 +27,6 @@ export default function Login() {
 
   const [loading, setLoading] = useBoolean();
 
-  //para mudar o nivel de user é só mudar o nome de adm para aluno ou o contrario
-  const [type] = useState("adm");
-
   const loginData = JSON.parse(localStorage.getItem("loginData"));
 
   useEffect(() => {
@@ -66,7 +63,7 @@ export default function Login() {
       setLoading.off();
 
       setErrorEmail.on();
-    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 3) {
+    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 2) {
       toast({
         title: "Endereço de email invalido.",
         description: "Inclua um endereço de email válido.",
@@ -90,6 +87,12 @@ export default function Login() {
 
       setErrorPassword.on();
     } else {
+      var type = "";
+
+      if (email === "adm@gmail.com") {
+        type = "adm";
+      } else type = "aluno";
+
       const typeLocal = {
         type,
       };

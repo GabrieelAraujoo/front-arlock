@@ -14,7 +14,7 @@ import { ButtonExit } from "../Button";
 import { SelectLabel } from "../Select/SelectCurso";
 import { listPayment } from "../../Mock/listPayment";
 
-export function BoxArmario({ armario }) {
+export function BoxArmario({ armario, setReserva }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userData, setUserData] = useState("");
   const [typePayment, setTypePayment] = useState("");
@@ -41,7 +41,9 @@ export function BoxArmario({ armario }) {
   }
 
   function handleReserva() {
+    onClose();
     console.log(userData);
+    setReserva(userData);
   }
 
   return (
