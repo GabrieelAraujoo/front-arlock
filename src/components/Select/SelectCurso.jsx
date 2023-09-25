@@ -95,7 +95,7 @@ export function SelectLabel({ placeholder, options, ...rest }) {
     <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="35px">
       <Box>
         <FormControl variant="floating" id="first-name" isRequired>
-          <Select placeholder="Selecione a Opção" h="45px" {...rest}>
+          <Select placeholder={placeholder} h="45px" {...rest}>
             {options.map((item) => {
               return (
                 <option key={item.id} value={item.name}>

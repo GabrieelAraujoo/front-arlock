@@ -20,7 +20,7 @@ import {
   errorFormNewLocker,
 } from "../../../utils/baseFormNewLocker";
 import { validateFormNewLocker } from "../../../utils/validateFormNewLocker";
-import { SelectLabel } from "../../../components/SelectAdm/SelectCurso";
+import { SelectLabel } from "../../../components/Select/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
 
@@ -130,6 +130,7 @@ function NewArmarios() {
               <Flex w="full" paddingX="1.3rem">
                 <SelectLabel
                   label={"Concurso"}
+                  placeholder={"Curso"}
                   options={listCursos}
                   name="curso"
                   id="curso"

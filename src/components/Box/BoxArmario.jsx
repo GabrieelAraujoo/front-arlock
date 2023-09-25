@@ -143,6 +143,7 @@ export function BoxArmario({ armario, setReserva }) {
                 </Text>
                 <SelectLabel
                   label={"Payment"}
+                  placeholder={"Escolha o Pagamento"}
                   options={listPayment}
                   name="payment"
                   id="payment"

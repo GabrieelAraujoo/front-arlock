@@ -152,6 +152,7 @@ export default function CadastroAlunos() {
               <SelectLabel
                 label={"Curso"}
                 options={listCursos}
+                placeholder={"Curso"}
                 name="curso"
                 id="curso"
                 value={userData.curso}
