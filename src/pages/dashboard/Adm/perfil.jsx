@@ -25,7 +25,7 @@ function Perfil() {
           <Flex
             backgroundColor="white"
             width="full"
-            height={{ sm: "280px", base: "460px" }}
+            height={{ sm: "300px", base: "360px" }}
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="2rem"
@@ -62,7 +62,6 @@ function Perfil() {
               alignItems="baseline"
               paddingX="1.3rem"
               marginTop="2.7rem"
-              direction={{ base: "column", sm: "row", lg: "row" }}
             >
               <ButtonExit
                 title={"Voltar"}
@@ -70,7 +69,7 @@ function Perfil() {
               />
               <ButtonExit
                 title={"Sair"}
-                marginLeft={{ sm: "2rem" }}
+                marginLeft={{ base: "2rem", sm: "2rem" }}
                 marginTop="1rem"
                 onClick={() => handleSair()}
               />

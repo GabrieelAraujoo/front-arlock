@@ -33,8 +33,8 @@ function Alugueis() {
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
-            overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
+            overflowX={{ base: "hidden"}}
+            overflowY={{ base: "hidden"}}
           >
             <Text
               fontSize="35px"
@@ -76,8 +76,8 @@ function Alugueis() {
             alignItems="flex-start"
             marginTop="1.3rem"
             direction="column"
-            overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
+            overflowX={{ base: "hidden"}}
+            overflowY={{ base: "hidden"}}
           >
             <Text
               fontSize="35px"
@@ -104,7 +104,7 @@ function Alugueis() {
               w="full"
               marginTop="3rem"
               direction="column"
-              overflowX={{ base: "scroll", lg: "hidden" }}
+              overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             >
               <Table>
                 <HeadListAprovados />

@@ -49,8 +49,8 @@ export function BodyListArmarios({ armarios }){
                   <Text fontSize="14px">Você realmente deseja excluir?</Text>
                 </ModalBody>
                   <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
-                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
-                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={() => handleDelete(lockers) && onClose} />
+                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "195%", sm: "85%"}} paddingLeft={{base: "195%", sm: "85%"}} onClick={onClose}/>
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "195%", sm: "85%"}} paddingLeft={{base: "195%", sm: "85%"}} onClick={() => handleDelete(lockers) && onClose} />
                   </Flex>
               </ModalContent>
             </Modal> 
