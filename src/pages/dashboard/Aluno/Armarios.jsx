@@ -15,6 +15,7 @@ import PageTitle from "../../../components/PageTitle";
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { ButtonExit } from "../../../components/Button";
+// import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export function Armarios() {
   const [reserva, setReserva] = useState();
@@ -25,6 +26,20 @@ export function Armarios() {
       onOpen();
     }
 
+    fetch(
+      "https://testarlock.000webhostapp.com/v1/Api.php?apicall=getArmarios",
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    )
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+
+    // GetArmarios();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reserva]);
 
