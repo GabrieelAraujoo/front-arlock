@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
@@ -6,12 +6,24 @@ import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
 import { BodyListUsuarios } from "../../../components/Table/Usuarios/BodyListUsuarios";
-import { listUsuarios } from "../../../Mock/listUsuarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 function Usuarios() {
   const navigate = useNavigate();
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    // Realize a solicitação HTTP para obter a lista de usuários
+    fetch("https://testarlock.000webhostapp.com/Api_v1_react/") // Substitua "/api/usuarios" pela URL da sua API
+      .then((response) => response.json())
+      .then((data) => {
+        setUsuarios(data); // Atualiza o estado com os dados dos usuários
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar a lista de usuários:", error);
+      });
+  }, []); // Executa apenas uma vez após a montagem do componente
 
   return (
     <Main>
@@ -71,8 +83,8 @@ function Usuarios() {
               <Table>
                 <HeadListUsuarios />
 
-                {listUsuarios.map((item, index) => (
-                  <BodyListUsuarios key={index} usuario={item} />
+                {usuarios.map((usuario, index)=> (
+                  <BodyListUsuarios key={index} usuario={usuario} />
                 ))}
               </Table>
             </Flex>
