@@ -23,9 +23,9 @@ export function BodyListAlunos({ aluno }) {
         paddingBottom="1px"
         id="tabela-aluno"
       >
-        <Td width="25%">{aluno.rm}</Td>
-        <Td width="25%">{aluno.nome}</Td>
-        <Td width="25%">{aluno.curso}</Td>
+        <Td width="25%">{aluno.RM}</Td>
+        <Td width="25%">{aluno.Nome}</Td>
+        <Td width="25%">{aluno.Curso}</Td>
         {aluno.status === "ativo" ? (
           <Td width="25%">
             <UnlockIcon
