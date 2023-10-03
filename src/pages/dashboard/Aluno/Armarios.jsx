@@ -20,41 +20,13 @@ import { ButtonExit } from "../../../components/Button";
 export function Armarios() {
   const [reserva, setReserva] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [armarios, setArmarios] = useState([]);
 
   useEffect(() => {
     if (reserva) {
       onOpen();
     }
 
-    fetch(
-      "https://testarlock.000webhostapp.com/v1/Api.php?apicall=getArmarios",
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
-
-    // GetArmarios();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reserva]);
-
-  useEffect(() => {
-    // Realize a solicitação HTTP para obter a lista de usuários
-    fetch("https://testarlock.000webhostapp.com/Api_v1_react/Armario.php") // Substitua "/api/usuarios" pela URL da sua API
-      .then((response) => response.json())
-      .then((data) => {
-        setArmarios(data); // Atualiza o estado com os dados dos usuários
-        console.log(armarios);
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar a lista de usuários:", error);
-      });
   }, []);
 
   return (

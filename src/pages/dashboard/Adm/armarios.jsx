@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { listArmariosAdm } from "../../../Mock/listArmariosAdm";
+import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 function Armarios() {
   const navigate = useNavigate();
@@ -16,18 +16,8 @@ function Armarios() {
   const [armarios, setArmarios] = useState([]);
 
   useEffect(() => {
-    // Realize a solicitação HTTP para obter a lista de usuários
-    fetch("https://testarlock.000webhostapp.com/Api_v1_react/Armario.php") // Substitua "/api/usuarios" pela URL da sua API
-      .then((response) => response.json())
-      .then((data) => {
-        setArmarios(data); // Atualiza o estado com os dados dos usuários
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar a lista de usuários:", error);
-      });
+    GetArmarios(setArmarios);
   }, []);
-
-  console.log(armarios);
 
   return (
     <>
@@ -85,13 +75,25 @@ function Armarios() {
               </Flex>
 
               <Flex w="full" marginTop="3rem" direction="column">
-                <Table>
-                  <HeadListArmarios />
+                {armarios.length !== 0 ? (
+                  <Table>
+                    <HeadListArmarios />
 
-                  {armarios.map((item, index) => (
-                    <BodyListArmarios key={index} armarios={item} />
-                  ))}
-                </Table>
+                    {armarios.map((item, index) => (
+                      <BodyListArmarios key={index} armarios={item} />
+                    ))}
+                  </Table>
+                ) : (
+                  <Flex w="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                )}
               </Flex>
             </Flex>
           </Flex>
