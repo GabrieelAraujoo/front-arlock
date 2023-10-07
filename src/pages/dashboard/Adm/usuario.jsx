@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
@@ -9,9 +9,17 @@ import { BodyListUsuarios } from "../../../components/Table/Usuarios/BodyListUsu
 import { listUsuarios } from "../../../Mock/listUsuarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { GetUsuarios } from "../../../hook/usuarios/useGetUsuarios";
 
 function Usuarios() {
   const navigate = useNavigate();
+
+  
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    GetUsuarios(setUsuarios);
+  }, [usuarios]);
 
   return (
     <Main>
@@ -71,7 +79,7 @@ function Usuarios() {
               <Table>
                 <HeadListUsuarios />
 
-                {listUsuarios.map((item, index) => (
+                {usuarios.map((item, index) => (
                   <BodyListUsuarios key={index} usuario={item} />
                 ))}
               </Table>

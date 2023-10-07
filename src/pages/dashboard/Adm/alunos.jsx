@@ -1,42 +1,21 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAlunos } from "../../../components/Table/Alunos/HeadListAlunos";
 import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos";
-import { listAlunos } from "../../../Mock/listAlunos";
+import { useEffect,useState } from "react";
+import { GetAlunos } from "../../../hook/alunos/useGetAlunos";
 
 function Alunos() {
-  /*const INPUT_BUSCA = document.getElementById('input-busca');
-  const TABELA_ALUNO = document.getElementById('tabela-aluno');
+  const [alunos, setAlunos] = useState([]);
 
-  INPUT_BUSCA.addEventListener('keyup', () => {
-    let expressao = INPUT_BUSCA.value.toLowerCase()
-
-    if (expressao.length === 1) {
-      return
-    }
-
-    let linhas = TABELA_ALUNO.getElementsByTagName('Td')
-    console.log(linhas);
-    for (let posicao in linhas) {
-      if (true === isNaN(posicao)) {
-        continue
-      }
-
-      let conteudoDaLinha = linhas[posicao].innerHTML
-
-      if (true === conteudoDaLinha.includes(expressao)) {
-        linhas[posicao].style.display = ''
-      } else {
-        linhas[posicao].style.display = 'none'
-      }
-    }
-
-  })*/
+  useEffect(() => {
+    GetAlunos(setAlunos)
+  }, [alunos]);
 
   return (
     <Main>
@@ -82,24 +61,45 @@ function Alunos() {
               {/* componente pesquisa */}
               <InputPesquisa />
             </Flex>
+            
 
-            <Flex
+            <Flex w="full" marginTop="3rem" direction="column"></Flex>
+            
+              
+
+                {/* corpo tabela com pegando lista de alunos */}
+                {
+                  alunos.length !== 0 ? (
+                    <Flex
               w="full"
               marginTop="3rem"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
             >
-              <Table>
-                {/* titulo tabela */}
-                <HeadListAlunos />
+                    <Table>
+                    {/* titulo tabela */}
+                    <HeadListAlunos />
 
-                {/* corpo tabela com pegando lista de alunos */}
-                {listAlunos.map((item, index) => (
+                    {alunos.map((item, index) => (
                   <BodyListAlunos key={index} aluno={item} />
                 ))}
-              </Table>
+
+                    </Table>
+                    </Flex>
+                  ) : (
+                    <Flex w="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                  )
+                }
             </Flex>
-          </Flex>
+          
         </Flex>
       </Container>
     </Main>
