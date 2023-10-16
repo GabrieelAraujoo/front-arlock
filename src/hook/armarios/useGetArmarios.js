@@ -9,7 +9,7 @@ export async function GetArmarios(setArmarios) {
         curso: item.curso,
         manutencao: item.manutencao,
         alugados: item.Alugados,
-        id: item.ID_Arm
+        id: item.ID_Arm,
       }));
 
       setArmarios(newData); // Atualiza o estado com os dados dos usuários
@@ -18,5 +18,3 @@ export async function GetArmarios(setArmarios) {
       console.error("Erro ao buscar a lista de usuários:", error);
     });
 }
-
-
