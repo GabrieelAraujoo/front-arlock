@@ -6,7 +6,6 @@ import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
 import { BodyListUsuarios } from "../../../components/Table/Usuarios/BodyListUsuarios";
-import { listUsuarios } from "../../../Mock/listUsuarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 import { GetUsuarios } from "../../../hook/usuarios/useGetUsuarios";
