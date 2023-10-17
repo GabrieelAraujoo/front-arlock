@@ -57,7 +57,7 @@ function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" marginTop="3rem" direction="column" overflowY="auto">
+            <Flex w="full" direction="column" overflowY="auto">
               <Table>
                 <HeadListAprovacao />
 
@@ -102,7 +102,6 @@ function Alugueis() {
 
             <Flex
               w="full"
-              marginTop="3rem"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
             >

@@ -7,14 +7,14 @@ import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAlunos } from "../../../components/Table/Alunos/HeadListAlunos";
 import { BodyListAlunos } from "../../../components/Table/Alunos/BodyListAlunos";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { GetAlunos } from "../../../hook/alunos/useGetAlunos";
 
 function Alunos() {
   const [alunos, setAlunos] = useState([]);
 
   useEffect(() => {
-    GetAlunos(setAlunos)
+    GetAlunos(setAlunos);
   }, [alunos]);
 
   return (
@@ -54,52 +54,44 @@ function Alunos() {
             <Flex
               justify="space-between"
               align="center"
-              marginLeft="20px"
-              marginTop="15px"
+              paddingLeft="20px"
               w="full"
+              alignItems="baseline"
             >
               {/* componente pesquisa */}
               <InputPesquisa />
             </Flex>
-            
 
-            <Flex w="full" marginTop="3rem" direction="column"></Flex>
-            
-              
+            <Flex w="full" direction="column"></Flex>
 
-                {/* corpo tabela com pegando lista de alunos */}
-                {
-                  alunos.length !== 0 ? (
-                    <Flex
-              w="full"
-              marginTop="3rem"
-              direction="column"
-              overflowX={{ base: "scroll", lg: "hidden" }}
-            >
-                    <Table>
-                    {/* titulo tabela */}
-                    <HeadListAlunos />
+            {/* corpo tabela com pegando lista de alunos */}
+            {alunos.length !== 0 ? (
+              <Flex
+                w="full"
+                direction="column"
+                overflowX={{ base: "scroll", lg: "hidden" }}
+              >
+                <Table>
+                  {/* titulo tabela */}
+                  <HeadListAlunos />
 
-                    {alunos.map((item, index) => (
-                  <BodyListAlunos key={index} aluno={item} />
-                ))}
-
-                    </Table>
-                    </Flex>
-                  ) : (
-                    <Flex w="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
-                  </Flex>
-                  )
-                }
-            </Flex>
-          
+                  {alunos.map((item, index) => (
+                    <BodyListAlunos key={index} aluno={item} />
+                  ))}
+                </Table>
+              </Flex>
+            ) : (
+              <Flex w="full" h="full" justify="center" alignItems="center">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
+              </Flex>
+            )}
+          </Flex>
         </Flex>
       </Container>
     </Main>

@@ -14,7 +14,6 @@ import { GetUsuarios } from "../../../hook/usuarios/useGetUsuarios";
 function Usuarios() {
   const navigate = useNavigate();
 
-  
   const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
@@ -75,7 +74,7 @@ function Usuarios() {
               />
             </Flex>
 
-            <Flex w="full" marginTop="3rem" direction="column">
+            <Flex w="full" direction="column">
               <Table>
                 <HeadListUsuarios />
 

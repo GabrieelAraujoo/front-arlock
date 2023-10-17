@@ -74,7 +74,7 @@ function Armarios() {
                 />
               </Flex>
 
-              <Flex w="full" marginTop="3rem" direction="column">
+              <Flex w="full" direction="column">
                 {armarios.length !== 0 ? (
                   <Table>
                     <HeadListArmarios />
