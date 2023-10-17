@@ -4,9 +4,12 @@ export async function GetAprovacao(setAprovacao) {
     .then((response) => response.json())
     .then((data) => {
       const newData = data.map((item) => ({
-        id: item.ID,
-        nome: item.nome,
-        email: item.email,
+        armario: item.armario,
+        aluno: item.aluno,
+        rm: item.rm,
+        curso: item.curso,
+        pagamento: item.pagamento,
+        status: item.status,
       }));
 
       setAprovacao(newData); // Atualiza o estado com os dados dos usuários

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
@@ -73,15 +73,27 @@ function Usuarios() {
               />
             </Flex>
 
-            <Flex w="full" direction="column">
-              <Table>
-                <HeadListUsuarios />
+            {usuarios.length !== 0 ? (
+              <Flex w="full" direction="column">
+                <Table>
+                  <HeadListUsuarios />
 
-                {usuarios.map((item, index) => (
-                  <BodyListUsuarios key={index} usuario={item} />
-                ))}
-              </Table>
-            </Flex>
+                  {usuarios.map((item, index) => (
+                    <BodyListUsuarios key={index} usuario={item} />
+                  ))}
+                </Table>
+              </Flex>
+            ) : (
+              <Flex w="full" h="full" justify="center" alignItems="center">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
+              </Flex>
+            )}
           </Flex>
         </Flex>
       </Container>

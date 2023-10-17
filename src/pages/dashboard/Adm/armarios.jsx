@@ -74,7 +74,7 @@ function Armarios() {
                 />
               </Flex>
 
-              <Flex w="full" direction="column">
+              <Flex w="full" h="full" direction="column">
                 {armarios.length !== 0 ? (
                   <Table>
                     <HeadListArmarios />
@@ -84,7 +84,7 @@ function Armarios() {
                     ))}
                   </Table>
                 ) : (
-                  <Flex w="full" justify="center" alignItems="center">
+                  <Flex w="full" h="full" justify="center" alignItems="center">
                     <Spinner
                       thickness="4px"
                       speed="0.65s"

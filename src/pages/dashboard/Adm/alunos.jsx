@@ -62,8 +62,6 @@ function Alunos() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" direction="column"></Flex>
-
             {/* corpo tabela com pegando lista de alunos */}
             {alunos.length !== 0 ? (
               <Flex
