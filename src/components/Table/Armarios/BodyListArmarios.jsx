@@ -1,19 +1,49 @@
-import { Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure, Flex, Text } from "@chakra-ui/react";
+import { Tbody, Td, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody,  useDisclosure, Flex, Text, useToast } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
 import React, { useState } from "react";
 import { listArmariosAdm } from "../../../Mock/listArmariosAdm";
+import { DelArmarios } from "../../../hook/armarios/useDelArmarios";
 
 
 export function BodyListArmarios({ armarios }){
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const toast = useToast()
 
     const [lockers, SetLockers] = useState(listArmariosAdm.map((item, index) => (
       <listArmariosAdm key={index} armarios={item} />)))
 
-  const handleDelete = (deletingLocker) => {
-      const newLockers = lockers.filter((locker) => locker !== deletingLocker)
-      SetLockers(newLockers)
+  // const handleDelete = (deletingLocker) => {
+  //     const newLockers = lockers.filter((locker) => locker !== deletingLocker)
+  //     SetLockers(newLockers)
+  // }
+ 
+  const handleDelete = (id) => {
+      const res = DelArmarios(id)
+      
+      console.log(Promise.resolve(res))
+
+
+      if(res == "Armário excluído com sucesso"){
+        onClose()
+        toast({
+          title: 'Excluido',
+          description: "Excluido com sucesso",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
+      } else {
+      onClose()
+      toast({
+        title: 'Erro',
+        description: "Erro ao excluir",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      })
+      }
+      
   }
     return(
         <>
@@ -50,7 +80,7 @@ export function BodyListArmarios({ armarios }){
                 </ModalBody>
                   <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
                   <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={onClose}/>
-                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={() => handleDelete(lockers) && onClose} />
+                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "185%", sm: "85%"}} paddingLeft={{base: "185%", sm: "85%"}} onClick={() => handleDelete(armarios.id) && onClose} />
                   </Flex>
               </ModalContent>
             </Modal> 
