@@ -72,17 +72,29 @@ function Usuarios() {
                 icon={<AddIcon />}
               />
             </Flex>
+            {usuarios ? (
+              usuarios.length !== 0 ? (
+                <Flex w="full" direction="column">
+                  <Table>
+                    <HeadListUsuarios />
 
-            {usuarios.length !== 0 ? (
-              <Flex w="full" direction="column">
-                <Table>
-                  <HeadListUsuarios />
-
-                  {usuarios.map((item, index) => (
-                    <BodyListUsuarios key={index} usuario={item} />
-                  ))}
-                </Table>
-              </Flex>
+                    {usuarios.map((item, index) => (
+                      <BodyListUsuarios key={index} usuario={item} />
+                    ))}
+                  </Table>
+                </Flex>
+              ) : (
+                <Flex w="full" h="full" justify="center" marginTop="5rem">
+                  <Text
+                    fontSize="2rem"
+                    textColor="#558085"
+                    fontWeight="bold"
+                    opacity="0.5"
+                  >
+                    Sem lista de armários
+                  </Text>
+                </Flex>
+              )
             ) : (
               <Flex w="full" h="full" justify="center" alignItems="center">
                 <Spinner

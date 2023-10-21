@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  IconButton,
+  Table,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
@@ -14,10 +21,32 @@ function Armarios() {
   const navigate = useNavigate();
 
   const [armarios, setArmarios] = useState([]);
+  const [deleteArmario, setDeleteArmario] = useState();
+  const toast = useToast();
 
   useEffect(() => {
     GetArmarios(setArmarios);
-  }, []);
+  }, [armarios]);
+
+  function handleDelete(success) {
+    if (deleteArmario === true) {
+      toast({
+        title: "Excluido",
+        description: "Excluido com sucesso",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Erro",
+        description: "Erro ao excluir",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <>
@@ -75,14 +104,31 @@ function Armarios() {
               </Flex>
 
               <Flex w="full" h="full" direction="column">
-                {armarios.length !== 0 ? (
-                  <Table>
-                    <HeadListArmarios />
+                {armarios ? (
+                  armarios.length !== 0 ? (
+                    <Table>
+                      <HeadListArmarios />
 
-                    {armarios.map((item, index) => (
-                      <BodyListArmarios key={index} armarios={item} />
-                    ))}
-                  </Table>
+                      {armarios.map((item, index) => (
+                        <BodyListArmarios
+                          key={index}
+                          armarios={item}
+                          setDeleteArmario={setDeleteArmario}
+                        />
+                      ))}
+                    </Table>
+                  ) : (
+                    <Flex w="full" h="full" justify="center" marginTop="5rem">
+                      <Text
+                        fontSize="2rem"
+                        textColor="#558085"
+                        fontWeight="bold"
+                        opacity="0.5"
+                      >
+                        Sem lista de armários
+                      </Text>
+                    </Flex>
+                  )
                 ) : (
                   <Flex w="full" h="full" justify="center" alignItems="center">
                     <Spinner

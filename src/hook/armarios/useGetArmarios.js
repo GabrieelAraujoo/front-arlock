@@ -12,8 +12,6 @@ export async function GetArmarios(setArmarios) {
         id: item.ID_Arm,
       }));
 
-      console.log(data)
-
       setArmarios(newData); // Atualiza o estado com os dados dos usuários
     })
     .catch((error) => {
