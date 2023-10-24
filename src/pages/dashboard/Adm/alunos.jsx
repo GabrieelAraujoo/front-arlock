@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Spinner } from "@chakra-ui/react";
+import { Flex, Text, Spinner, Button } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
@@ -16,6 +16,61 @@ function Alunos() {
   useEffect(() => {
     GetAlunos(setAlunos);
   }, [alunos]);
+
+  function teste() {
+    // const body = {
+    //   rm: "12345",
+    //   nome: "John Deo",
+    //   curso: "Desenvolvimento de Sistemas",
+    //   email: "adm@gmail.com",
+    //   senha: "123456",
+    //   type: "adm",
+    // };
+
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+      method: "POST",
+      // headers: { "Content-Type": "application/json" },
+
+      // headers: new Headers({
+      //   Authorization: "Basic " + btoa("username:password"),
+      //   "Content-Type": "application/x-www-form-urlencoded",
+      // }),
+
+      // headers: {
+      //   accept: "application/json",
+      // },
+      // mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rm: "12345",
+        nome: "Gene",
+        curso: "Desenvolvimento de Sistemas",
+        email: "adm@gmail.com",
+        senha: "123456",
+        type: "adm",
+      }),
+    };
+    fetch(
+      // `https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno${requestOptions}`
+      "https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno",
+      // requestOptions,
+      // body
+      // "https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno&nome=atestado&curso=ds&rm=323&email=gege@testet.com&senha=ststts&type=aluno",
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Atualiza o estado com os dados dos usuários
+      })
+      .catch((error) => {
+        console.error("Erro alunos:", error);
+      });
+  }
+
+  // ?nome="atestado"&curso="at"&rm="1323"&email="gege@testet.com"&senha="ststts"&type="aluno"
 
   return (
     <Main>
@@ -89,6 +144,17 @@ function Alunos() {
                 />
               </Flex>
             )}
+            <Button
+              w="50px"
+              colorScheme="teal"
+              variant="outline"
+              height="45px"
+              alignItems="center"
+              justifyContent="center"
+              onClick={() => teste()}
+            >
+              teste
+            </Button>
           </Flex>
         </Flex>
       </Container>
