@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
 import { BodyListUsuarios } from "../../../components/Table/Usuarios/BodyListUsuarios";
-import { listUsuarios } from "../../../Mock/listUsuarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { GetUsuarios } from "../../../hook/usuarios/useGetUsuarios";
 
 function Usuarios() {
   const navigate = useNavigate();
+
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    GetUsuarios(setUsuarios);
+  }, [usuarios]);
 
   return (
     <Main>
@@ -66,7 +72,13 @@ function Usuarios() {
                 icon={<AddIcon />}
               />
             </Flex>
+            {usuarios ? (
+              usuarios.length !== 0 ? (
+                <Flex w="full" direction="column">
+                  <Table>
+                    <HeadListUsuarios />
 
+<<<<<<< HEAD
             <Flex w="full" marginTop="3rem" direction="column" overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}>
               <Table>
                 <HeadListUsuarios />
@@ -76,6 +88,36 @@ function Usuarios() {
                 ))}
               </Table>
             </Flex>
+=======
+                    {usuarios.map((item, index) => (
+                      <BodyListUsuarios key={index} usuario={item} />
+                    ))}
+                  </Table>
+                </Flex>
+              ) : (
+                <Flex w="full" h="full" justify="center" marginTop="5rem">
+                  <Text
+                    fontSize="2rem"
+                    textColor="#558085"
+                    fontWeight="bold"
+                    opacity="0.5"
+                  >
+                    Sem lista de armários
+                  </Text>
+                </Flex>
+              )
+            ) : (
+              <Flex w="full" h="full" justify="center" alignItems="center">
+                <Spinner
+                  thickness="4px"
+                  speed="0.65s"
+                  emptyColor="gray.200"
+                  color="blue.500"
+                  size="xl"
+                />
+              </Flex>
+            )}
+>>>>>>> create/hooks
           </Flex>
         </Flex>
       </Container>
