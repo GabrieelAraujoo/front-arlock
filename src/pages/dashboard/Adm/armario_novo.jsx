@@ -119,7 +119,6 @@ function NewArmarios() {
                   label={"Quantidade"}
                   name="quantidade"
                   id="quantidade"
-                  marginRight="35px"
                   type="number"
                   value={userData.quantidade}
                   onChange={changeValue}
@@ -143,7 +142,6 @@ function NewArmarios() {
                   label={"Manutenção"}
                   name="manutencao"
                   id="manutencao"
-                  marginRight="35px"
                   value={userData.manutencao}
                   onChange={changeValue}
                   isInvalid={error && error.errorManutencao}

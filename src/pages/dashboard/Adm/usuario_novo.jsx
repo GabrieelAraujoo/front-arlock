@@ -116,7 +116,6 @@ function NewUsuarios() {
                   label={"Email"}
                   name="email"
                   id="email"
-                  marginRight="35px"
                   value={userData.email}
                   onChange={changeValue}
                   isInvalid={error && error.errorEmail}
