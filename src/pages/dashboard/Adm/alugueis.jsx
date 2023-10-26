@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text } from "@chakra-ui/react";
@@ -7,14 +7,19 @@ import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
 import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
-import { listAprovacao } from "../../../Mock/listAprovacao";
 import { HeadListAprovados } from "../../../components/Table/Alugueis/Aprovados/HeadListAprovados";
 import { BodyListAprovados } from "../../../components/Table/Alugueis/Aprovados/BodyListAprovados";
 import { listAprovados } from "../../../Mock/listAprovados";
+import { GetAprovacao } from "../../../hook/alugueis/useGetAlugueis";
 
 function Alugueis() {
+  const [alugueis, setAlugueis] = useState([]);
+
+  useEffect(() => {
+    GetAprovacao(setAlugueis);
+  }, [alugueis]);
+
   return (
-    // aa
     <Main>
       <Container>
         <Flex
@@ -57,15 +62,28 @@ function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" marginTop="3rem" direction="column" overflowY="auto">
-              <Table>
-                <HeadListAprovacao />
+            {alugueis.status === "em andamento" ? (
+              <Flex w="full" direction="column" overflowY="auto">
+                <Table>
+                  <HeadListAprovacao />
 
-                {listAprovacao.map((item, index) => (
-                  <BodyListAprovacao key={index} aprovacao={item} />
-                ))}
-              </Table>
-            </Flex>
+                  {alugueis.map((item, index) => (
+                    <BodyListAprovacao key={index} aprovacao={item} />
+                  ))}
+                </Table>
+              </Flex>
+            ) : (
+              <Flex w="full" h="full" justify="center" alignItems="center">
+                <Text
+                  fontSize="2rem"
+                  textColor="#558085"
+                  fontWeight="bold"
+                  opacity="0.5"
+                >
+                  Sem lista de aprovação
+                </Text>
+              </Flex>
+            )}
           </Flex>
 
           <Flex
@@ -102,7 +120,6 @@ function Alugueis() {
 
             <Flex
               w="full"
-              marginTop="3rem"
               direction="column"
               overflowX={{ base: "scroll", lg: "hidden" }}
             >

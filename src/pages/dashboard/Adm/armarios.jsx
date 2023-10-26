@@ -1,30 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
+import {
+  Flex,
+  Text,
+  IconButton,
+  Table,
+  Spinner,
+  useToast,
+} from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { listArmariosAdm } from "../../../Mock/listArmariosAdm";
+import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 function Armarios() {
   const navigate = useNavigate();
+
   const [armarios, setArmarios] = useState([]);
+  const [deleteArmario, setDeleteArmario] = useState();
+  const toast = useToast();
 
   useEffect(() => {
-    // Realize a solicitação HTTP para obter a lista de usuários
-    fetch("https://testarlock.000webhostapp.com/Api_v1_react/Armario.php") // Substitua "/api/usuarios" pela URL da sua API
-      .then((response) => response.json())
-      .then((data) => {
-        setArmarios(data); // Atualiza o estado com os dados dos usuários
-      })
-      .catch((error) => {
-        console.error("Erro ao buscar a lista de usuários:", error);
+    GetArmarios(setArmarios);
+  }, [armarios]);
+
+  function handleDelete(success) {
+    if (deleteArmario === true) {
+      toast({
+        title: "Excluido",
+        description: "Excluido com sucesso",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
       });
-  }, []);
+    } else {
+      toast({
+        title: "Erro",
+        description: "Erro ao excluir",
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      });
+    }
+  }
 
   return (
     <>
@@ -81,14 +103,43 @@ function Armarios() {
                 />
               </Flex>
 
-              <Flex w="full" marginTop="3rem" direction="column">
-                <Table>
-                  <HeadListArmarios />
+              <Flex w="full" h="full" direction="column">
+                {armarios ? (
+                  armarios.length !== 0 ? (
+                    <Table>
+                      <HeadListArmarios />
 
-                  {armarios.map((armarios, index) => (
-                    <BodyListArmarios key={index} armarios={armarios} />
-                  ))}
-                </Table>
+                      {armarios.map((item, index) => (
+                        <BodyListArmarios
+                          key={index}
+                          armarios={item}
+                          setDeleteArmario={setDeleteArmario}
+                        />
+                      ))}
+                    </Table>
+                  ) : (
+                    <Flex w="full" h="full" justify="center" marginTop="5rem">
+                      <Text
+                        fontSize="2rem"
+                        textColor="#558085"
+                        fontWeight="bold"
+                        opacity="0.5"
+                      >
+                        Sem lista de armários
+                      </Text>
+                    </Flex>
+                  )
+                ) : (
+                  <Flex w="full" h="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                )}
               </Flex>
             </Flex>
           </Flex>

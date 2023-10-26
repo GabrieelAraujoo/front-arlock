@@ -15,6 +15,7 @@ import PageTitle from "../../../components/PageTitle";
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { ButtonExit } from "../../../components/Button";
+// import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export function Armarios() {
   const [reserva, setReserva] = useState();
@@ -26,7 +27,7 @@ export function Armarios() {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reserva]);
+  }, []);
 
   return (
     <>
