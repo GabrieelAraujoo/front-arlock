@@ -18,29 +18,8 @@ function Alunos() {
   }, [alunos]);
 
   function teste() {
-    // const body = {
-    //   rm: "12345",
-    //   nome: "John Deo",
-    //   curso: "Desenvolvimento de Sistemas",
-    //   email: "adm@gmail.com",
-    //   senha: "123456",
-    //   type: "adm",
-    // };
-
-    // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: "POST",
-      // headers: { "Content-Type": "application/json" },
-
-      // headers: new Headers({
-      //   Authorization: "Basic " + btoa("username:password"),
-      //   "Content-Type": "application/x-www-form-urlencoded",
-      // }),
-
-      // headers: {
-      //   accept: "application/json",
-      // },
-      // mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -54,11 +33,7 @@ function Alunos() {
       }),
     };
     fetch(
-      // `https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno${requestOptions}`
       "https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno",
-      // requestOptions,
-      // body
-      // "https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno&nome=atestado&curso=ds&rm=323&email=gege@testet.com&senha=ststts&type=aluno",
       requestOptions
     )
       .then((response) => response.json())
@@ -69,8 +44,6 @@ function Alunos() {
         console.error("Erro alunos:", error);
       });
   }
-
-  // ?nome="atestado"&curso="at"&rm="1323"&email="gege@testet.com"&senha="ststts"&type="aluno"
 
   return (
     <Main>
