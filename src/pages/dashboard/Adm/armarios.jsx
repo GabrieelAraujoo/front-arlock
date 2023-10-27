@@ -7,7 +7,7 @@ import {
   IconButton,
   Table,
   Spinner,
-  useToast,
+  /*useToast*/
 } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
@@ -21,14 +21,14 @@ function Armarios() {
   const navigate = useNavigate();
 
   const [armarios, setArmarios] = useState([]);
-  const [deleteArmario, setDeleteArmario] = useState();
-  const toast = useToast();
+  const [/*deleteArmario*/, setDeleteArmario] = useState();
+  // const toast = useToast();
 
   useEffect(() => {
     GetArmarios(setArmarios);
   }, [armarios]);
 
-  function handleDelete(success) {
+  /*function handleDelete(success) {
     if (deleteArmario === true) {
       toast({
         title: "Excluido",
@@ -46,7 +46,7 @@ function Armarios() {
         isClosable: true,
       });
     }
-  }
+  }*/
 
   return (
     <>

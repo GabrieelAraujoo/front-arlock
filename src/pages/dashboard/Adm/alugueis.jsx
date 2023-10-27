@@ -7,7 +7,6 @@ import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
 import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
-import { listAprovacao } from "../../../Mock/listAprovacao";
 import { HeadListAprovados } from "../../../components/Table/Alugueis/Aprovados/HeadListAprovados";
 import { BodyListAprovados } from "../../../components/Table/Alugueis/Aprovados/BodyListAprovados";
 import { listAprovados } from "../../../Mock/listAprovados";

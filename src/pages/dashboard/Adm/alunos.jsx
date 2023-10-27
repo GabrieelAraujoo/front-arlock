@@ -117,16 +117,6 @@ function Alunos() {
               <InputPesquisa />
             </Flex>
 
-<<<<<<< HEAD
-            <Flex
-              w="full"
-              marginTop="3rem"
-              overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            >
-              <Table>
-                {/* titulo tabela */}
-                <HeadListAlunos />
-=======
             {/* corpo tabela com pegando lista de alunos */}
             {alunos.length !== 0 ? (
               <Flex
@@ -137,7 +127,6 @@ function Alunos() {
                 <Table>
                   {/* titulo tabela */}
                   <HeadListAlunos />
->>>>>>> create/hooks
 
                   {alunos.map((item, index) => (
                     <BodyListAlunos key={index} aluno={item} />

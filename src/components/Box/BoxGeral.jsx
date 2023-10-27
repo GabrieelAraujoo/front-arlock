@@ -5,7 +5,7 @@ export function BoxGeral({ number, text, ...rest }) {
   return (
     <Flex
       backgroundColor="#BFDDE0"     
-      height="130px"
+      height="125px"
       borderRadius="15px"
       width="full"
       {...rest}

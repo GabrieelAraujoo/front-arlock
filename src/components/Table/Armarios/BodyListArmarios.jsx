@@ -29,29 +29,6 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
     onClose();
   }
 
-<<<<<<< HEAD
-<Flex >
-
-    <Modal  isOpen={isOpen} onClose={onClose} >
-              <ModalOverlay />
-              <ModalContent 
-                background="#fff" 
-                alignItems="center" 
-                height={{base: "360px", sm:"330px"}} 
-                width={{base: "90%", sm: "90%"}} 
-                marginY="auto">
-                <ModalHeader marginBottom="2.3rem" fontSize="20px" textColor="#558085" marginTop="5px">Excluir Armários?</ModalHeader>
-                <ModalBody textAlign="center">
-                  <Text marginBottom="1.1rem" fontSize="14px">Ao excluir esses armários, você impossibilita o acesso para eles dentro da plataforma.</Text>
-                  <Text fontSize="14px">Você realmente deseja excluir?</Text>
-                </ModalBody>
-                  <Flex  marginBottom="1.4rem" marginTop={{base: "10px"}} textAlign="center" direction={{base: "column", sm: "row", lg: "row"}} justifyContent="center" alignItems="center">
-                  <ButtonExit title={"Voltar"} marginTop="10px" paddingRight={{base: "195%", sm: "85%"}} paddingLeft={{base: "195%", sm: "85%"}} onClick={onClose}/>
-                  <ButtonExit title={"Excluir"} marginTop={{base: "10px"}} marginLeft={{sm: "1rem"}} paddingRight={{base: "195%", sm: "85%"}} paddingLeft={{base: "195%", sm: "85%"}} onClick={() => handleDelete(lockers) && onClose} />
-                  </Flex>
-              </ModalContent>
-            </Modal> 
-=======
   return (
     <>
       <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
@@ -72,7 +49,6 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
           />
         </Td>
       </Tbody>
->>>>>>> create/hooks
 
       <Flex>
         <Modal isOpen={isOpen} onClose={onClose}>

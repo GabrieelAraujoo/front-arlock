@@ -78,17 +78,6 @@ function Usuarios() {
                   <Table>
                     <HeadListUsuarios />
 
-<<<<<<< HEAD
-            <Flex w="full" marginTop="3rem" direction="column" overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}>
-              <Table>
-                <HeadListUsuarios />
-
-                {listUsuarios.map((item, index) => (
-                  <BodyListUsuarios key={index} usuario={item} />
-                ))}
-              </Table>
-            </Flex>
-=======
                     {usuarios.map((item, index) => (
                       <BodyListUsuarios key={index} usuario={item} />
                     ))}
@@ -117,7 +106,6 @@ function Usuarios() {
                 />
               </Flex>
             )}
->>>>>>> create/hooks
           </Flex>
         </Flex>
       </Container>
