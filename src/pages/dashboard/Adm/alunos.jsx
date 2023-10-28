@@ -18,23 +18,22 @@ function Alunos() {
   }, [alunos]);
 
   function teste() {
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        rm: "12345",
-        nome: "Gene",
-        curso: "Desenvolvimento de Sistemas",
-        email: "adm@gmail.com",
-        senha: "123456",
-        type: "adm",
-      }),
-    };
+    
     fetch(
-      "https://naovai.000webhostapp.com/php/Api/api.php?arlock=createAluno",
-      requestOptions
+      "https://naovai.000webhostapp.com/php/POST/CreateAluno.php",
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          rm: "12345",
+          nome: "Gene",
+          curso: "Desenvolvimento de Sistemas",
+          email: "adm@gmail.com",
+          senha: "123456",
+          type: "adm",
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }}
     )
       .then((response) => response.json())
       .then((data) => {
@@ -128,6 +127,43 @@ function Alunos() {
             >
               teste
             </Button>
+            <form
+                    id="main-login"
+                    action="https://naovai.000webhostapp.com/php/POST/CreateAluno.php"
+                    method="post">
+                    <h2>
+                        Admin UI Login
+                    </h2>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="rm"/><br/>
+                    </label>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="nome"/><br/>
+                    </label>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="curso"/><br/>
+                    </label>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="email"/><br/>
+                    </label>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="senha"/><br/>
+                    </label>
+                    <label>
+                        <span class="text">user:</span>
+                        <input type="text" name="type"/><br/>
+                    </label>
+                    <br/>
+                    
+                    <div class="align-right">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
           </Flex>
         </Flex>
       </Container>
