@@ -69,8 +69,6 @@ function Armarios() {
               marginTop="1rem"
               direction="column"
               paddingBottom="2rem"
-              overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-              overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             >
               <Text
                 fontSize="35px"
@@ -89,7 +87,6 @@ function Armarios() {
                 w="full"
                 alignItems="baseline"
               >
-                {/* componente pesquisa */}
                 <InputPesquisa />
 
                 <IconButton
@@ -107,17 +104,19 @@ function Armarios() {
               <Flex w="full" h="full" direction="column">
                 {armarios ? (
                   armarios.length !== 0 ? (
-                    <Table>
-                      <HeadListArmarios />
+                    <Flex w="full" direction="column" overflowY="auto">
+                      <Table>
+                        <HeadListArmarios />
 
-                      {armarios.map((item, index) => (
-                        <BodyListArmarios
-                          key={index}
-                          armarios={item}
-                          setDeleteArmario={setDeleteArmario}
-                        />
-                      ))}
-                    </Table>
+                        {armarios.map((item, index) => (
+                          <BodyListArmarios
+                            key={index}
+                            armarios={item}
+                            setDeleteArmario={setDeleteArmario}
+                          />
+                        ))}
+                      </Table>
+                    </Flex>
                   ) : (
                     <Flex
                       w="full"

@@ -62,7 +62,7 @@ export default function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" h="full" direction="column" marginBottom="2rem">
+            <Flex w="full" h="full" direction="column">
               {alugueis ? (
                 alugueis.length !== 0 ? (
                   <Flex w="full" direction="column" overflowY="auto">

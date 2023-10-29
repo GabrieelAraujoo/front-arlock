@@ -39,8 +39,6 @@ function Usuarios() {
             marginTop="1rem"
             direction="column"
             paddingBottom="2rem"
-            overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
             <Text
               fontSize="35px"
@@ -75,7 +73,7 @@ function Usuarios() {
             </Flex>
             {usuarios ? (
               usuarios.length !== 0 ? (
-                <Flex w="full" direction="column">
+                <Flex w="full" direction="column" overflowY="auto">
                   <Table>
                     <HeadListUsuarios />
 
