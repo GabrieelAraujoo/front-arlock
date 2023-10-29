@@ -52,7 +52,6 @@ function Alunos() {
         >
           <PageTitle title={"Alunos"} />
 
-          {/* novo */}
           <Flex
             backgroundColor="white"
             width="full"
@@ -62,8 +61,6 @@ function Alunos() {
             marginTop="1rem"
             direction="column"
             paddingBottom="2rem"
-            // overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            // overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
             <Text
               fontSize="35px"
@@ -75,7 +72,6 @@ function Alunos() {
               Lista de Alunos
             </Text>
 
-            {/* input pesquisa */}
             <Flex
               justify="space-between"
               align="center"
@@ -89,14 +85,16 @@ function Alunos() {
             <Flex w="full" h="full" direction="column">
               {alunos ? (
                 alunos.length !== 0 ? (
-                  <Table>
-                    {/* titulo tabela */}
-                    <HeadListAlunos />
+                  <Flex w="full" direction="column" overflowY="auto">
+                    <Table>
+                      {/* titulo tabela */}
+                      <HeadListAlunos />
 
-                    {alunos.map((item, index) => (
-                      <BodyListAlunos key={index} aluno={item} />
-                    ))}
-                  </Table>
+                      {alunos.map((item, index) => (
+                        <BodyListAlunos key={index} aluno={item} />
+                      ))}
+                    </Table>
+                  </Flex>
                 ) : (
                   <Flex w="full" h="full" justify="center" alignItems="center">
                     <Spinner
