@@ -116,106 +116,111 @@ export default function CadastroAlunos() {
             >
               Cadastre-se
             </Text>
-
-            <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabel
-                label={"Nome"}
-                marginRight={{ lg: "2rem", base: "0" }}
-                name="nome"
-                id="nome"
-                value={userData.nome}
-                onChange={changeValue}
-                isInvalid={error && error.errorNome}
-              />
-
-              <InputLabel
-                label={"Email"}
-                name="email"
-                id="email"
-                value={userData.email}
-                onChange={changeValue}
-                isInvalid={error && error.errorEmail}
-              />
-            </Flex>
-            <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabel
-                label={"RM"}
-                type="number"
-                marginRight={{ lg: "2rem", base: "0" }}
-                name="rm"
-                id="rm"
-                value={userData.rm}
-                onChange={changeValue}
-                isInvalid={error && error.errorRm}
-              />
-
-              <SelectLabel
-                label={"Curso"}
-                options={listCursos}
-                name="curso"
-                id="curso"
-                value={userData.curso}
-                onChange={changeValue}
-                isInvalid={error && error.errorCurso}
-              />
-            </Flex>
-
-            <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabelIcon
-                label={"Senha"}
-                showPassword={changeShowPassword}
-                status={showPassword}
-                type={showPassword ? "password" : "text"}
-                marginRight={{ lg: "2rem", base: "0" }}
-                name="senha"
-                id="senha"
-                value={userData.senha}
-                onChange={changeValue}
-                isInvalid={error && error.errorSenha}
-              />
-
-              <InputLabelIcon
-                label={"Confirmar Senha"}
-                name="confirmarSenha"
-                id="confirmarSenha"
-                status={confirmShowPassword}
-                value={userData.confirmarSenha}
-                onChange={changeValue}
-                type={confirmShowPassword ? "password" : "text"}
-                showPassword={changeShowConfirmPassword}
-                isInvalid={error && error.errorConfirmarSenha}
-              />
-            </Flex>
-
-            <Flex
-              w="full"
-              direction="column"
-              justifyContent="space-between"
-              alignItems="center"
-              marginTop="1.5rem"
+            <form
+              action="https://naovai.000webhostapp.com/src/test1.php"
+              method="post"
             >
-              <Button
-                height="50px"
-                colorScheme="teal"
-                boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-                width="60%"
-                marginY="1.5rem"
-                fontWeight="normal"
-                onClick={() => createUser()}
-              >
-                Cadastre-se
-              </Button>
+              <Flex w="full" direction={{ lg: "row", base: "column" }}>
+                <InputLabel
+                  label={"Nome"}
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  name="nome"
+                  id="nome"
+                  value={userData.nome}
+                  onChange={changeValue}
+                  isInvalid={error && error.errorNome}
+                />
 
-              <Text
-                direction="center"
-                color="#558085"
-                fontWeight="bold"
-                cursor="pointer"
-                onClick={() => navigate("/")}
+                <InputLabel
+                  label={"Email"}
+                  name="email"
+                  id="email"
+                  value={userData.email}
+                  onChange={changeValue}
+                  isInvalid={error && error.errorEmail}
+                />
+              </Flex>
+              <Flex w="full" direction={{ lg: "row", base: "column" }}>
+                <InputLabel
+                  label={"RM"}
+                  type="number"
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  name="rm"
+                  id="rm"
+                  value={userData.rm}
+                  onChange={changeValue}
+                  isInvalid={error && error.errorRm}
+                />
+
+                <SelectLabel
+                  label={"Curso"}
+                  options={listCursos}
+                  name="curso"
+                  id="curso"
+                  value={userData.curso}
+                  onChange={changeValue}
+                  isInvalid={error && error.errorCurso}
+                />
+              </Flex>
+
+              <Flex w="full" direction={{ lg: "row", base: "column" }}>
+                <InputLabelIcon
+                  label={"Senha"}
+                  showPassword={changeShowPassword}
+                  status={showPassword}
+                  type={showPassword ? "password" : "text"}
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  name="senha"
+                  id="senha"
+                  value={userData.senha}
+                  onChange={changeValue}
+                  isInvalid={error && error.errorSenha}
+                />
+
+                <InputLabelIcon
+                  label={"Confirmar Senha"}
+                  name="confirmarSenha"
+                  id="confirmarSenha"
+                  status={confirmShowPassword}
+                  value={userData.confirmarSenha}
+                  onChange={changeValue}
+                  type={confirmShowPassword ? "password" : "text"}
+                  showPassword={changeShowConfirmPassword}
+                  isInvalid={error && error.errorConfirmarSenha}
+                />
+              </Flex>
+
+              <Flex
+                w="full"
+                direction="column"
+                justifyContent="space-between"
+                alignItems="center"
+                marginTop="1.5rem"
               >
-                Voltar
-              </Text>
-            </Flex>
+                <Button
+                  height="50px"
+                  colorScheme="teal"
+                  boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
+                  width="60%"
+                  marginY="1.5rem"
+                  fontWeight="normal"
+                  onClick={() => createUser()}
+                  type="submit"
+                >
+                  Cadastre-se
+                </Button>
+
+                <Text
+                  direction="center"
+                  color="#558085"
+                  fontWeight="bold"
+                  cursor="pointer"
+                  onClick={() => navigate("/")}
+                >
+                  Voltar
+                </Text>
+              </Flex>
+            </form>
           </Flex>
         </Flex>
       </ContainerLogOff>

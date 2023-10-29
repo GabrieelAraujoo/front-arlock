@@ -68,6 +68,7 @@ function Armarios() {
               alignItems="flex-start"
               marginTop="1rem"
               direction="column"
+              paddingBottom="2rem"
               overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
               overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             >
@@ -118,26 +119,31 @@ function Armarios() {
                       ))}
                     </Table>
                   ) : (
-                    <Flex w="full" h="full" justify="center" marginTop="5rem">
-                      <Text
-                        fontSize="2rem"
-                        textColor="#558085"
-                        fontWeight="bold"
-                        opacity="0.5"
-                      >
-                        Sem lista de armários
-                      </Text>
+                    <Flex
+                      w="full"
+                      h="full"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Spinner
+                        thickness="4px"
+                        speed="0.65s"
+                        emptyColor="gray.200"
+                        color="blue.500"
+                        size="xl"
+                      />
                     </Flex>
                   )
                 ) : (
-                  <Flex w="full" h="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
+                  <Flex w="full" h="full" justify="center" marginTop="5rem">
+                    <Text
+                      fontSize="2rem"
+                      textColor="#558085"
+                      fontWeight="bold"
+                      opacity="0.5"
+                    >
+                      Sem lista de armários
+                    </Text>
                   </Flex>
                 )}
               </Flex>

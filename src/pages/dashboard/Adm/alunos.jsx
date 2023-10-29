@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Spinner, Button } from "@chakra-ui/react";
+import { Flex, Text, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
@@ -17,32 +17,29 @@ function Alunos() {
     GetAlunos(setAlunos);
   }, [alunos]);
 
-  function teste() {
-    
-    fetch(
-      "https://naovai.000webhostapp.com/php/POST/CreateAluno.php",
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          rm: "12345",
-          nome: "Gene",
-          curso: "Desenvolvimento de Sistemas",
-          email: "adm@gmail.com",
-          senha: "123456",
-          type: "adm",
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }}
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Atualiza o estado com os dados dos usuários
-      })
-      .catch((error) => {
-        console.error("Erro alunos:", error);
-      });
-  }
+  // function teste() {
+  //   fetch("https://naovai.000webhostapp.com/php/POST/CreateAluno.php", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       rm: "12345",
+  //       nome: "Gene",
+  //       curso: "Desenvolvimento de Sistemas",
+  //       email: "adm@gmail.com",
+  //       senha: "123456",
+  //       type: "adm",
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data); // Atualiza o estado com os dados dos usuários
+  //     })
+  //     .catch((error) => {
+  //       console.error("Erro alunos:", error);
+  //     });
+  // }
 
   return (
     <Main>
@@ -64,6 +61,7 @@ function Alunos() {
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
+            paddingBottom="2rem"
             // overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             // overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
@@ -85,85 +83,44 @@ function Alunos() {
               w="full"
               alignItems="baseline"
             >
-              {/* componente pesquisa */}
               <InputPesquisa />
             </Flex>
 
-            {/* corpo tabela com pegando lista de alunos */}
-            {alunos.length !== 0 ? (
-              <Flex
-                w="full"
-                direction="column"
-                overflowX={{ base: "scroll", lg: "hidden" }}
-              >
-                <Table>
-                  {/* titulo tabela */}
-                  <HeadListAlunos />
+            <Flex w="full" h="full" direction="column">
+              {alunos ? (
+                alunos.length !== 0 ? (
+                  <Table>
+                    {/* titulo tabela */}
+                    <HeadListAlunos />
 
-                  {alunos.map((item, index) => (
-                    <BodyListAlunos key={index} aluno={item} />
-                  ))}
-                </Table>
-              </Flex>
-            ) : (
-              <Flex w="full" h="full" justify="center" alignItems="center">
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
-              </Flex>
-            )}
-            <Button
-              w="50px"
-              colorScheme="teal"
-              variant="outline"
-              height="45px"
-              alignItems="center"
-              justifyContent="center"
-              onClick={() => teste()}
-            >
-              teste
-            </Button>
-            <form
-                    id="main-login"
-                    action="https://naovai.000webhostapp.com/php/POST/CreateAluno.php"
-                    method="post">
-                    <h2>
-                        Admin UI Login
-                    </h2>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="rm"/><br/>
-                    </label>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="nome"/><br/>
-                    </label>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="curso"/><br/>
-                    </label>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="email"/><br/>
-                    </label>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="senha"/><br/>
-                    </label>
-                    <label>
-                        <span class="text">user:</span>
-                        <input type="text" name="type"/><br/>
-                    </label>
-                    <br/>
-                    
-                    <div class="align-right">
-                        <button type="submit">Submit</button>
-                    </div>
-                </form>
+                    {alunos.map((item, index) => (
+                      <BodyListAlunos key={index} aluno={item} />
+                    ))}
+                  </Table>
+                ) : (
+                  <Flex w="full" h="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                )
+              ) : (
+                <Flex w="full" h="full" justify="center" marginTop="5rem">
+                  <Text
+                    fontSize="2rem"
+                    textColor="#558085"
+                    fontWeight="bold"
+                    opacity="0.5"
+                  >
+                    Sem lista de alunos
+                  </Text>
+                </Flex>
+              )}
+            </Flex>
           </Flex>
         </Flex>
       </Container>
