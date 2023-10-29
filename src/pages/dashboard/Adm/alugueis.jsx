@@ -1,18 +1,17 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Spinner, Table } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
-import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
 import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
 import { HeadListAprovados } from "../../../components/Table/Alugueis/Aprovados/HeadListAprovados";
 import { BodyListAprovados } from "../../../components/Table/Alugueis/Aprovados/BodyListAprovados";
-import { listAprovados } from "../../../Mock/listAprovados";
 import { GetAprovacao } from "../../../hook/alugueis/useGetAlugueis";
 
-function Alugueis() {
+export default function Alugueis() {
   const [alugueis, setAlugueis] = useState([]);
 
   useEffect(() => {
@@ -38,6 +37,7 @@ function Alugueis() {
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
+            paddingBottom="2rem"
             overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
@@ -62,28 +62,46 @@ function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            {alugueis.status === "em andamento" ? (
-              <Flex w="full" direction="column" overflowY="auto">
-                <Table>
-                  <HeadListAprovacao />
+            <Flex w="full" h="full" direction="column" marginBottom="2rem">
+              {alugueis ? (
+                alugueis.length !== 0 ? (
+                  <Flex w="full" direction="column" overflowY="auto">
+                    <Table>
+                      <HeadListAprovacao />
 
-                  {alugueis.map((item, index) => (
-                    <BodyListAprovacao key={index} aprovacao={item} />
-                  ))}
-                </Table>
-              </Flex>
-            ) : (
-              <Flex w="full" h="full" justify="center" alignItems="center">
-                <Text
-                  fontSize="2rem"
-                  textColor="#558085"
-                  fontWeight="bold"
-                  opacity="0.5"
-                >
-                  Sem lista de aprovação
-                </Text>
-              </Flex>
-            )}
+                      {alugueis.map((item, index) => {
+                        if (item.status === "em andamento") {
+                          return (
+                            <BodyListAprovacao key={index} aprovacao={item} />
+                          );
+                        }
+                      })}
+                    </Table>
+                  </Flex>
+                ) : (
+                  <Flex w="full" h="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                )
+              ) : (
+                <Flex w="full" h="full" justify="center" alignItems="center">
+                  <Text
+                    fontSize="2rem"
+                    textColor="#558085"
+                    fontWeight="bold"
+                    opacity="0.5"
+                  >
+                    Sem lista de aprovação
+                  </Text>
+                </Flex>
+              )}
+            </Flex>
           </Flex>
 
           <Flex
@@ -94,6 +112,7 @@ function Alugueis() {
             alignItems="flex-start"
             marginTop="1.3rem"
             direction="column"
+            paddingBottom="2rem"
             overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
             overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
           >
@@ -118,18 +137,45 @@ function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex
-              w="full"
-              direction="column"
-              overflowX={{ base: "scroll", lg: "hidden" }}
-            >
-              <Table>
-                <HeadListAprovados />
+            <Flex w="full" h="full" direction="column">
+              {alugueis ? (
+                alugueis.length !== 0 ? (
+                  <Flex w="full" direction="column" overflowY="auto">
+                    <Table>
+                      <HeadListAprovados />
 
-                {listAprovados.map((item, index) => (
-                  <BodyListAprovados key={index} aprovado={item} />
-                ))}
-              </Table>
+                      {alugueis.map((item, index) => {
+                        if (item.status === "pago") {
+                          return (
+                            <BodyListAprovados key={index} aprovado={item} />
+                          );
+                        }
+                      })}
+                    </Table>
+                  </Flex>
+                ) : (
+                  <Flex w="full" h="full" justify="center" alignItems="center">
+                    <Spinner
+                      thickness="4px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                )
+              ) : (
+                <Flex w="full" h="full" justify="center" alignItems="center">
+                  <Text
+                    fontSize="2rem"
+                    textColor="#558085"
+                    fontWeight="bold"
+                    opacity="0.5"
+                  >
+                    Sem de aprovados
+                  </Text>
+                </Flex>
+              )}
             </Flex>
           </Flex>
         </Flex>
@@ -137,5 +183,3 @@ function Alugueis() {
     </Main>
   );
 }
-
-export default Alugueis;
