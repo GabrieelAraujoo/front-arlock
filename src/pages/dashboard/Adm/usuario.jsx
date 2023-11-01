@@ -38,8 +38,7 @@ function Usuarios() {
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
-            overflowX={{ base: "hidden"}}
-            overflowY={{ base: "hidden"}}
+            paddingBottom="2rem"
           >
             <Text
               fontSize="35px"
@@ -74,7 +73,7 @@ function Usuarios() {
             </Flex>
             {usuarios ? (
               usuarios.length !== 0 ? (
-                <Flex w="full" direction="column">
+                <Flex w="full" direction="column" overflowY="auto">
                   <Table>
                     <HeadListUsuarios />
 
@@ -84,26 +83,26 @@ function Usuarios() {
                   </Table>
                 </Flex>
               ) : (
-                <Flex w="full" h="full" justify="center" marginTop="5rem">
-                  <Text
-                    fontSize="2rem"
-                    textColor="#558085"
-                    fontWeight="bold"
-                    opacity="0.5"
-                  >
-                    Sem lista de armários
-                  </Text>
+                <Flex w="full" h="full" justify="center" alignItems="center">
+                  <Spinner
+                    thickness="4px"
+                    speed="0.65s"
+                    emptyColor="gray.200"
+                    color="blue.500"
+                    size="xl"
+                  />
                 </Flex>
               )
             ) : (
-              <Flex w="full" h="full" justify="center" alignItems="center">
-                <Spinner
-                  thickness="4px"
-                  speed="0.65s"
-                  emptyColor="gray.200"
-                  color="blue.500"
-                  size="xl"
-                />
+              <Flex w="full" h="full" justify="center" marginTop="5rem">
+                <Text
+                  fontSize="2rem"
+                  textColor="#558085"
+                  fontWeight="bold"
+                  opacity="0.5"
+                >
+                  Sem lista de usuários
+                </Text>
               </Flex>
             )}
           </Flex>
