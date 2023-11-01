@@ -34,7 +34,7 @@ function Alugueis() {
           <Flex
             backgroundColor="white"
             width="full"
-            height="full"
+            height="150%"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1rem"
@@ -90,7 +90,7 @@ function Alugueis() {
           <Flex
             backgroundColor="white"
             width="full"
-            height="full"
+            height="150%"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1.3rem"

@@ -26,19 +26,18 @@ function Home() {
                 {/* Flex dos Alunos e Adms*/}
                 <Flex
                   backgroundColor="white"
-                  width="120%"
+                  width={{ base: "full", lg: "120%" }}
                   height="full"
                   borderRadius="15px"
                   direction="column"
                   padding="16px"
                   paddingTop="0.7rem"
-                  // gridTemplateColumns={{
-                  //   sm: "auto",
-                  //   base: "auto",
-                  //   lg: "auto auto",
-                  // }}
-                  // gridColumnGap="1rem"
-                  // gridRowGap={{ base: "1rem", lg: "0" }}
+                  gridTemplateColumns={{
+                    sm: "auto",
+                    base: "auto",
+                    lg: "auto auto",
+                  }}
+                  gridColumnGap="1rem"
                 >
                   
                   <Text
