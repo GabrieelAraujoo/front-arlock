@@ -96,23 +96,35 @@ export default function CadastroAlunos() {
 
   function handleEnviar(e) {
     e.preventDefault();
-    alert("Enviar");
+    // alert("Enviar");
     // console.log(e.target.nome.value);
     // nome, email, type, rm, curso, senha
-    // const url = "https://naovai.000webhostapp.com/src/Aluno.php";
+    const url = "https://naovai.000webhostapp.com/src/Aluno.php";
 
-    // let fData = new FormData();
-    // fData.append("nome", e.target.nome.value);
-    // fData.append("email", e.target.email.value);
-    // fData.append("type", e.target.type.value);
-    // fData.append("rm", e.target.rm.value);
-    // fData.append("curso", e.target.curso.value);
-    // fData.append("senha", e.target.senha.value);
+    let fData = new FormData();
+    fData.append("nome", e.target.nome.value);
+    fData.append("email", e.target.email.value);
+    fData.append("type", e.target.type.value);
+    fData.append("rm", e.target.rm.value);
+    fData.append("curso", e.target.curso.value);
+    fData.append("senha", e.target.senha.value);
 
-    // axios
-    //   .post(url, fData)
-    //   .then((Response) => navigate("/"))
-    //   .catch((error) => alert(error));
+    axios
+      .post(url, fData)
+      .then((Response) => navigate("/"))
+      .catch((error) => alert(error));
+
+      toast({
+        position: "center",
+        title: "Sucesso",
+        description: "Usuário criado com sucesso!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      })
+
+      
+      
   }
 
   return (
