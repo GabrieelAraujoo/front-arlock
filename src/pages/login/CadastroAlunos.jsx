@@ -88,6 +88,11 @@ export default function CadastroAlunos() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate("/");
+  }
+
   return (
     <Main>
       <ContainerLogOff>
@@ -117,7 +122,8 @@ export default function CadastroAlunos() {
               Cadastre-se
             </Text>
             <form
-              action="https://naovai.000webhostapp.com/src/test1.php"
+              
+              action="https://naovai.000webhostapp.com/src/Aluno.php"
               method="post"
             >
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
@@ -141,6 +147,16 @@ export default function CadastroAlunos() {
                 />
               </Flex>
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
+              <InputLabel
+                  label={"Aluno"}
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  name="type"
+                  id="type"
+                  onChange={changeValue}
+                  isInvalid={error && error.errorNome}
+                  value={"aluno"}
+                />
+
                 <InputLabel
                   label={"RM"}
                   type="number"
@@ -204,8 +220,8 @@ export default function CadastroAlunos() {
                   width="60%"
                   marginY="1.5rem"
                   fontWeight="normal"
-                  onClick={() => createUser()}
                   type="submit"
+                  onSubmit={(e) => handleSubmit(e)}
                 >
                   Cadastre-se
                 </Button>
