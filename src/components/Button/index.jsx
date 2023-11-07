@@ -6,12 +6,9 @@ export function ButtonExit({ title, ...rest }) {
     <Button
       w="full"
       colorScheme="teal"
-      variant="outline"
       height="45px"
       alignItems="center"
       justifyContent="center"
-      bgGradient="linear(to-r, #558085, #A3CCB8)"
-      _hover={{ color: "#9FC7B4", bgGradient: "linear(to-r, #45676B, #81A191)" }}
       textColor="white"
       {...rest}
     >
