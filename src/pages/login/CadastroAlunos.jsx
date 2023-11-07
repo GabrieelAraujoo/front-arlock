@@ -12,6 +12,7 @@ import {
   errorFormCadastro,
 } from "../../utils/baseFormCadastro";
 import { validateFormCadastro } from "../../utils/validateFormCadastro";
+import axios from "axios";
 
 export default function CadastroAlunos() {
   const navigate = useNavigate();
@@ -93,6 +94,27 @@ export default function CadastroAlunos() {
     navigate("/");
   }
 
+  function handleEnviar(e) {
+    e.preventDefault();
+    alert("Enviar");
+    // console.log(e.target.nome.value);
+    // nome, email, type, rm, curso, senha
+    // const url = "https://naovai.000webhostapp.com/src/Aluno.php";
+
+    // let fData = new FormData();
+    // fData.append("nome", e.target.nome.value);
+    // fData.append("email", e.target.email.value);
+    // fData.append("type", e.target.type.value);
+    // fData.append("rm", e.target.rm.value);
+    // fData.append("curso", e.target.curso.value);
+    // fData.append("senha", e.target.senha.value);
+
+    // axios
+    //   .post(url, fData)
+    //   .then((Response) => navigate("/"))
+    //   .catch((error) => alert(error));
+  }
+
   return (
     <Main>
       <ContainerLogOff>
@@ -122,9 +144,9 @@ export default function CadastroAlunos() {
               Cadastre-se
             </Text>
             <form
-              
-              action="https://naovai.000webhostapp.com/src/Aluno.php"
-              method="post"
+              // action="https://naovai.000webhostapp.com/src/Aluno.php"
+              // method="post"
+              onSubmit={(e) => handleEnviar(e)}
             >
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
                 <InputLabel
@@ -147,7 +169,7 @@ export default function CadastroAlunos() {
                 />
               </Flex>
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
-              <InputLabel
+                <InputLabel
                   label={"Aluno"}
                   marginRight={{ lg: "2rem", base: "0" }}
                   name="type"
@@ -221,7 +243,8 @@ export default function CadastroAlunos() {
                   marginY="1.5rem"
                   fontWeight="normal"
                   type="submit"
-                  onSubmit={(e) => handleSubmit(e)}
+                  // onSubmit={(e) => handleSubmit(e)}
+                  // formaction="https://naovai.000webhostapp.com/src/Aluno.php"
                 >
                   Cadastre-se
                 </Button>
