@@ -104,26 +104,19 @@ export default function CadastroAlunos() {
     let fData = new FormData();
     fData.append("nome", e.target.nome.value);
     fData.append("email", e.target.email.value);
-    fData.append("type", e.target.type.value);
+    fData.append("type", "aluno");
     fData.append("rm", e.target.rm.value);
     fData.append("curso", e.target.curso.value);
     fData.append("senha", e.target.senha.value);
 
     axios
       .post(url, fData)
-      .then((Response) => navigate("/"))
-      .catch((error) => alert(error));
+      .then((Response) => console.log(Response.data))
+      .catch((error) => console.log(error));
 
-      toast({
-        position: "center",
-        title: "Sucesso",
-        description: "Usuário criado com sucesso!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      })
-
-      
+      setTimeout(() => {
+        navigate("/")
+      }, "1000");
       
   }
 
@@ -181,7 +174,7 @@ export default function CadastroAlunos() {
                 />
               </Flex>
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
-                <InputLabel
+                {/* <InputLabel
                   label={"Aluno"}
                   marginRight={{ lg: "2rem", base: "0" }}
                   name="type"
@@ -189,7 +182,7 @@ export default function CadastroAlunos() {
                   onChange={changeValue}
                   isInvalid={error && error.errorNome}
                   value={"aluno"}
-                />
+                /> */}
 
                 <InputLabel
                   label={"RM"}

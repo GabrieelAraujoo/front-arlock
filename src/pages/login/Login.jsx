@@ -12,6 +12,20 @@ import {
 import { InputLabelIcon } from "../../components/Input/Login";
 import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { SelectLabel } from "../../components/Select/SelectCurso";
+
+export const listCursos = [
+  {
+    id: "01",
+    nome: "aluno",
+  },
+  {
+    id: "02",
+    nome: "adm",
+  },
+];
+
 
 export default function Login() {
   const [status, setStatus] = useState(true);
@@ -21,6 +35,7 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [type, setType] = useState("");
 
   const [errorEmail, setErrorEmail] = useBoolean();
   const [errorPassword, setErrorPassword] = useBoolean();
@@ -131,10 +146,45 @@ export default function Login() {
     if (name === "email") {
       setEmail(value);
       setErrorEmail.off();
+    } if (name === "type") {
+      setType(value);
     } else {
       setPassword(value);
       setErrorPassword.off();
     }
+  }
+
+  function handleEnviar(e) {
+    e.preventDefault();
+    // alert("Enviar");
+    // console.log(e.target.nome.value);
+    // nome, email, type, rm, curso, senha
+
+    console.log(e.target.type.value)
+    if(e.target.type.value === "aluno"){
+        const url = "https://naovai.000webhostapp.com/src/AcessoAluno.php";
+
+      let fData = new FormData();
+      fData.append("email", e.target.email.value);
+      fData.append("senha", e.target.senha.value);
+
+      axios
+        .post(url, fData)
+        .then((Response) => console.log(Response.data))
+        .catch((error) => console.log(error));
+    } else {
+      const url = "https://naovai.000webhostapp.com/src/AcessoAdministrador.php";
+
+      let fData = new FormData();
+      fData.append("email", e.target.email.value);
+      fData.append("senha", e.target.senha.value);
+
+      axios
+        .post(url, fData)
+        .then((Response) => console.log(Response.data))
+        .catch((error) => console.log(error));
+    }
+      
   }
 
   return (
@@ -164,7 +214,20 @@ export default function Login() {
             >
               Seja bem-vindo (a)
             </Text>
+            <form style={{width:"100%"}} 
+            // action="https://naovai.000webhostapp.com/src/AcessoAluno.php" 
+            // method="POST"
+            onSubmit={(e) => handleEnviar(e)}
+            >
             <Flex width="100%" direction="column" marginBottom="10px">
+              <SelectLabel
+                  options={listCursos}
+                  name="type"
+                  id="type"
+                  value={type}
+                  onChange={changeData}
+                  marginBottom="1rem"
+                />
               <InputLabel
                 erro={errorEmail}
                 label={"E-mail"}
@@ -180,7 +243,7 @@ export default function Login() {
                 showPassword={changeShowPassword}
                 status={status}
                 type={status ? "password" : "text"}
-                name="password"
+                name="senha"
                 id="password"
                 value={password}
                 onChange={changeData}
@@ -228,14 +291,13 @@ export default function Login() {
               width="100%"
               marginY="1.5rem"
               fontWeight="normal"
-              // onClick={() => sendRoute("/aluno/home")}
               isLoading={loading}
               type="submit"
-              onClick={checkLogin}
+              // onClick={checkLogin}
             >
               Entrar
             </Button>
-
+                </form>
             <Flex
               justifyContent="center"
               w="full"
