@@ -118,7 +118,7 @@ export function InputLabelIcon({
             variant="floating"
             id="first-name"
             isRequired
-            borderColor={erro ? "red" : "gray.200"}
+            borderColor={erro ? "red" : "#558085"}
           >
             <Input placeholder=" " paddingY="18px" {...rest} />
             <FormLabel>{label}</FormLabel>

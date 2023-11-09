@@ -54,7 +54,7 @@ function Home() {
                     marginTop="1rem"
                     number={"5"}
                     text={"Administradores Cadastrados"}
-                    height={{ base: "135px", sm: "130px" }}
+                    height={{ base: "145px", sm: "130px" }}
                   />
 
                   <BoxGeral
@@ -156,9 +156,12 @@ function Home() {
                   <BoxGeral
                     number={"20"}
                     text={"Pagamentos Pendentes"}
-                    height={{ base: "135px", sm: "130px" }}
+                    height={{ base: "145px", sm: "130px" }}
                   />
-                  <BoxGeral number={"R$2.000"} text={"Valor total"} />
+                  <BoxGeral 
+                  number={"R$2.000"} 
+                  text={"Valor total"}
+                  height={{ base: "135px", sm: "130px" }} />
                 </Flex>
               </Flex>
             </Flex>
