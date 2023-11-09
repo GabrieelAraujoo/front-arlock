@@ -148,7 +148,7 @@ export default function Login() {
       setErrorEmail.off();
     } if (name === "type") {
       setType(value);
-    } else {
+    } else if (name === "senha") {
       setPassword(value);
       setErrorPassword.off();
     }
@@ -159,9 +159,14 @@ export default function Login() {
     // alert("Enviar");
     // console.log(e.target.nome.value);
     // nome, email, type, rm, curso, senha
+    var type = "";
+    const typeLocal = {
+      type,
+    };
+    
 
-    console.log(e.target.type.value)
     if(e.target.type.value === "aluno"){
+      console.log("aluno");
         const url = "https://naovai.000webhostapp.com/src/AcessoAluno.php";
 
       let fData = new FormData();
@@ -170,19 +175,32 @@ export default function Login() {
 
       axios
         .post(url, fData)
-        .then((Response) => console.log(Response.data))
+        .then((Response) => console.log(Response.data),type="aluno")
         .catch((error) => console.log(error));
+
+
+        const typeLocal = {
+          type,
+        };
+  
+        localStorage.setItem("token", JSON.stringify("123456"));
+        localStorage.setItem("type", JSON.stringify(typeLocal));
+
+        setTimeout(() => {
+          navigate("/Aluno/Home");
+        }, "2000");
     } else {
-      const url = "https://naovai.000webhostapp.com/src/AcessoAdministrador.php";
+      console.log("adm");
+      // const url = "https://naovai.000webhostapp.com/src/AcessoAdministrador.php";
 
-      let fData = new FormData();
-      fData.append("email", e.target.email.value);
-      fData.append("senha", e.target.senha.value);
+      // let fData = new FormData();
+      // fData.append("email", e.target.email.value);
+      // fData.append("senha", e.target.senha.value);
 
-      axios
-        .post(url, fData)
-        .then((Response) => console.log(Response.data))
-        .catch((error) => console.log(error));
+      // axios
+      //   .post(url, fData)
+      //   .then((Response) => console.log(Response.data))
+      //   .catch((error) => console.log(error));
     }
       
   }
