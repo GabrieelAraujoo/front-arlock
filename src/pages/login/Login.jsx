@@ -14,6 +14,8 @@ import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { SelectLabel } from "../../components/Select/SelectCurso";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from "../../services/firebaseConfig";
 
 export const listCursos = [
   {
@@ -25,7 +27,6 @@ export const listCursos = [
     nome: "adm",
   },
 ];
-
 
 export default function Login() {
   const [status, setStatus] = useState(true);
@@ -146,8 +147,6 @@ export default function Login() {
     if (name === "email") {
       setEmail(value);
       setErrorEmail.off();
-    } if (name === "type") {
-      setType(value);
     } else if (name === "senha") {
       setPassword(value);
       setErrorPassword.off();
@@ -163,11 +162,10 @@ export default function Login() {
     const typeLocal = {
       type,
     };
-    
 
-    if(e.target.type.value === "aluno"){
+    if (e.target.type.value === "aluno") {
       console.log("aluno");
-        const url = "https://naovai.000webhostapp.com/src/AcessoAluno.php";
+      const url = "https://naovai.000webhostapp.com/src/AcessoAluno.php";
 
       let fData = new FormData();
       fData.append("email", e.target.email.value);
@@ -175,20 +173,19 @@ export default function Login() {
 
       axios
         .post(url, fData)
-        .then((Response) => console.log(Response.data),type="aluno")
+        .then((Response) => console.log(Response.data), (type = "aluno"))
         .catch((error) => console.log(error));
 
+      const typeLocal = {
+        type,
+      };
 
-        const typeLocal = {
-          type,
-        };
-  
-        localStorage.setItem("token", JSON.stringify("123456"));
-        localStorage.setItem("type", JSON.stringify(typeLocal));
+      localStorage.setItem("token", JSON.stringify("123456"));
+      localStorage.setItem("type", JSON.stringify(typeLocal));
 
-        setTimeout(() => {
-          navigate("/Aluno/Home");
-        }, "2000");
+      setTimeout(() => {
+        navigate("/Aluno/Home");
+      }, "2000");
     } else {
       console.log("adm");
       // const url = "https://naovai.000webhostapp.com/src/AcessoAdministrador.php";
@@ -202,7 +199,26 @@ export default function Login() {
       //   .then((Response) => console.log(Response.data))
       //   .catch((error) => console.log(error));
     }
-      
+  }
+
+  function handleSignIn(e) {
+    const auth = getAuth();
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
   }
 
   return (
@@ -232,13 +248,12 @@ export default function Login() {
             >
               Seja bem-vindo (a)
             </Text>
-            <form style={{width:"100%"}} 
-            // action="https://naovai.000webhostapp.com/src/AcessoAluno.php" 
-            // method="POST"
-            onSubmit={(e) => handleEnviar(e)}
+            <form
+              style={{ width: "100%" }}
+              // onSubmit={(e) => handleEnviar(e)}
             >
-            <Flex width="100%" direction="column" marginBottom="10px">
-              <SelectLabel
+              <Flex width="100%" direction="column" marginBottom="10px">
+                <SelectLabel
                   options={listCursos}
                   name="type"
                   id="type"
@@ -246,76 +261,72 @@ export default function Login() {
                   onChange={changeData}
                   marginBottom="1rem"
                 />
-              <InputLabel
-                erro={errorEmail}
-                label={"E-mail"}
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={changeData}
-              />
-              <InputLabelIcon
-                erro={errorPassword}
-                label={"Senha"}
-                showPassword={changeShowPassword}
-                status={status}
-                type={status ? "password" : "text"}
-                name="senha"
-                id="password"
-                value={password}
-                onChange={changeData}
-                onKeyUp={(e) => {
-                  if (e.keyCode === 13 || e.which === 13) {
-                    checkLogin();
-                  }
-                }}
-              />
-            </Flex>
-            <Flex
-              width="full"
-              justifyContent="space-between"
-              marginTop=".5rem"
-              fontSize={{ base: "11px", md: ".8rem", lg: ".8rem" }}
-            >
-              <Flex width="50%" direction="row" justifyContent="flex-start">
-                <Checkbox
-                  w="auto"
-                  color="blueblack"
-                  isChecked={remember}
-                  onChange={setRemember.toggle}
+                <InputLabel
+                  erro={errorEmail}
+                  label={"E-mail"}
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={changeData}
                 />
-                <Text marginLeft=".5rem" fontWeight="bold">
-                  Lembre-se de mim
-                </Text>
+                <InputLabelIcon
+                  erro={errorPassword}
+                  label={"Senha"}
+                  showPassword={changeShowPassword}
+                  status={status}
+                  type={status ? "password" : "text"}
+                  name="senha"
+                  id="password"
+                  value={password}
+                  onChange={changeData}
+                />
               </Flex>
-
               <Flex
-                width="50%"
-                direction="row"
-                justifyContent="flex-end"
-                onClick={() => sendRoute("/EsqueceuSenha")}
+                width="full"
+                justifyContent="space-between"
+                marginTop=".5rem"
+                fontSize={{ base: "11px", md: ".8rem", lg: ".8rem" }}
               >
-                <Text color="#558085" fontWeight="bold" cursor="pointer">
-                  Esqueceu a senha?
-                </Text>
-              </Flex>
-            </Flex>
+                <Flex width="50%" direction="row" justifyContent="flex-start">
+                  <Checkbox
+                    w="auto"
+                    color="blueblack"
+                    isChecked={remember}
+                    onChange={setRemember.toggle}
+                  />
+                  <Text marginLeft=".5rem" fontWeight="bold">
+                    Lembre-se de mim
+                  </Text>
+                </Flex>
 
-            <Button
-              height="50px"
-              colorScheme="teal"
-              boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-              width="100%"
-              marginY="1.5rem"
-              fontWeight="normal"
-              isLoading={loading}
-              type="submit"
-              // onClick={checkLogin}
-            >
-              Entrar
-            </Button>
-                </form>
+                <Flex
+                  width="50%"
+                  direction="row"
+                  justifyContent="flex-end"
+                  onClick={() => sendRoute("/EsqueceuSenha")}
+                >
+                  <Text color="#558085" fontWeight="bold" cursor="pointer">
+                    Esqueceu a senha?
+                  </Text>
+                </Flex>
+              </Flex>
+
+              <Button
+                height="50px"
+                colorScheme="teal"
+                boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
+                width="100%"
+                marginY="1.5rem"
+                fontWeight="normal"
+                // isLoading={loading}
+                // type="submit"
+                onClick={(e) => handleSignIn(e)}
+                // onClick={checkLogin}
+              >
+                Entrar
+              </Button>
+            </form>
             <Flex
               justifyContent="center"
               w="full"

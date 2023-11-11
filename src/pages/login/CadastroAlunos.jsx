@@ -13,6 +13,8 @@ import {
 } from "../../utils/baseFormCadastro";
 import { validateFormCadastro } from "../../utils/validateFormCadastro";
 import axios from "axios";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "../../services/firebaseConfig";
 
 export default function CadastroAlunos() {
   const navigate = useNavigate();
@@ -89,35 +91,78 @@ export default function CadastroAlunos() {
     }
   }
 
-  function handleSubmit(e) {
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   navigate("/");
+  // }
+
+  // function handleEnviar(e) {
+  //   e.preventDefault();
+  //   // alert("Enviar");
+  //   // console.log(e.target.nome.value);
+  //   // nome, email, type, rm, curso, senha
+  //   const url = "https://naovai.000webhostapp.com/src/Aluno.php";
+
+  //   let fData = new FormData();
+  //   fData.append("nome", e.target.nome.value);
+  //   fData.append("email", e.target.email.value);
+  //   fData.append("type", "aluno");
+  //   fData.append("rm", e.target.rm.value);
+  //   fData.append("curso", e.target.curso.value);
+  //   fData.append("senha", e.target.senha.value);
+
+  //   axios
+  //     .post(url, fData)
+  //     .then((Response) => console.log(Response.data))
+  //     .catch((error) => console.log(error));
+
+  //   setTimeout(() => {
+  //     navigate("/");
+  //   }, "1000");
+  // }
+
+  const auth = getAuth(app);
+
+  function handleCreateUser(e) {
     e.preventDefault();
-    navigate("/");
-  }
 
-  function handleEnviar(e) {
-    e.preventDefault();
-    // alert("Enviar");
-    // console.log(e.target.nome.value);
-    // nome, email, type, rm, curso, senha
-    const url = "https://naovai.000webhostapp.com/src/Aluno.php";
+    createUserWithEmailAndPassword(auth, formData.email, formData.senha)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
 
-    let fData = new FormData();
-    fData.append("nome", e.target.nome.value);
-    fData.append("email", e.target.email.value);
-    fData.append("type", "aluno");
-    fData.append("rm", e.target.rm.value);
-    fData.append("curso", e.target.curso.value);
-    fData.append("senha", e.target.senha.value);
+        toast({
+          position: "bottom",
+          title: "Sucesso",
+          description: "Usuário criado com sucesso!",
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
 
-    axios
-      .post(url, fData)
-      .then((Response) => console.log(Response.data))
-      .catch((error) => console.log(error));
+        setTimeout(() => {
+          navigate("/");
+        }, "1000");
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-      setTimeout(() => {
-        navigate("/")
-      }, "1000");
-      
+        toast({
+          position: "bottom",
+          title: "Erro",
+          description: "Error ao criar user",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+      });
   }
 
   return (
@@ -149,9 +194,7 @@ export default function CadastroAlunos() {
               Cadastre-se
             </Text>
             <form
-              // action="https://naovai.000webhostapp.com/src/Aluno.php"
-              // method="post"
-              onSubmit={(e) => handleEnviar(e)}
+            // onSubmit={(e) => handleEnviar(e)}
             >
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
                 <InputLabel
@@ -174,16 +217,6 @@ export default function CadastroAlunos() {
                 />
               </Flex>
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
-                {/* <InputLabel
-                  label={"Aluno"}
-                  marginRight={{ lg: "2rem", base: "0" }}
-                  name="type"
-                  id="type"
-                  onChange={changeValue}
-                  isInvalid={error && error.errorNome}
-                  value={"aluno"}
-                /> */}
-
                 <InputLabel
                   label={"RM"}
                   type="number"
@@ -247,7 +280,9 @@ export default function CadastroAlunos() {
                   width="60%"
                   marginY="1.5rem"
                   fontWeight="normal"
-                  type="submit"
+                  // type="submit"
+                  handleSignIn
+                  onClick={(e) => handleCreateUser(e)}
                   // onSubmit={(e) => handleSubmit(e)}
                   // formaction="https://naovai.000webhostapp.com/src/Aluno.php"
                 >
