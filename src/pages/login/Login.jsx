@@ -12,8 +12,6 @@ import {
 import { InputLabelIcon } from "../../components/Input/Login";
 import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { SelectLabel } from "../../components/Select/SelectCurso";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../services/firebaseConfig";
 
@@ -36,12 +34,13 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState("");
 
   const [errorEmail, setErrorEmail] = useBoolean();
   const [errorPassword, setErrorPassword] = useBoolean();
 
   const [loading, setLoading] = useBoolean();
+
+  const auth = getAuth(app);
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
 
@@ -53,81 +52,6 @@ export default function Login() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  async function checkLogin() {
-    setLoading.on();
-
-    if (remember) {
-      const loginData = {
-        email,
-        password,
-      };
-
-      localStorage.setItem("loginData", JSON.stringify(loginData));
-    } else {
-      localStorage.removeItem("loginData");
-    }
-
-    if (email === "") {
-      toast({
-        title: 'Campo "E-mail" está vazio',
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorEmail.on();
-    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 2) {
-      toast({
-        title: "Endereço de email invalido.",
-        description: "Inclua um endereço de email válido.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorEmail.on();
-    } else if (password === "") {
-      toast({
-        title: 'Campo "Senha" está vazio',
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorPassword.on();
-    } else {
-      var type = "";
-
-      if (email === "adm@gmail.com") {
-        type = "adm";
-      } else type = "aluno";
-
-      const typeLocal = {
-        type,
-      };
-
-      localStorage.setItem("token", JSON.stringify("123456"));
-      localStorage.setItem("type", JSON.stringify(typeLocal));
-
-      if (type === "adm") {
-        navigate("/Adm/Home");
-      } else if (type === "aluno") {
-        navigate("/Aluno/Home");
-      }
-      // const res = await signIn(email, password);
-
-      // if (!res) {
-      //   setLoading.off();
-      // }
-    }
-  }
 
   function changeShowPassword() {
     if (status === true) {
@@ -153,62 +77,83 @@ export default function Login() {
     }
   }
 
-  function handleEnviar(e) {
-    e.preventDefault();
-    // alert("Enviar");
-    // console.log(e.target.nome.value);
-    // nome, email, type, rm, curso, senha
-    var type = "";
-    const typeLocal = {
-      type,
-    };
+  function checkLogin() {
+    setLoading.on();
 
-    if (e.target.type.value === "aluno") {
-      console.log("aluno");
-      const url = "https://naovai.000webhostapp.com/src/AcessoAluno.php";
-
-      let fData = new FormData();
-      fData.append("email", e.target.email.value);
-      fData.append("senha", e.target.senha.value);
-
-      axios
-        .post(url, fData)
-        .then((Response) => console.log(Response.data), (type = "aluno"))
-        .catch((error) => console.log(error));
-
-      const typeLocal = {
-        type,
+    if (remember) {
+      const loginData = {
+        email,
+        password,
       };
 
-      localStorage.setItem("token", JSON.stringify("123456"));
-      localStorage.setItem("type", JSON.stringify(typeLocal));
-
-      setTimeout(() => {
-        navigate("/Aluno/Home");
-      }, "2000");
+      localStorage.setItem("loginData", JSON.stringify(loginData));
     } else {
-      console.log("adm");
-      // const url = "https://naovai.000webhostapp.com/src/AcessoAdministrador.php";
+      localStorage.removeItem("loginData");
+    }
 
-      // let fData = new FormData();
-      // fData.append("email", e.target.email.value);
-      // fData.append("senha", e.target.senha.value);
+    if (email === "") {
+      toast({
+        title: 'Campo "E-mail" está vazio',
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
 
-      // axios
-      //   .post(url, fData)
-      //   .then((Response) => console.log(Response.data))
-      //   .catch((error) => console.log(error));
+      setLoading.off();
+
+      setErrorEmail.on();
+    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 2) {
+      toast({
+        title: "Endereço de email invalido.",
+        description: "Inclua um endereço de email válido.",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setLoading.off();
+
+      setErrorEmail.on();
+    } else if (password === "") {
+      toast({
+        title: 'Campo "Senha" está vazio',
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setLoading.off();
+
+      setErrorPassword.on();
+    } else {
+      handleSignIn();
     }
   }
 
-  function handleSignIn(e) {
-    const auth = getAuth();
-    e.preventDefault();
-
+  function handleSignIn() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        var type = "";
+
+        if (email === "admin@gmail.com") {
+          type = "adm";
+        } else type = "aluno";
+
+        const typeLocal = {
+          type,
+        };
+
+        localStorage.setItem("token", JSON.stringify(user.accessToken));
+        localStorage.setItem("type", JSON.stringify(typeLocal));
+
+        if (type === "adm") {
+          navigate("/Adm/Home");
+        } else if (type === "aluno") {
+          navigate("/Aluno/Home");
+        }
+
         console.log(user);
         // ...
       })
@@ -216,8 +161,20 @@ export default function Login() {
         const errorCode = error.code;
         const errorMessage = error.message;
 
+        toast({
+          position: "bottom",
+          title: "Erro",
+          description: "Erro. Tente mais tarde.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+
+        setLoading.off();
+
         console.log(errorCode);
         console.log(errorMessage);
+        // ...
       });
   }
 
@@ -248,85 +205,70 @@ export default function Login() {
             >
               Seja bem-vindo (a)
             </Text>
-            <form
-              style={{ width: "100%" }}
-              // onSubmit={(e) => handleEnviar(e)}
+            <Flex width="100%" direction="column" marginBottom="10px">
+              <InputLabel
+                erro={errorEmail}
+                label={"E-mail"}
+                type="email"
+                name="email"
+                id="email"
+                value={email}
+                onChange={changeData}
+              />
+              <InputLabelIcon
+                erro={errorPassword}
+                label={"Senha"}
+                showPassword={changeShowPassword}
+                status={status}
+                type={status ? "password" : "text"}
+                name="senha"
+                id="password"
+                value={password}
+                onChange={changeData}
+              />
+            </Flex>
+            <Flex
+              width="full"
+              justifyContent="space-between"
+              marginTop=".5rem"
+              fontSize={{ base: "11px", md: ".8rem", lg: ".8rem" }}
             >
-              <Flex width="100%" direction="column" marginBottom="10px">
-                <SelectLabel
-                  options={listCursos}
-                  name="type"
-                  id="type"
-                  value={type}
-                  onChange={changeData}
-                  marginBottom="1rem"
+              <Flex width="50%" direction="row" justifyContent="flex-start">
+                <Checkbox
+                  w="auto"
+                  color="blueblack"
+                  isChecked={remember}
+                  onChange={setRemember.toggle}
                 />
-                <InputLabel
-                  erro={errorEmail}
-                  label={"E-mail"}
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={changeData}
-                />
-                <InputLabelIcon
-                  erro={errorPassword}
-                  label={"Senha"}
-                  showPassword={changeShowPassword}
-                  status={status}
-                  type={status ? "password" : "text"}
-                  name="senha"
-                  id="password"
-                  value={password}
-                  onChange={changeData}
-                />
+                <Text marginLeft=".5rem" fontWeight="bold">
+                  Lembre-se de mim
+                </Text>
               </Flex>
+
               <Flex
-                width="full"
-                justifyContent="space-between"
-                marginTop=".5rem"
-                fontSize={{ base: "11px", md: ".8rem", lg: ".8rem" }}
+                width="50%"
+                direction="row"
+                justifyContent="flex-end"
+                onClick={() => sendRoute("/EsqueceuSenha")}
               >
-                <Flex width="50%" direction="row" justifyContent="flex-start">
-                  <Checkbox
-                    w="auto"
-                    color="blueblack"
-                    isChecked={remember}
-                    onChange={setRemember.toggle}
-                  />
-                  <Text marginLeft=".5rem" fontWeight="bold">
-                    Lembre-se de mim
-                  </Text>
-                </Flex>
-
-                <Flex
-                  width="50%"
-                  direction="row"
-                  justifyContent="flex-end"
-                  onClick={() => sendRoute("/EsqueceuSenha")}
-                >
-                  <Text color="#558085" fontWeight="bold" cursor="pointer">
-                    Esqueceu a senha?
-                  </Text>
-                </Flex>
+                <Text color="#558085" fontWeight="bold" cursor="pointer">
+                  Esqueceu a senha?
+                </Text>
               </Flex>
+            </Flex>
 
-              <Button
-                height="50px"
-                colorScheme="teal"
-                boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
-                width="100%"
-                marginY="1.5rem"
-                fontWeight="normal"
-                // isLoading={loading}
-                // type="submit"
-                onClick={(e) => handleSignIn(e)}
-                // onClick={checkLogin}
-              >
-                Entrar
-              </Button>
-            </form>
+            <Button
+              height="50px"
+              colorScheme="teal"
+              boxShadow=" 0 2px 5px rgb(0, 0, 0, .5);"
+              width="100%"
+              marginY="1.5rem"
+              fontWeight="normal"
+              isLoading={loading}
+              onClick={() => checkLogin()}
+            >
+              Entrar
+            </Button>
             <Flex
               justifyContent="center"
               w="full"

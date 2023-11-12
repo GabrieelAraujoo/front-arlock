@@ -13,7 +13,11 @@ import {
 } from "../../utils/baseFormCadastro";
 import { validateFormCadastro } from "../../utils/validateFormCadastro";
 import axios from "axios";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import app from "../../services/firebaseConfig";
 
 export default function CadastroAlunos() {
@@ -153,7 +157,7 @@ export default function CadastroAlunos() {
         toast({
           position: "bottom",
           title: "Erro",
-          description: "Error ao criar user",
+          description: "Erro ao criar user, tente mais tarde.",
           status: "error",
           duration: 5000,
           isClosable: true,
