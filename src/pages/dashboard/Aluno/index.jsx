@@ -95,8 +95,8 @@ function Home() {
                       height="263px"
                       width="245px"
                       borderRadius="50%"
-                      src="https://bit.ly/dan-abramov"
-                      alt="Dan Abramov"
+                      src="https://www.collegebox.com.br/site/visuais/imagens/aluno_grande_3.jpg"
+                      alt="Representação Armário"
                     />
 
                     <Text textColor="#558085">Armário B19</Text>

@@ -17,17 +17,8 @@ import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { ButtonExit } from "../../../components/Button";
 // import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
-export function Armarios() {
-  const [reserva, setReserva] = useState();
+export function Armarios() {  
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  useEffect(() => {
-    if (reserva) {
-      onOpen();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <>
@@ -75,10 +66,10 @@ export function Armarios() {
                     md: "auto auto auto auto auto",
                     lg: "auto auto auto auto auto auto auto auto",
                   }}
-                  gridGap="1rem"
+                  gridGap="0.5rem"
                   padding="1rem"
                 >
-                  {listArmarios.map((item, index) => (
+                  {listArmarios.map((item, index, setReserva) => (
                     <BoxArmario
                       key={index}
                       armario={item}
@@ -91,49 +82,6 @@ export function Armarios() {
           </Flex>
         </Container>
       </Main>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent
-          background="#fff"
-          alignItems="center"
-          width={{ base: "90%", sm: "90%" }}
-          marginY="auto"
-        >
-          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
-            Reserva Concluída!
-          </ModalHeader>
-          <ModalBody w="full">
-            <Text
-              marginBottom="1.1rem"
-              fontSize="12px"
-              marginRight="1rem"
-              textAlign="center"
-            >
-              Parabéns, sua reserva foi concluída com sucesso!!
-            </Text>
-            <Text
-              marginBottom="1.1rem"
-              fontSize="12px"
-              marginRight="1rem"
-              textAlign="center"
-            >
-              Aguarde o prazo conforme estabelicido de acordo com a forma de
-              pagamento para utilizar o armário. Em breve, você receberá uma
-              notificação sobre a liberação do armário. Fique de olho!
-            </Text>
-          </ModalBody>
-          <Flex
-            marginBottom="1.4rem"
-            textAlign="center"
-            marginTop={{ base: "10px" }}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <ButtonExit title={"Cancelar"} marginTop="10px" onClick={onClose} />
-          </Flex>
-        </ModalContent>
-      </Modal>
     </>
   );
 }

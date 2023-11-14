@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Flex,
   Text,
@@ -14,7 +14,8 @@ import { ButtonExit } from "../Button";
 import { SelectLabel } from "../Select/SelectCurso";
 import { listPayment } from "../../Mock/listPayment";
 
-export function BoxArmario({ armario, setReserva }) {
+export function BoxArmario({ armario }) {
+  const [reserva, setReserva] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userData, setUserData] = useState("");
   const [typePayment, setTypePayment] = useState("");
@@ -45,6 +46,14 @@ export function BoxArmario({ armario, setReserva }) {
     console.log(userData);
     setReserva(userData);
   }
+
+  // useEffect(() => {
+  //   if (reserva === false) {
+  //     onOpen();
+  //   }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <>
@@ -108,7 +117,7 @@ export function BoxArmario({ armario, setReserva }) {
       </Flex>
 
       {/* Primeiro modal */}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} name="First-Modal" id="First-Modal">
         <ModalOverlay />
         <ModalContent
           background="#fff"
@@ -228,6 +237,50 @@ export function BoxArmario({ armario, setReserva }) {
           </Flex>
         </ModalContent>
       </Modal>
+
+      
+      {/* <Modal isOpen={isOpen} onClose={onClose} name="Second-Modal" id="Second-Modal">
+        <ModalOverlay />
+        <ModalContent
+          background="#fff"
+          alignItems="center"
+          width={{ base: "90%", sm: "90%" }}
+          marginY="auto"
+        >
+          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
+            Reserva Concluída!
+          </ModalHeader>
+          <ModalBody w="full">
+            <Text
+              marginBottom="1.1rem"
+              fontSize="12px"
+              marginRight="1rem"
+              textAlign="center"
+            >
+              Parabéns, sua reserva foi concluída com sucesso!!
+            </Text>
+            <Text
+              marginBottom="1.1rem"
+              fontSize="12px"
+              marginRight="1rem"
+              textAlign="center"
+            >
+              Aguarde o prazo conforme estabelicido de acordo com a forma de
+              pagamento para utilizar o armário. Em breve, você receberá uma
+              notificação sobre a liberação do armário. Fique de olho!
+            </Text>
+          </ModalBody>
+          <Flex
+            marginBottom="1.4rem"
+            textAlign="center"
+            marginTop={{ base: "10px" }}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <ButtonExit title={"Cancelar"} marginTop="10px" onClick={onClose} />
+          </Flex>
+        </ModalContent>
+      </Modal> */}
     </>
   );
 }
