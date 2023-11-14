@@ -95,7 +95,7 @@ function Home() {
                       height="263px"
                       width="245px"
                       borderRadius="50%"
-                      src="https://bit.ly/dan-abramov"
+                      src="https://www.collegebox.com.br/site/visuais/imagens/aluno_grande_3.jpg"
                       alt="Dan Abramov"
                     />
 
