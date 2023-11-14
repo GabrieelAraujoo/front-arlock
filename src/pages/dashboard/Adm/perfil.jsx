@@ -32,7 +32,7 @@ function Perfil() {
             direction="column"
           >
             <Text
-              fontSize={{ lg: "35px", base: "25px", md: "35px" }}
+              fontSize={{ lg: "35px", md: "35px", base: "25px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"

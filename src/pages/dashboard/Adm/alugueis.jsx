@@ -65,7 +65,7 @@ export default function Alugueis() {
             <Flex w="full" h="full" direction="column">
               {alugueis ? (
                 alugueis.length !== 0 ? (
-                  <Flex w="full" direction="column" overflowY="auto">
+                  <Flex w="full" direction="column" overflowY="auto" overflowX="hidden">
                     <Table>
                       <HeadListAprovacao />
 
@@ -140,7 +140,7 @@ export default function Alugueis() {
             <Flex w="full" h="full" direction="column">
               {alugueis ? (
                 alugueis.length !== 0 ? (
-                  <Flex w="full" direction="column" overflowY="auto">
+                  <Flex w="full" direction="column" overflowY="auto" overflowX="hidden">
                     <Table>
                       <HeadListAprovados />
 

@@ -92,7 +92,7 @@ export const theme = extendTheme({
 
 export function SelectLabel({ placeholder, options, ...rest }) {
   return (
-    <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="35px">
+    <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="46px">
       <Box>
         <FormControl variant="floating" id="first-name" isRequired>
           <Select borderColor="#558085" placeholder={placeholder} h="45px" {...rest}>

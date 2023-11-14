@@ -89,7 +89,7 @@ function NewArmarios() {
             <Flex
               backgroundColor="white"
               width="full"
-              height="380px"
+              height={{ sm: "330px", base: "510px" }}
               borderRadius="15px"
               alignItems="flex-start"
               marginTop="2rem"
@@ -105,7 +105,7 @@ function NewArmarios() {
                 Criar Novos Armários
               </Text>
 
-              <Flex w="full" paddingX="1.3rem">
+              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
                 <InputLabel
                   label={"Letra"}
                   name="letra"
@@ -120,33 +120,34 @@ function NewArmarios() {
                   name="quantidade"
                   id="quantidade"
                   type="number"
+                  marginLeft={{ sm: "1.8rem" }}
                   value={userData.quantidade}
                   onChange={changeValue}
                   isInvalid={error && error.errorQuantidade}
-                  marginLeft="2rem"
                 />
               </Flex>
 
-              <Flex w="full" paddingX="1.3rem">
+              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
                 <SelectLabel
                   label={"Concurso"}
                   placeholder={"Curso"}
                   options={listCursos}
                   name="curso"
                   id="curso"
+                  
                   value={userData.curso}
                   onChange={changeValue}
                   isInvalid={error && error.errorCurso}
                 />
 
                 <InputLabel
-                  label={"Manutenção"}
+                  label="Manutenção"
                   name="manutencao"
                   id="manutencao"
+                  marginLeft={{ sm: "1.8rem" }}
                   value={userData.manutencao}
                   onChange={changeValue}
                   isInvalid={error && error.errorManutencao}
-                  marginLeft="2rem"
                 />
               </Flex>
 
@@ -154,7 +155,7 @@ function NewArmarios() {
                 w="full"
                 alignItems="baseline"
                 paddingX="1.3rem"
-                marginTop="3.5rem"
+                marginTop="2.7rem"
               >
                 <ButtonExit
                   title={"Voltar"}
