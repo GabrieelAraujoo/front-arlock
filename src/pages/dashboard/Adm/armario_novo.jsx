@@ -23,6 +23,8 @@ import { validateFormNewLocker } from "../../../utils/validateFormNewLocker";
 import { SelectLabel } from "../../../components/SelectAdm/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
+import axios from "axios";
+
 
 function NewArmarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -74,6 +76,32 @@ function NewArmarios() {
     }
   }
 
+  function handleEnviar(e) {
+    e.preventDefault();
+ 
+    const url = "https://naovai.000webhostapp.com/src/Armario.php";
+
+    let fData = new FormData();
+    fData.append("nome", e.target.letra.value);
+    fData.append("email", e.target.quantidade.value);
+    fData.append("rm", e.target.curso.value);
+    fData.append("curso", e.target.manutencao.value);
+    
+
+    axios
+      .post(url, fData)
+      .then((Response) => {
+        console.log(Response.data)
+        console.log("DEU CERTO")
+      })
+      .catch((error) => {
+        console.log(error)
+        console.log("DEU RUIM")
+      });
+
+    
+  }
+
   return (
     <>
       <Main>
@@ -105,6 +133,9 @@ function NewArmarios() {
                 Criar Novos Armários
               </Text>
 
+              <form 
+            onSubmit={(e) => handleEnviar(e)}
+            >
               <Flex w="full" paddingX="1.3rem">
                 <InputLabel
                   label={"Letra"}
@@ -162,9 +193,12 @@ function NewArmarios() {
                 <ButtonExit
                   title={"Salvar"}
                   marginLeft="2rem"
-                  onClick={onOpen}
+                  // onClick={onOpen}
+                  type="submit"
                 />
               </Flex>
+
+              </form>
             </Flex>
           </Flex>
         </Container>
