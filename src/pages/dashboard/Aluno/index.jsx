@@ -89,8 +89,8 @@ function Home() {
                     </Text>
 
                     <Image
-                      height={{base: "210px", lg: "263px"}}
-                      width={{base: "190px",lg: "245px"}}
+                      height={{base: "210px", lg: "243px", xl: "263px"}}
+                      width={{base: "190px", lg: "220px", xl: "245px"}}
                       borderRadius="50%"
                       src="https://www.collegebox.com.br/site/visuais/imagens/aluno_grande_3.jpg"
                       alt="Representação Armário"
@@ -115,6 +115,7 @@ function Home() {
                       fontSize={{base: "23px", lg: "26px"}}
                       textColor="#558085"
                       fontWeight="bold"
+                      textAlign="center"
                     >
                       Informações Adicionais
                     </Text>
@@ -136,7 +137,7 @@ function Home() {
                 {/* flex suporte */}
                 <Flex
                   backgroundColor="#BFDDE0"
-                  height="130px"
+                  height={{base: "190px", sm: "130px", lg: "130px"}}
                   borderRadius="15px"
                   margin="1rem"
                   direction="column"
@@ -147,16 +148,17 @@ function Home() {
                     fontSize="26px"
                     textColor="#558085"
                     fontWeight="bold"
+                    textAlign="center"
                   >
                     Fale com o Suporte
                   </Text>
-                  <Text textColor="#558085" fontSize="15px">
+                  <Text textColor="#558085" fontSize="15px" textAlign="center" marginTop={{base: "5px", sm: "0"}} >
                     Telefone ETECIA: 11 98960-0597
                   </Text>
-                  <Text textColor="#558085" fontSize="15px">
+                  <Text textColor="#558085" fontSize="15px" textAlign="center"  >
                     E-mail ETECIA: secretaria@etecia.com.br
                   </Text>
-                  <Text textColor="#558085" fontSize="15px">
+                  <Text textColor="#558085" fontSize="15px" textAlign="center"  >
                     Técnico: 11 96021-0095
                   </Text>
                 </Flex>
