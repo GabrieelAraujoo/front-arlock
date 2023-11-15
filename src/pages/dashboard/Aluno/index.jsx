@@ -20,7 +20,7 @@ function Home() {
           {/* Flex das notificações e do flex dos outros boxes*/}
           <Flex
             width="full"
-            paddingTop="2rem"
+            paddingTop={{base: "0",lg: "2rem"}}
             direction={{ sm: "column", base: "column", lg: "row" }}
           >
             {/* Flex de notificações */}
@@ -152,7 +152,7 @@ function Home() {
                   >
                     Fale com o Suporte
                   </Text>
-                  <Text textColor="#558085" fontSize="15px" textAlign="center" marginTop={{base: "5px", sm: "0"}} >
+                  <Text textColor="#558085" fontSize="15px" textAlign="center" marginTop={{base: "15px", sm: "0"}} >
                     Telefone ETECIA: 11 98960-0597
                   </Text>
                   <Text textColor="#558085" fontSize="15px" textAlign="center"  >
