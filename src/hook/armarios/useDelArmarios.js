@@ -5,9 +5,9 @@ export async function DelArmarios(id, setResultDelet) {
   ) // Substitua "/api/usuarios" pela URL da sua API
     .then((response) => response.json())
     .then((data) => {
-      const newData = {
-        message: data?.message,
-      };
+     // const newData = {
+     //   message: data?.message,
+     // };
 
       setResultDelet(data.message);
       return data.message;

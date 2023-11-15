@@ -5,12 +5,12 @@ export function BoxGeral({ number, text, ...rest }) {
   return (
     <Flex
       backgroundColor="#BFDDE0"     
-      height="130px"
+      height="125px"
       borderRadius="15px"
       width="full"
       {...rest}
     >
-      <Flex marginLeft="20px" marginTop="10px" direction="column">
+      <Flex marginLeft="20px" marginTop="15px" direction="column">
         <Text fontSize="3rem" textColor="#558085" fontWeight="bold">
           {number}
         </Text>

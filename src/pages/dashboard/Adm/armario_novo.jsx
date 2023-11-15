@@ -20,7 +20,7 @@ import {
   errorFormNewLocker,
 } from "../../../utils/baseFormNewLocker";
 import { validateFormNewLocker } from "../../../utils/validateFormNewLocker";
-import { SelectLabel } from "../../../components/SelectAdm/SelectCurso";
+import { SelectLabel } from "../../../components/Select/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
 import axios from "axios";
@@ -117,7 +117,7 @@ function NewArmarios() {
             <Flex
               backgroundColor="white"
               width="full"
-              height="380px"
+              height={{ sm: "330px", base: "510px" }}
               borderRadius="15px"
               alignItems="flex-start"
               marginTop="2rem"
@@ -156,16 +156,16 @@ function NewArmarios() {
                   value={userData.numero}
                   onChange={changeValue}
                   isInvalid={error && error.errorQuantidade}
-                  marginLeft="2rem"
                 />
               </Flex>
 
-              <Flex w="full" paddingX="1.3rem">
+              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
                 <SelectLabel
                   label={"Curso"}
                   options={listCursos}
                   name="curso"
                   id="curso"
+                  
                   value={userData.curso}
                   onChange={changeValue}
                   isInvalid={error && error.errorCurso}
@@ -178,7 +178,6 @@ function NewArmarios() {
                   value={userData.status}
                   onChange={changeValue}
                   isInvalid={error && error.errorManutencao}
-                  marginLeft="2rem"
                 />
               </Flex>
 
@@ -186,7 +185,7 @@ function NewArmarios() {
                 w="full"
                 alignItems="baseline"
                 paddingX="1.3rem"
-                marginTop="3.5rem"
+                marginTop="2.7rem"
               >
                 <ButtonExit
                   title={"Voltar"}

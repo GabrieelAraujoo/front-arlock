@@ -19,7 +19,7 @@ export function BodyListAprovacao({ aprovacao }) {
 
   return (
     <>
-      <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
+        <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px" overflowX={{base: "hidden"}}>
         <Td width="15%">{aprovacao.armario}</Td>
         <Td width="20%">{aprovacao.aluno}</Td>
         <Td width="10%">{aprovacao.rm}</Td>

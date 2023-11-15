@@ -32,14 +32,14 @@ export default function Alugueis() {
           <Flex
             backgroundColor="white"
             width="full"
-            height="full"
+            height="150%"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1rem"
             direction="column"
             paddingBottom="2rem"
-            overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
+            overflowX="hidden"
+            overflowY="hidden"
           >
             <Text
               fontSize="35px"
@@ -62,11 +62,11 @@ export default function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" h="full" direction="column">
+            <Flex w="full" h="full" direction="column" overflowX="hidden" overflowY="hidden">
               {alugueis ? (
                 alugueis.length !== 0 ? (
                   <Flex w="full" direction="column" overflowY="auto">
-                    <Table>
+                    <Table >
                       <HeadListAprovacao />
 
                       {alugueis.map((item, index) => {
@@ -107,14 +107,14 @@ export default function Alugueis() {
           <Flex
             backgroundColor="white"
             width="full"
-            height="full"
+            height="150%"
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="1.3rem"
             direction="column"
             paddingBottom="2rem"
-            overflowX={{ base: "scroll", sm: "hidden", lg: "hidden" }}
-            overflowY={{ base: "scroll", sm: "hidden", lg: "hidden" }}
+            overflowX="hidden"
+            overflowY="hidden"
           >
             <Text
               fontSize="35px"
@@ -137,10 +137,10 @@ export default function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" h="full" direction="column">
+            <Flex w="full" h="full" direction="column" overflowX="hidden" overflowY="hidden">
               {alugueis ? (
                 alugueis.length !== 0 ? (
-                  <Flex w="full" direction="column" overflowY="auto">
+                  <Flex w="full" direction="column" overflowY="auto" >
                     <Table>
                       <HeadListAprovados />
 

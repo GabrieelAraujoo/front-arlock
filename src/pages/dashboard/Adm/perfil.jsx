@@ -25,14 +25,14 @@ function Perfil() {
           <Flex
             backgroundColor="white"
             width="full"
-            height={{ sm: "280px", base: "460px" }}
+            height={{ sm: "300px", base: "360px" }}
             borderRadius="15px"
             alignItems="flex-start"
             marginTop="2rem"
             direction="column"
           >
             <Text
-              fontSize={{ lg: "35px", base: "25px", md: "35px" }}
+              fontSize={{ lg: "35px", md: "35px", base: "25px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"
@@ -62,7 +62,6 @@ function Perfil() {
               alignItems="baseline"
               paddingX="1.3rem"
               marginTop="2.7rem"
-              direction={{ base: "column", sm: "row", lg: "row" }}
             >
               <ButtonExit
                 title={"Voltar"}
@@ -70,7 +69,7 @@ function Perfil() {
               />
               <ButtonExit
                 title={"Sair"}
-                marginLeft={{ sm: "2rem" }}
+                marginLeft={{ base: "2rem", sm: "2rem" }}
                 marginTop="1rem"
                 onClick={() => handleSair()}
               />

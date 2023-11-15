@@ -86,7 +86,7 @@ function NewUsuarios() {
             <Flex
               backgroundColor="white"
               width="full"
-              height="280px"
+              height={{ sm: "300px", base: "380px" }}
               borderRadius="15px"
               alignItems="flex-start"
               marginTop="2rem"
@@ -102,7 +102,7 @@ function NewUsuarios() {
                 Criar Novo Usuário
               </Text>
 
-              <Flex w="full" paddingX="1.3rem">
+              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
                 <InputLabel
                   label={"Nome"}
                   name="nome"
@@ -116,10 +116,10 @@ function NewUsuarios() {
                   label={"Email"}
                   name="email"
                   id="email"
+                  marginLeft={{ sm: "1.9rem" }}
                   value={userData.email}
                   onChange={changeValue}
                   isInvalid={error && error.errorEmail}
-                  marginLeft="2rem"
                 />
               </Flex>
 
