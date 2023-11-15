@@ -4,13 +4,19 @@ export async function GetArmarios(setArmarios) {
     .then((response) => response.json())
     .then((data) => {
       const newData = data.map((item) => ({
+        id: item.Arm_ID,
         letra: item.letra,
-        quantidade: item.quantidade,
+        numero: item.numero,
         curso: item.curso,
-        manutencao: item.manutencao,
-        alugados: item.Alugados,
-        id: item.ID_Arm,
+
+        aluno: item.aluno,
+        rm: item.rm,
+        status: item.status,
+        pagamento: item.status,
+        statusAluguel: item.statusAluguel,
       }));
+
+
 
       setArmarios(newData); // Atualiza o estado com os dados dos usuários
     })

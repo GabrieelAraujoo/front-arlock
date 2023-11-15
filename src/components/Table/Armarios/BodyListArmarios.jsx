@@ -34,10 +34,9 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
       <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
         <Td width="5%">{armarios.id}</Td>
         <Td width="5%">{armarios.letra}</Td>
-        <Td width="15%">{armarios.quantidade}</Td>
+        <Td width="15%">{armarios.numero}</Td>
         <Td width="25%">{armarios.curso}</Td>
-        <Td width="15%">{armarios.manutencao}</Td>
-        <Td width="15%">{armarios.alugados}</Td>
+        <Td width="15%">{armarios.status}</Td>
         <Td>
           <DeleteIcon
             marginLeft="9px"

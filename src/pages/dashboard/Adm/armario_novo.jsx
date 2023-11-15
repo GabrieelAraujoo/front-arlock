@@ -134,9 +134,8 @@ function NewArmarios() {
               </Text>
 
               <form 
-            // onSubmit={(e) => handleEnviar(e)}
-            action="https://naovai.000webhostapp.com/src/Armario.php"
-            method="POST"
+             onSubmit={(e) => handleEnviar(e)}
+            
             >
               <Flex w="full" paddingX="1.3rem">
                 <InputLabel
@@ -194,7 +193,7 @@ function NewArmarios() {
                 <ButtonExit
                   title={"Salvar"}
                   marginLeft="2rem"
-                  // onClick={onOpen}
+                  
                   type="submit"
                 />
               </Flex>

@@ -15,10 +15,17 @@ import PageTitle from "../../../components/PageTitle";
 import { listArmarios } from "../../../Mock/listArmarios";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { ButtonExit } from "../../../components/Button";
+import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 // import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export function Armarios() {  
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [armarios, setArmarios] = useState([]);
+
+  useEffect(() => {
+    GetArmarios(setArmarios);
+  }, [armarios] )
 
   return (
     <>
@@ -69,7 +76,7 @@ export function Armarios() {
                   gridGap="0.5rem"
                   padding="1rem"
                 >
-                  {listArmarios.map((item, index, setReserva) => (
+                  {armarios.map((item, index, setReserva) => (
                     <BoxArmario
                       key={index}
                       armario={item}
