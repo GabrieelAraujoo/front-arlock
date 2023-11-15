@@ -82,10 +82,10 @@ function NewArmarios() {
     const url = "https://naovai.000webhostapp.com/src/Armario.php";
 
     let fData = new FormData();
-    fData.append("nome", e.target.letra.value);
-    fData.append("email", e.target.quantidade.value);
-    fData.append("rm", e.target.curso.value);
-    fData.append("curso", e.target.manutencao.value);
+    fData.append("letra", e.target.letra.value);
+    fData.append("numero", e.target.numero.value);
+    fData.append("curso", e.target.curso.value);
+    fData.append("status", e.target.status.value);
     
 
     axios
@@ -134,7 +134,9 @@ function NewArmarios() {
               </Text>
 
               <form 
-            onSubmit={(e) => handleEnviar(e)}
+            // onSubmit={(e) => handleEnviar(e)}
+            action="https://naovai.000webhostapp.com/src/Armario.php"
+            method="POST"
             >
               <Flex w="full" paddingX="1.3rem">
                 <InputLabel
@@ -147,11 +149,11 @@ function NewArmarios() {
                 />
 
                 <InputLabel
-                  label={"Quantidade"}
-                  name="quantidade"
-                  id="quantidade"
-                  type="number"
-                  value={userData.quantidade}
+                  label={"Numero"}
+                  name="numero"
+                  id="numero"
+                  // type="number"
+                  value={userData.numero}
                   onChange={changeValue}
                   isInvalid={error && error.errorQuantidade}
                   marginLeft="2rem"
@@ -160,7 +162,7 @@ function NewArmarios() {
 
               <Flex w="full" paddingX="1.3rem">
                 <SelectLabel
-                  label={"Concurso"}
+                  label={"Curso"}
                   options={listCursos}
                   name="curso"
                   id="curso"
@@ -170,10 +172,10 @@ function NewArmarios() {
                 />
 
                 <InputLabel
-                  label={"Manutenção"}
-                  name="manutencao"
-                  id="manutencao"
-                  value={userData.manutencao}
+                  label={"Status"}
+                  name="status"
+                  id="status"
+                  value={userData.status}
                   onChange={changeValue}
                   isInvalid={error && error.errorManutencao}
                   marginLeft="2rem"
