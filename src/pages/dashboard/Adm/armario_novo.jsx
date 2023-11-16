@@ -25,7 +25,6 @@ import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
 import axios from "axios";
 
-
 function NewArmarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
@@ -78,28 +77,25 @@ function NewArmarios() {
 
   function handleEnviar(e) {
     e.preventDefault();
- 
-    const url = "https://naovai.000webhostapp.com/src/Armario.php";
+
+    const url = "https://naovai.000webhostapp.com/php/CREATE/createArmario.php";
 
     let fData = new FormData();
     fData.append("letra", e.target.letra.value);
     fData.append("numero", e.target.numero.value);
     fData.append("curso", e.target.curso.value);
     fData.append("status", e.target.status.value);
-    
 
     axios
       .post(url, fData)
       .then((Response) => {
-        console.log(Response.data)
-        console.log("DEU CERTO")
+        console.log(Response.data);
+        console.log("DEU CERTO");
       })
       .catch((error) => {
-        console.log(error)
-        console.log("DEU RUIM")
+        console.log(error);
+        console.log("DEU RUIM");
       });
-
-    
   }
 
   return (
@@ -133,71 +129,69 @@ function NewArmarios() {
                 Criar Novos Armários
               </Text>
 
-              <form 
-             onSubmit={(e) => handleEnviar(e)}
-            
-            >
-              <Flex w="full" paddingX="1.3rem">
-                <InputLabel
-                  label={"Letra"}
-                  name="letra"
-                  id="letra"
-                  value={userData.letra}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorLetra}
-                />
+              <form onSubmit={(e) => handleEnviar(e)}>
+                <Flex w="full" paddingX="1.3rem">
+                  <InputLabel
+                    label={"Letra"}
+                    name="letra"
+                    id="letra"
+                    value={userData.letra}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorLetra}
+                  />
 
-                <InputLabel
-                  label={"Numero"}
-                  name="numero"
-                  id="numero"
-                  // type="number"
-                  value={userData.numero}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorQuantidade}
-                />
-              </Flex>
+                  <InputLabel
+                    label={"Numero"}
+                    name="numero"
+                    id="numero"
+                    // type="number"
+                    value={userData.numero}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorQuantidade}
+                  />
+                </Flex>
 
-              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
-                <SelectLabel
-                  label={"Curso"}
-                  options={listCursos}
-                  name="curso"
-                  id="curso"
-                  
-                  value={userData.curso}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorCurso}
-                />
+                <Flex
+                  w="full"
+                  paddingX="1.3rem"
+                  direction={{ base: "column", sm: "row", lg: "row" }}
+                >
+                  <SelectLabel
+                    label={"Curso"}
+                    options={listCursos}
+                    name="curso"
+                    id="curso"
+                    value={userData.curso}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorCurso}
+                  />
 
-                <InputLabel
-                  label={"Status"}
-                  name="status"
-                  id="status"
-                  value={userData.status}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorManutencao}
-                />
-              </Flex>
+                  <InputLabel
+                    label={"Status"}
+                    name="status"
+                    id="status"
+                    value={userData.status}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorManutencao}
+                  />
+                </Flex>
 
-              <Flex
-                w="full"
-                alignItems="baseline"
-                paddingX="1.3rem"
-                marginTop="2.7rem"
-              >
-                <ButtonExit
-                  title={"Voltar"}
-                  onClick={() => navigate("/Adm/Armarios")}
-                />
-                <ButtonExit
-                  title={"Salvar"}
-                  marginLeft="2rem"
-                  
-                  type="submit"
-                />
-              </Flex>
-
+                <Flex
+                  w="full"
+                  alignItems="baseline"
+                  paddingX="1.3rem"
+                  marginTop="2.7rem"
+                >
+                  <ButtonExit
+                    title={"Voltar"}
+                    onClick={() => navigate("/Adm/Armarios")}
+                  />
+                  <ButtonExit
+                    title={"Salvar"}
+                    marginLeft="2rem"
+                    type="submit"
+                  />
+                </Flex>
               </form>
             </Flex>
           </Flex>

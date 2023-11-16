@@ -14,17 +14,7 @@ import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../services/firebaseConfig";
-
-export const listCursos = [
-  {
-    id: "01",
-    nome: "aluno",
-  },
-  {
-    id: "02",
-    nome: "adm",
-  },
-];
+import { LockIcon } from "@chakra-ui/icons";
 
 export default function Login() {
   const [status, setStatus] = useState(true);
@@ -197,6 +187,24 @@ export default function Login() {
             marginBottom="30px"
             borderRadius="10px"
           >
+            <Flex marginBottom="1rem">
+              <LockIcon color="#558085" height="70px" width="70px" />
+
+              <Flex
+                direction="column"
+                alignItems="flex-start"
+                marginTop="27px"
+                marginLeft="3px"
+                marginBottom="1rem"
+              >
+                <Text fontWeight="bold" textColor="#A3CCB8">
+                  ARLOCK
+                </Text>
+                <Text fontWeight="bold" fontSize="10px">
+                  ETECIA
+                </Text>
+              </Flex>
+            </Flex>
             <Text
               color="#558085"
               fontWeight="bold"
