@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text } from "@chakra-ui/react";
@@ -6,9 +6,31 @@ import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
+import { CustomerContext } from "../../../context/Autenticate";
 
 function Perfil() {
+  const { email } = useContext(CustomerContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    handlePerfil();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
+
+  function handlePerfil() {
+    fetch(`https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+
+      .catch((error) => {
+        console.error(error);
+
+        return error;
+      });
+  }
 
   function handleSair() {
     localStorage.removeItem("token");

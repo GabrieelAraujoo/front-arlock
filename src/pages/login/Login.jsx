@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Main } from "../../layout/Main";
 import { ContainerLogOff } from "../../layout/Container";
 import {
@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from "../../services/firebaseConfig";
 import { LockIcon } from "@chakra-ui/icons";
+import { CustomerContext } from "../../context/Autenticate";
 
 export default function Login() {
   const [status, setStatus] = useState(true);
@@ -33,6 +34,8 @@ export default function Login() {
   const auth = getAuth(app);
 
   const loginData = JSON.parse(localStorage.getItem("loginData"));
+
+  const { submit } = useContext(CustomerContext);
 
   useEffect(() => {
     if (loginData) {
@@ -135,6 +138,7 @@ export default function Login() {
           type,
         };
 
+        submit({ email });
         localStorage.setItem("token", JSON.stringify(user.accessToken));
         localStorage.setItem("type", JSON.stringify(typeLocal));
 

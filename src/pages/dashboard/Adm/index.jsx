@@ -13,34 +13,29 @@ function Home() {
         <Flex width="full" padding="2rem" direction="column">
           <PageTitle title={"Home"} />
 
-          
           <Flex
             width="full"
             paddingTop="2rem"
             direction={{ sm: "column", base: "column", lg: "row" }}
           >
-
+            <Flex direction="column">
+              {/* Flex dos Alunos e Adms*/}
               <Flex
-                direction="column">
-
-                {/* Flex dos Alunos e Adms*/}
-                <Flex
-                  backgroundColor="white"
-                  width={{ base: "full", lg: "120%" }}
-                  height="full"
-                  borderRadius="15px"
-                  direction="column"
-                  padding="16px"
-                  paddingTop="0.7rem"
-                  gridTemplateColumns={{
-                    sm: "auto",
-                    base: "auto",
-                    lg: "auto auto",
-                  }}
-                  gridColumnGap="1rem"
-                >
-                  
-                  <Text
+                backgroundColor="white"
+                width={{ base: "full", lg: "120%" }}
+                height="full"
+                borderRadius="15px"
+                direction="column"
+                padding="16px"
+                paddingTop="0.7rem"
+                gridTemplateColumns={{
+                  sm: "auto",
+                  base: "auto",
+                  lg: "auto auto",
+                }}
+                gridColumnGap="1rem"
+              >
+                <Text
                   fontSize="25px"
                   fontWeight="bold"
                   textColor="#558085"
@@ -50,25 +45,26 @@ function Home() {
                   Alunos e Administradores
                 </Text>
 
-                  <BoxGeral
-                    marginTop="1rem"
-                    number={"5"}
-                    text={"Administradores Cadastrados"}
-                    height={{ base: "145px", sm: "130px" }}
-                  />
+                <BoxGeral
+                  marginTop="1rem"
+                  number={"5"}
+                  text={"Administradores Cadastrados"}
+                  height={{ base: "145px", sm: "130px" }}
+                />
 
-                  <BoxGeral
-                    marginTop="1rem"
-                    number={"300"}
-                    text={"Alunos Cadastrados"}
-                    height={{ base: "135px", sm: "130px" }}
-                  />
-                  <BoxGeral
-                    marginTop="16px" 
-                    number={"50"} 
-                    text={"Alunos Bloqueados"} />
-                </Flex>
-                </Flex>
+                <BoxGeral
+                  marginTop="1rem"
+                  number={"300"}
+                  text={"Alunos Cadastrados"}
+                  height={{ base: "135px", sm: "130px" }}
+                />
+                <BoxGeral
+                  marginTop="16px"
+                  number={"50"}
+                  text={"Alunos Bloqueados"}
+                />
+              </Flex>
+            </Flex>
 
             {/* Flex com dois Flex, um dos armários e outro financeiro */}
             <Flex
@@ -78,9 +74,8 @@ function Home() {
               marginTop={{ base: "2rem", lg: "0" }}
               marginRight="0"
             >
-                         
-                {/* Relatório de Armários */}
-                <Flex
+              {/* Relatório de Armários */}
+              <Flex
                 backgroundColor="white"
                 width="100%"
                 borderRadius="15px"
@@ -97,7 +92,6 @@ function Home() {
                 >
                   Armários
                 </Text>
-                
 
                 <Flex
                   backgroundColor="white"
@@ -112,13 +106,12 @@ function Home() {
                   gridGap="1rem"
                   paddingTop="1rem"
                 >
-                          
                   <BoxGeral number={"100"} text={"Armários Reservados"} />
                   <BoxGeral number={"150"} text={"Armarios Alugados"} />
                   <BoxGeral number={"50"} text={"Armários Disponíveis"} />
                   <BoxGeral number={"100"} text={"Armários Inativos"} />
-                  </Flex>
                 </Flex>
+              </Flex>
 
               {/* Financeiro */}
               <Flex
@@ -158,10 +151,11 @@ function Home() {
                     text={"Pagamentos Pendentes"}
                     height={{ base: "145px", sm: "130px" }}
                   />
-                  <BoxGeral 
-                  number={"R$2.000"} 
-                  text={"Valor total"}
-                  height={{ base: "135px", sm: "130px" }} />
+                  <BoxGeral
+                    number={"R$2.000"}
+                    text={"Valor total"}
+                    height={{ base: "135px", sm: "130px" }}
+                  />
                 </Flex>
               </Flex>
             </Flex>

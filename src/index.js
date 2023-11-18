@@ -7,6 +7,7 @@ import "./styles/globals.css";
 import { BrowserRouter } from "react-router-dom";
 
 import reportWebVitals from "./reportWebVitals";
+import { CustomerProvider } from "./context/Autenticate";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <App />
+        <CustomerProvider>
+          <App />
+        </CustomerProvider>
       </BrowserRouter>
     </ChakraProvider>
   </React.StrictMode>

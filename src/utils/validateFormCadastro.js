@@ -15,7 +15,14 @@ export function validateFormCadastro(userData, error, setError) {
     errors.push("Campo 'E-mail' está vazio");
     visibleErro = { ...visibleErro, errorEmail: true };
   } else {
-    visibleErro = { ...visibleErro, errorEmail: false };
+    if (userData.email.indexOf("@") === -1 || userData.email.indexOf("@") < 3) {
+      errors.push(
+        "Endereço de email invalido. Digite um endereço de email válido."
+      );
+      visibleErro = { ...visibleErro, errorEmail: true };
+    } else {
+      visibleErro = { ...visibleErro, errorEmail: false };
+    }
   }
 
   //validação rm
@@ -23,7 +30,7 @@ export function validateFormCadastro(userData, error, setError) {
     errors.push("Campo 'RM' está vazio");
     visibleErro = { ...visibleErro, errorRm: true };
   } else {
-    if (userData.rm.length < 5) {
+    if (userData.rm.length < 5 || userData.rm.length > 5) {
       errors.push("Campo 'RM' inválido");
       visibleErro = { ...visibleErro, errorRm: true };
     } else {
@@ -44,19 +51,28 @@ export function validateFormCadastro(userData, error, setError) {
     errors.push('Campo "Senha" está vazia');
     visibleErro = { ...visibleErro, errorSenha: true };
   } else {
-    if (userData.senha.length < 4) {
+    if (userData.senha.length < 6) {
       errors.push(
         "Sua senha não atende os critérios necessários. Ela deverá conter: - mínimo 6 caracteres"
       );
       visibleErro = { ...visibleErro, errorSenha: true };
     } else {
-      const onlyAlpha = userData.senha.replace(/[0-9]/g, "");
+      const onlyAlphaMai = userData.senha.replace(/[^A-Z]/g, "");
+
+      const onlyAlphaMin = userData.senha.replace(/[^a-z]/g, "");
 
       const onlyNum = userData.senha.replace(/[^0-9]/g, "");
 
-      if (onlyAlpha.length === 0 || onlyNum.length === 0) {
+      const onlyCaract = userData.senha.replace(/[a-z0-9]/gi, "");
+
+      if (
+        onlyAlphaMai.length === 0 ||
+        onlyAlphaMin.length === 0 ||
+        onlyNum.length === 0 ||
+        onlyCaract.length === 0
+      ) {
         errors.push(
-          "Sua senha não atende os critérios necessários. Ela deverá conter: - Números e letras"
+          "Sua senha não atende os critérios necessários. Ela deverá conter: letra minúscula, letra maiúscula, caracteres especiais e número"
         );
         visibleErro = { ...visibleErro, errorSenha: true };
       } else {
