@@ -9,15 +9,17 @@ import {
   useDisclosure,
   Flex,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
 import React, { useState } from "react";
 import { DelArmarios } from "../../../hook/armarios/useDelArmarios";
 
-export function BodyListArmarios({ armarios, setDeleteArmario }) {
+export function BodyListArmarios({ armarios }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [resultDelet, setResultDelet] = useState();
+  const toast = useToast();
 
   function handleDelete(id) {
     const res = DelArmarios(id, setResultDelet);
@@ -25,7 +27,14 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
     console.log(resultDelet);
     console.log(res);
 
-    setDeleteArmario(true);
+    toast({
+      title: "Excluido",
+      description: "Excluido com sucesso",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+
     onClose();
   }
 

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import {
-  Flex,
-  Text,
-  IconButton,
-  Table,
-  Spinner,
-  useToast,
-} from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
 import { BodyListArmarios } from "../../../components/Table/Armarios/BodyListArmarios";
 import { AddIcon } from "@chakra-ui/icons";
-
 import { useNavigate } from "react-router-dom";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
@@ -22,34 +14,11 @@ function Armarios() {
   const navigate = useNavigate();
 
   const [armarios, setArmarios] = useState([]);
-  const [deleteArmario, setDeleteArmario] = useState();
-  const toast = useToast();
 
   useEffect(() => {
     GetArmarios(setArmarios);
   }, [armarios]);
 
-  function handleDelete(success) {
-    if (deleteArmario === true) {
-      toast({
-        title: "Excluido",
-        description: "Excluido com sucesso",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-    } else {
-      toast({
-        title: "Erro",
-        description: "Erro ao excluir",
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-  }
-
- 
   return (
     <>
       <Main>
@@ -111,11 +80,7 @@ function Armarios() {
                         <HeadListArmarios />
 
                         {armarios.map((item, index) => (
-                          <BodyListArmarios
-                            key={index}
-                            armarios={item}
-                            setDeleteArmario={setDeleteArmario}
-                          />
+                          <BodyListArmarios key={index} armarios={item} />
                         ))}
                       </Table>
                     </Flex>

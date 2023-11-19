@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
@@ -64,26 +65,43 @@ export function Armarios() {
                 direction="column"
                 overflowX={{ base: "scroll", lg: "hidden" }}
               >
-                <Flex
-                  width="100%"
-                  display="grid"
-                  gridTemplateColumns={{
-                    base: "auto auto",
-                    sm: "auto auto auto auto",
-                    md: "auto auto auto auto auto",
-                    lg: "auto auto auto auto auto auto auto auto",
-                  }}
-                  gridGap="0.5rem"
-                  padding="1rem"
-                >
-                  {armarios.map((item, index, setReserva) => (
-                    <BoxArmario
-                      key={index}
-                      armario={item}
-                      setReserva={setReserva}
-                    />
-                  ))}
-                </Flex>
+                {armarios.length !== 0 ? (
+                  <Flex
+                    width="100%"
+                    display="grid"
+                    gridTemplateColumns={{
+                      base: "auto auto",
+                      sm: "auto auto auto auto",
+                      md: "auto auto auto auto auto",
+                      lg: "auto auto auto auto auto auto auto auto",
+                    }}
+                    gridGap="0.5rem"
+                    padding="1rem"
+                  >
+                    {armarios.map((item, index, setReserva) => {
+                      if (item.curso === "Nutrição") {
+                        return (
+                          <BoxArmario
+                            key={index}
+                            armario={item}
+                            setReserva={setReserva}
+                          />
+                        );
+                      }
+                    })}
+                  </Flex>
+                ) : (
+                  <Flex w="full" h="full" justify="center">
+                    <Text
+                      fontSize={{ base: "1.5rem", lg: "2rem" }}
+                      textColor="#558085"
+                      fontWeight="bold"
+                      opacity="0.5"
+                    >
+                      Sem lista de armários
+                    </Text>
+                  </Flex>
+                )}
               </Flex>
             </Flex>
           </Flex>
