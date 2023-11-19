@@ -28,20 +28,22 @@ import axios from "axios";
 function NewArmarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState("");
   const [formData, setformData] = useState(baseFormNewLocker);
   const [error, setError] = useState(errorFormNewLocker);
   const toast = useToast();
 
   const changeValue = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    setformData(userData);
+    setformData({ ...formData, [name]: value });
   };
 
-  async function createUser() {
+  async function handleEnviar(e) {
+    e.preventDefault();
     console.log(formData);
+
     const errors = await validateFormNewLocker(formData, error, setError);
+
+    console.log(errors);
 
     if (errors.length !== 0) {
       toast({
@@ -61,41 +63,42 @@ function NewArmarios() {
         });
       });
     } else {
-      // const res = await PostUserForm(id, user.token, formData);
-      // if (res) {
-      navigate("/Adm/Armarios");
-      return toast({
-        position: "bottom-right",
+      const url =
+        "https://naovai.000webhostapp.com/php/CREATE/createArmario.php";
+
+      const letra = e.target.letra.value.toUpperCase();
+      const status = e.target.status.value.toLowerCase();
+
+      let fData = new FormData();
+      fData.append("letra", letra);
+      fData.append("numero", e.target.numero.value);
+      fData.append("curso", e.target.curso.value);
+      fData.append("status", status);
+
+      axios
+        .post(url, fData)
+        .then((Response) => {
+          console.log(Response.data);
+          console.log("DEU CERTO");
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log("DEU RUIM");
+        });
+
+      toast({
+        position: "bottom",
         title: "Sucesso",
-        description: "Armário criado com sucesso!",
+        description: "Usuário criado com sucesso!",
         status: "success",
         duration: 5000,
         isClosable: true,
       });
+
+      setTimeout(() => {
+        navigate("/Adm/Armarios");
+      }, "1000");
     }
-  }
-
-  function handleEnviar(e) {
-    e.preventDefault();
-
-    const url = "https://naovai.000webhostapp.com/php/CREATE/createArmario.php";
-
-    let fData = new FormData();
-    fData.append("letra", e.target.letra.value);
-    fData.append("numero", e.target.numero.value);
-    fData.append("curso", e.target.curso.value);
-    fData.append("status", e.target.status.value);
-
-    axios
-      .post(url, fData)
-      .then((Response) => {
-        console.log(Response.data);
-        console.log("DEU CERTO");
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("DEU RUIM");
-      });
   }
 
   return (
@@ -129,13 +132,17 @@ function NewArmarios() {
                 Criar Novos Armários
               </Text>
 
-              <form onSubmit={(e) => handleEnviar(e)}>
-                <Flex w="full" paddingX="1.3rem">
+              <form style={{ width: "100%" }} onSubmit={(e) => handleEnviar(e)}>
+                <Flex
+                  paddingX="1.3rem"
+                  direction={{ base: "column", sm: "row", lg: "row" }}
+                >
                   <InputLabel
                     label={"Letra"}
                     name="letra"
                     id="letra"
-                    value={userData.letra}
+                    marginRight={{ sm: "1.9rem" }}
+                    value={formData.letra}
                     onChange={changeValue}
                     isInvalid={error && error.errorLetra}
                   />
@@ -145,9 +152,9 @@ function NewArmarios() {
                     name="numero"
                     id="numero"
                     // type="number"
-                    value={userData.numero}
+                    value={formData.numero}
                     onChange={changeValue}
-                    isInvalid={error && error.errorQuantidade}
+                    isInvalid={error && error.errorNumero}
                   />
                 </Flex>
 
@@ -161,7 +168,7 @@ function NewArmarios() {
                     options={listCursos}
                     name="curso"
                     id="curso"
-                    value={userData.curso}
+                    value={formData.curso}
                     onChange={changeValue}
                     isInvalid={error && error.errorCurso}
                   />
@@ -170,9 +177,10 @@ function NewArmarios() {
                     label={"Status"}
                     name="status"
                     id="status"
-                    value={userData.status}
+                    marginLeft={{ sm: "1.9rem" }}
+                    value={formData.status}
                     onChange={changeValue}
-                    isInvalid={error && error.errorManutencao}
+                    isInvalid={error && error.errorStatus}
                   />
                 </Flex>
 
@@ -244,7 +252,7 @@ function NewArmarios() {
                 marginLeft={{ sm: "1rem" }}
                 paddingRight={{ base: "195%", sm: "95%" }}
                 paddingLeft={{ base: "195%", sm: "95%" }}
-                onClick={() => createUser()}
+                // onClick={() => createUser()}
               />
             </Flex>
           </ModalContent>

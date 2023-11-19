@@ -1,15 +1,13 @@
 export const baseFormNewLocker = {
-    letra: "",
-    quantidade: "",
-    curso: "",
-    manutencao: "",
+  letra: "",
+  numero: "",
+  curso: "",
+  status: "",
+};
 
-  };
-  
-  export const errorFormNewLocker = {
-    errorLetra: false,
-    errorQuantidade: false,
-    errorCurso: false,
-    errorManutencao: false,
-
-  };
+export const errorFormNewLocker = {
+  errorLetra: false,
+  errorNumero: false,
+  errorCurso: false,
+  errorStatus: false,
+};

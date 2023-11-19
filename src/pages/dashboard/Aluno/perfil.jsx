@@ -7,13 +7,15 @@ import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
 import { CustomerContext } from "../../../context/Autenticate";
+import { GetMe } from "../../../hook/alunos/useGetMe";
 
 function Perfil() {
   const { email } = useContext(CustomerContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    handlePerfil();
+    // handlePerfil();
+    GetMe(email);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
 

@@ -18,14 +18,14 @@ import { ButtonExit } from "../../../components/Button";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 // import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
-export function Armarios() {  
+export function Armarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [armarios, setArmarios] = useState([]);
 
   useEffect(() => {
     GetArmarios(setArmarios);
-  }, [armarios] )
+  }, [armarios]);
 
   return (
     <>
