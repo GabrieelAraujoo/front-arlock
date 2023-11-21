@@ -9,13 +9,13 @@ import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/
 import { BodyListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/BodyListAprovacao";
 import { HeadListAprovados } from "../../../components/Table/Alugueis/Aprovados/HeadListAprovados";
 import { BodyListAprovados } from "../../../components/Table/Alugueis/Aprovados/BodyListAprovados";
-import { GetAprovacao } from "../../../hook/alugueis/useGetAlugueis";
+import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export default function Alugueis() {
   const [alugueis, setAlugueis] = useState([]);
 
   useEffect(() => {
-    GetAprovacao(setAlugueis);
+    GetArmarios(setAlugueis);
   }, [alugueis]);
 
   return (
@@ -70,7 +70,7 @@ export default function Alugueis() {
                       <HeadListAprovacao />
 
                       {alugueis.map((item, index) => {
-                        if (item.status === "em andamento") {
+                        if (item.statusAluguel === "pendente") {
                           return (
                             <BodyListAprovacao key={index} aprovacao={item} />
                           );
@@ -145,7 +145,7 @@ export default function Alugueis() {
                       <HeadListAprovados />
 
                       {alugueis.map((item, index) => {
-                        if (item.status === "pago") {
+                        if (item.statusAluguel === "aprovado") {
                           return (
                             <BodyListAprovados key={index} aprovado={item} />
                           );

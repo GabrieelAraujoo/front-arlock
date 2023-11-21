@@ -1,5 +1,5 @@
 export async function GetMe(email, setNewData) {
-  fetch(`https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`)
+  fetch(`http://localhost/innotech/php/PUT/Aluno.php?email=${email}`)
     .then((response) => response.json())
     .then((data) => {
       const newData = {
@@ -9,6 +9,7 @@ export async function GetMe(email, setNewData) {
         rm: data?.data?.rm,
       };
 
+     
       setNewData(newData);
     })
 

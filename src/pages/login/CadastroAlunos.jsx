@@ -72,7 +72,7 @@ export default function CadastroAlunos() {
           const user = userCredential.user;
           console.log(user);
 
-          const url = "https://naovai.000webhostapp.com/php/CREATE/Aluno.php";
+          const url = "http://localhost/innotech/php/CREATE/Aluno.php";
 
           let fData = new FormData();
           fData.append("nome", formData.nome);
