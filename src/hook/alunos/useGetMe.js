@@ -1,21 +1,18 @@
-export async function GetMe(email) {
-  // Realize a solicitação HTTP para obter a lista de usuários
-  fetch(
-    `https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=emilee6555@uorak.com`
-  ) // Substitua "/api/usuarios" pela URL da sua API
+export async function GetMe(email, setNewData) {
+  fetch(`https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`)
     .then((response) => response.json())
     .then((data) => {
-      // const newData = {
-      //   message: data?.message,
-      // };
+      const newData = {
+        curso: data?.data?.curso,
+        email: data?.data?.email,
+        nome: data?.data?.nome,
+        rm: data?.data?.rm,
+      };
 
-      console.log(data);
-      return data.message;
+      setNewData(newData);
     })
 
     .catch((error) => {
       console.error(error);
-
-      return error;
     });
 }

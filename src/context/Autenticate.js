@@ -6,7 +6,7 @@ export const CustomerProvider = ({ children }) => {
   const [email, setEmail] = useState();
 
   const handleSubmit = ({ email }) => {
-    console.log("dados", email);
+    // console.log("dados", email);
 
     setEmail(email);
   };

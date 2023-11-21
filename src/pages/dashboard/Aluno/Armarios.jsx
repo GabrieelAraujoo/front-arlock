@@ -2,30 +2,24 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import {
-  Flex,
-  useDisclosure,
-  ModalBody,
-  Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-} from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
-import { listArmarios } from "../../../Mock/listArmarios";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
-import { ButtonExit } from "../../../components/Button";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
-// import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
+import { GetMe } from "../../../hook/alunos/useGetMe";
 
 export function Armarios() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const saveEmail = localStorage.getItem("email").replace('"', "");
+  const savEmail = saveEmail.replace('"', "");
+  const [newData, setNewData] = useState();
 
   const [armarios, setArmarios] = useState([]);
 
   useEffect(() => {
+    GetMe(savEmail, setNewData);
+
     GetArmarios(setArmarios);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [armarios]);
 
   return (
@@ -79,7 +73,7 @@ export function Armarios() {
                     padding="1rem"
                   >
                     {armarios.map((item, index, setReserva) => {
-                      if (item.curso === "Nutrição") {
+                      if (item.curso === newData.curso) {
                         return (
                           <BoxArmario
                             key={index}

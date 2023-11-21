@@ -141,6 +141,7 @@ export default function Login() {
         submit({ email });
         localStorage.setItem("token", JSON.stringify(user.accessToken));
         localStorage.setItem("type", JSON.stringify(typeLocal));
+        localStorage.setItem("email", JSON.stringify(email));
 
         if (type === "adm") {
           navigate("/Adm/Home");
@@ -148,7 +149,6 @@ export default function Login() {
           navigate("/Aluno/Home");
         }
 
-        console.log(user);
         // ...
       })
       .catch((error) => {

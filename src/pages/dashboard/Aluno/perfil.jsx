@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Spinner } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { InputLabel } from "../../../components/Input/Geral";
@@ -11,34 +11,48 @@ import { GetMe } from "../../../hook/alunos/useGetMe";
 
 function Perfil() {
   const { email } = useContext(CustomerContext);
+  const [newData, setNewData] = useState();
   const navigate = useNavigate();
 
+  const saveEmail = localStorage.getItem("email").replace('"', "");
+  const savEmail = saveEmail.replace('"', "");
+
   useEffect(() => {
-    // handlePerfil();
-    GetMe(email);
+    if (email) {
+      GetMe(email, setNewData);
+    } else {
+      GetMe(savEmail, setNewData);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email]);
-
-  function handlePerfil() {
-    fetch(`https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-
-      .catch((error) => {
-        console.error(error);
-
-        return error;
-      });
-  }
 
   function handleSair() {
     localStorage.removeItem("token");
     localStorage.removeItem("type");
+    localStorage.removeItem("email");
     navigate("/");
   }
+
+  // async function handleEnviar() {
+  //   console.log(email);
+
+  //   fetch(
+  //     `https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`
+  //     // , {
+  //     //   mode: "no-cors",
+  //     // }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       console.log("entrou aqui");
+  //     })
+
+  //     .catch((error) => {
+  //       console.error(error);
+  //       console.log("entrou aqui - erro");
+  //     });
+  // }
 
   return (
     <Main>
@@ -46,74 +60,110 @@ function Perfil() {
         <Flex width="full" padding="2rem" direction="column">
           <PageTitle title={"Perfil"} />
 
-          <Flex
-            backgroundColor="white"
-            width="full"
-            minHeight="380px"
-            borderRadius="15px"
-            alignItems="flex-start"
-            marginTop="2rem"
-            direction="column"
-          >
-            <Text
-              fontSize={{ lg: "35px", base: "25px", md: "35px" }}
-              textColor="#558085"
-              fontWeight="bold"
-              marginLeft="1.3rem"
-              marginTop="1rem"
-            >
-              Configurações da Conta
-            </Text>
-
+          {newData ? (
             <Flex
-              w="full"
-              paddingX="1.3rem"
-              direction={{ lg: "row", base: "column" }}
+              backgroundColor="white"
+              width="full"
+              minHeight="380px"
+              borderRadius="15px"
+              alignItems="flex-start"
+              marginTop="2rem"
+              direction="column"
             >
-              <InputLabel
-                label={"Nome"}
-                value={"John Deo"}
-                marginRight={{ lg: "2rem", base: "0" }}
-              />
+              <Text
+                fontSize={{ lg: "35px", base: "25px", md: "35px" }}
+                textColor="#558085"
+                fontWeight="bold"
+                marginLeft="1.3rem"
+                marginTop="1rem"
+              >
+                Configurações da Conta
+              </Text>
 
-              <InputLabel label={"Email"} value={"JohnDeo@gmail.com"} />
+              <Flex
+                w="full"
+                paddingX="1.3rem"
+                direction={{ lg: "row", base: "column" }}
+              >
+                <InputLabel
+                  label={"Nome"}
+                  value={newData.nome}
+                  name="nome"
+                  id="nome"
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  isDisabled
+                />
+
+                <InputLabel
+                  label={"Email"}
+                  name="email"
+                  id="email"
+                  value={newData.email}
+                  isDisabled
+                />
+              </Flex>
+
+              <Flex
+                w="full"
+                paddingX="1.3rem"
+                direction={{ lg: "row", base: "column" }}
+              >
+                <InputLabel
+                  name="rm"
+                  id="rm"
+                  label={"RM"}
+                  value={newData.rm}
+                  marginRight={{ lg: "2rem", base: "0" }}
+                  isDisabled
+                />
+
+                <InputLabel
+                  name="curso"
+                  id="curso"
+                  label={"Curso"}
+                  value={newData.curso}
+                  isDisabled
+                />
+              </Flex>
+
+              <Flex
+                w="full"
+                alignItems="baseline"
+                paddingX="1.3rem"
+                marginTop="3.5rem"
+                marginBottom={{ base: "1rem", lg: "0" }}
+              >
+                <ButtonExit
+                  title={"Voltar"}
+                  onClick={() => navigate("/Aluno/Home")}
+                />
+                <ButtonExit
+                  title={"Sair"}
+                  marginLeft="2rem"
+                  onClick={() => handleSair()}
+                />
+              </Flex>
             </Flex>
-
+          ) : (
             <Flex
-              w="full"
-              paddingX="1.3rem"
-              direction={{ lg: "row", base: "column" }}
+              backgroundColor="white"
+              width="full"
+              minHeight="380px"
+              borderRadius="15px"
+              alignItems="center"
+              justifyContent="center"
+              marginTop="2rem"
+              direction="column"
             >
-              <InputLabel
-                label={"RM"}
-                value={"11225"}
-                marginRight={{ lg: "2rem", base: "0" }}
-              />
-
-              <InputLabel
-                label={"Curso"}
-                value={"Desenvolvimento de Sistemas"}
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
               />
             </Flex>
-
-            <Flex
-              w="full"
-              alignItems="baseline"
-              paddingX="1.3rem"
-              marginTop="3.5rem"
-              marginBottom={{ base: "1rem", lg: "0" }}
-            >
-              <ButtonExit
-                title={"Voltar"}
-                onClick={() => navigate("/Aluno/Home")}
-              />
-              <ButtonExit
-                title={"Sair"}
-                marginLeft="2rem"
-                onClick={() => handleSair()}
-              />
-            </Flex>
-          </Flex>
+          )}
         </Flex>
       </Container>
     </Main>
