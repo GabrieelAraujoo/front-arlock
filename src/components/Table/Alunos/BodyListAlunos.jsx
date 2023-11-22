@@ -8,13 +8,32 @@ import {
   ModalHeader,
   ModalBody,
   useDisclosure,
-  Flex,
+  Flex,useToast
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
+import { PutAluno } from "../../../hook/alunos/usePutAlunos";
 
 export function BodyListAlunos({ aluno }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast(); 
+
+  function handleStatus(id) {
+     const res = PutAluno(id);
+
+    
+    console.log(res);
+
+    toast({
+      title: "Atualizado!",
+      description: "Status atualizado com sucesso!",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+
+    onClose();
+  }
   return (
     <>
       <Tbody
@@ -26,7 +45,7 @@ export function BodyListAlunos({ aluno }) {
         <Td width="25%">{aluno.rm}</Td>
         <Td width="25%">{aluno.nome}</Td>
         <Td width="25%">{aluno.curso}</Td>
-        {aluno.status === "ativo" ? (
+        {aluno.status === "ativado" ? (
           <Td width="25%">
             <UnlockIcon
               marginLeft="9px"
@@ -50,7 +69,7 @@ export function BodyListAlunos({ aluno }) {
       </Tbody>
 
       {/*Box para Bloqueio do Aluno*/}
-      {aluno.status === "ativo" ? (
+      {aluno.status === "ativado" ? (
         <Flex>
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
@@ -97,7 +116,7 @@ export function BodyListAlunos({ aluno }) {
                   marginLeft={{ sm: "1rem" }}
                   paddingRight={{ base: "125%", sm: "65%" }}
                   paddingLeft={{ base: "125%", sm: "65%" }}
-                  onClick={onClose}
+                  onClick={() => handleStatus(aluno.id)}
                 />
               </Flex>
             </ModalContent>
@@ -151,7 +170,7 @@ export function BodyListAlunos({ aluno }) {
                   marginLeft={{ sm: "1rem" }}
                   paddingRight={{ base: "125%", sm: "65%" }}
                   paddingLeft={{ base: "125%", sm: "65%" }}
-                  onClick={onClose}
+                  onClick={() => handleStatus(aluno.id)}
                 />
               </Flex>
             </ModalContent>

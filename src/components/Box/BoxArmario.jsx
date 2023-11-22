@@ -36,7 +36,7 @@ export function BoxArmario({ armario }) {
   };
 
   function handleSelected() {
-    if (armario.status === "ativo") {
+    if (armario.status === "ativado") {
       onOpen();
     }
   }
@@ -53,12 +53,12 @@ export function BoxArmario({ armario }) {
         width="130px"
         height="186px"
         background="#bfdde0"
-        opacity={armario.status === "ativo" ? "100%" : "50%"}
+        opacity={armario.status === "ativado" ? "100%" : "50%"}
         borderRadius="12px"
         direction="column"
         alignItems="center"
         justifyContent="space-around"
-        cursor={armario.status === "ativo" ? "pointer" : "not-allowed"}
+        cursor={armario.status === "ativado" ? "pointer" : "not-allowed"}
         _hover={{ background: "#60E8F8" }}
         onClick={() => handleSelected()}
       >

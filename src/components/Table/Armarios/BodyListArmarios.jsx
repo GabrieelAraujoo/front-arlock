@@ -38,6 +38,7 @@ export function BodyListArmarios({ armarios }) {
     onClose();
   }
 
+
   return (
     <>
       <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">

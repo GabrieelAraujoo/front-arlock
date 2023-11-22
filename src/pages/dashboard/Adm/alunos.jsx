@@ -17,29 +17,6 @@ function Alunos() {
     GetAlunos(setAlunos);
   }, [alunos]);
 
-  // function teste() {
-  //   fetch("https://naovai.000webhostapp.com/php/POST/CreateAluno.php", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       rm: "12345",
-  //       nome: "Gene",
-  //       curso: "Desenvolvimento de Sistemas",
-  //       email: "adm@gmail.com",
-  //       senha: "123456",
-  //       type: "adm",
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data); // Atualiza o estado com os dados dos usuários
-  //     })
-  //     .catch((error) => {
-  //       console.error("Erro alunos:", error);
-  //     });
-  // }
 
   return (
     <Main>

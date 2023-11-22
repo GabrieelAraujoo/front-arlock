@@ -4,11 +4,14 @@ export async function GetAlunos(setAlunos) {
     .then((response) => response.json())
     .then((data) => {
       const newData = data.map((item) => ({
+        id: item.ID,
         rm: item.rm,
         nome: item.nome,
         curso: item.curso,
+        status: item.status,
       }));
 
+      
       
        setAlunos(newData); // Atualiza o estado com os dados dos usuários
     })
