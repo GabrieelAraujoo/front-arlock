@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text , useToast } from "@chakra-ui/react";
+import { Flex, Text, useToast } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
@@ -73,7 +73,6 @@ export function Armarios() {
                     gridGap="0.5rem"
                     padding="1rem"
                   >
-                   
                     {armarios.map((item, index, setReserva) => {
                       if (item.curso === newData.curso) {
                         return (
@@ -86,16 +85,16 @@ export function Armarios() {
                       } else {
                         return (
                           <Flex w="full" h="full" justify="center">
-                    <Text
-                      fontSize={{ base: "1.5rem", lg: "2rem" }}
-                      textColor="#558085"
-                      fontWeight="bold"
-                      opacity="0.5"
-                    >
-                      Sem armários
-                    </Text>
-                  </Flex>
-                        )
+                            <Text
+                              fontSize={{ base: "1.5rem", lg: "2rem" }}
+                              textColor="#558085"
+                              fontWeight="bold"
+                              opacity="0.5"
+                            >
+                              Sem armários
+                            </Text>
+                          </Flex>
+                        );
                       }
                     })}
                   </Flex>

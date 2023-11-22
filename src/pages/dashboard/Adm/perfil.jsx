@@ -60,9 +60,7 @@ function Perfil() {
                 paddingX="1.3rem"
                 direction={{ base: "column", sm: "row", lg: "row" }}
               >
-                <InputLabel label={"Nome"} 
-                 value={newData.nome}
-                 isDisabled />
+                <InputLabel label={"Nome"} value={newData.nome} isDisabled />
 
                 <InputLabel
                   label={"Email"}
@@ -92,8 +90,8 @@ function Perfil() {
                 />
               </Flex>
             </Flex>
-           ) : ( 
-             <Flex
+          ) : (
+            <Flex
               backgroundColor="white"
               width="full"
               minHeight="380px"
@@ -110,8 +108,8 @@ function Perfil() {
                 color="blue.500"
                 size="xl"
               />
-            </Flex> 
-           )}
+            </Flex>
+          )}
         </Flex>
       </Container>
     </Main>

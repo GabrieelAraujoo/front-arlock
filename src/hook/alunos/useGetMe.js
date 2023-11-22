@@ -9,7 +9,6 @@ export async function GetMe(email, setNewData) {
         rm: data?.data?.rm,
       };
 
-     
       setNewData(newData);
     })
 

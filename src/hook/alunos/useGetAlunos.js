@@ -11,9 +11,7 @@ export async function GetAlunos(setAlunos) {
         status: item.status,
       }));
 
-      
-      
-       setAlunos(newData); // Atualiza o estado com os dados dos usuários
+      setAlunos(newData); // Atualiza o estado com os dados dos usuários
     })
     .catch((error) => {
       console.error("Erro ao buscar a lista de usuários:", error);

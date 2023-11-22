@@ -62,11 +62,17 @@ export default function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" h="full" direction="column" overflowX="hidden" overflowY="hidden">
+            <Flex
+              w="full"
+              h="full"
+              direction="column"
+              overflowX="hidden"
+              overflowY="hidden"
+            >
               {alugueis ? (
                 alugueis.length !== 0 ? (
                   <Flex w="full" direction="column" overflowY="auto">
-                    <Table >
+                    <Table>
                       <HeadListAprovacao />
 
                       {alugueis.map((item, index) => {
@@ -137,10 +143,16 @@ export default function Alugueis() {
               <InputPesquisa />
             </Flex>
 
-            <Flex w="full" h="full" direction="column" overflowX="hidden" overflowY="hidden">
+            <Flex
+              w="full"
+              h="full"
+              direction="column"
+              overflowX="hidden"
+              overflowY="hidden"
+            >
               {alugueis ? (
                 alugueis.length !== 0 ? (
-                  <Flex w="full" direction="column" overflowY="auto" >
+                  <Flex w="full" direction="column" overflowY="auto">
                     <Table>
                       <HeadListAprovados />
 

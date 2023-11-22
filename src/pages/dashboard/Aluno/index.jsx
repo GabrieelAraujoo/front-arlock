@@ -20,7 +20,7 @@ function Home() {
           {/* Flex das notificações e do flex dos outros boxes*/}
           <Flex
             width="full"
-            paddingTop={{base: "0",lg: "2rem"}}
+            paddingTop={{ base: "0", lg: "2rem" }}
             direction={{ sm: "column", base: "column", lg: "row" }}
           >
             {/* Flex de notificações */}
@@ -74,7 +74,7 @@ function Home() {
                     backgroundColor="#BFDDE0"
                     height="380px"
                     borderRadius="15px"
-                    width={{base: "full", lg: "50%"}}
+                    width={{ base: "full", lg: "50%" }}
                     direction="column"
                     alignItems="center"
                     justifyContent="space-around"
@@ -89,8 +89,8 @@ function Home() {
                     </Text>
 
                     <Image
-                      height={{base: "210px", lg: "243px", xl: "263px"}}
-                      width={{base: "190px", lg: "220px", xl: "245px"}}
+                      height={{ base: "210px", lg: "243px", xl: "263px" }}
+                      width={{ base: "190px", lg: "220px", xl: "245px" }}
                       borderRadius="50%"
                       src="https://www.collegebox.com.br/site/visuais/imagens/aluno_grande_3.jpg"
                       alt="Representação Armário"
@@ -112,7 +112,7 @@ function Home() {
                   >
                     <Text
                       marginTop="10px"
-                      fontSize={{base: "23px", lg: "26px"}}
+                      fontSize={{ base: "23px", lg: "26px" }}
                       textColor="#558085"
                       fontWeight="bold"
                       textAlign="center"
@@ -123,7 +123,7 @@ function Home() {
                       textColor="#558085"
                       padding="1rem"
                       textAlign="justify"
-                      fontSize={{base: "15px", lg: "22px"}}
+                      fontSize={{ base: "15px", lg: "22px" }}
                     >
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Beatae nesciunt fuga culpa necessitatibus velit quae atque
@@ -137,7 +137,7 @@ function Home() {
                 {/* flex suporte */}
                 <Flex
                   backgroundColor="#BFDDE0"
-                  height={{base: "190px", sm: "130px", lg: "130px"}}
+                  height={{ base: "190px", sm: "130px", lg: "130px" }}
                   borderRadius="15px"
                   margin="1rem"
                   direction="column"
@@ -152,13 +152,18 @@ function Home() {
                   >
                     Fale com o Suporte
                   </Text>
-                  <Text textColor="#558085" fontSize="15px" textAlign="center" marginTop={{base: "15px", sm: "0"}} >
+                  <Text
+                    textColor="#558085"
+                    fontSize="15px"
+                    textAlign="center"
+                    marginTop={{ base: "15px", sm: "0" }}
+                  >
                     Telefone ETECIA: 11 98960-0597
                   </Text>
-                  <Text textColor="#558085" fontSize="15px" textAlign="center"  >
+                  <Text textColor="#558085" fontSize="15px" textAlign="center">
                     E-mail ETECIA: secretaria@etecia.com.br
                   </Text>
-                  <Text textColor="#558085" fontSize="15px" textAlign="center"  >
+                  <Text textColor="#558085" fontSize="15px" textAlign="center">
                     Técnico: 11 96021-0095
                   </Text>
                 </Flex>

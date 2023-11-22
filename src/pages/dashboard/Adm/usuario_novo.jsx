@@ -102,7 +102,11 @@ function NewUsuarios() {
                 Criar Novo Usuário
               </Text>
 
-              <Flex w="full" paddingX="1.3rem" direction={{ base: "column", sm: "row", lg: "row" }}>
+              <Flex
+                w="full"
+                paddingX="1.3rem"
+                direction={{ base: "column", sm: "row", lg: "row" }}
+              >
                 <InputLabel
                   label={"Nome"}
                   name="nome"

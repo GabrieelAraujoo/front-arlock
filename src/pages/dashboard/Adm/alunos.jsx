@@ -17,7 +17,6 @@ function Alunos() {
     GetAlunos(setAlunos);
   }, [alunos]);
 
-
   return (
     <Main>
       <Container>

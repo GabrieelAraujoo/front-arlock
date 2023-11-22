@@ -16,7 +16,6 @@ export async function GetArmarios(setArmarios) {
         statusAluguel: item.statusAluguel,
       }));
 
-
       setArmarios(newData); // Atualiza o estado com os dados dos usuários
     })
     .catch((error) => {
