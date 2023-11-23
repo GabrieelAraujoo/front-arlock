@@ -82,28 +82,9 @@ export default function Alugueis() {
                           return (
                             <BodyListAprovacao key={index} aprovacao={item} />
                           );
-                        } else {
-                          return (pendentes = true);
                         }
                       })}
                     </Table>
-                    {pendentes === true && (
-                      <Flex
-                        w="full"
-                        h="full"
-                        justify="center"
-                        alignItems="center"
-                      >
-                        <Text
-                          fontSize="2rem"
-                          textColor="#558085"
-                          fontWeight="bold"
-                          opacity="0.5"
-                        >
-                          Sem lista para aprovação
-                        </Text>
-                      </Flex>
-                    )}
                   </Flex>
                 </>
               ) : (
@@ -172,30 +153,10 @@ export default function Alugueis() {
                           return (
                             <BodyListAprovados key={index} aprovado={item} />
                           );
-                        } else {
-                          return (aprovados = true);
                         }
                       })}
                     </Table>
                   </Flex>
-
-                  {aprovados === true && (
-                    <Flex
-                      w="full"
-                      h="full"
-                      justify="center"
-                      alignItems="center"
-                    >
-                      <Text
-                        fontSize="2rem"
-                        textColor="#558085"
-                        fontWeight="bold"
-                        opacity="0.5"
-                      >
-                        Sem lista de aprovados
-                      </Text>
-                    </Flex>
-                  )}
                 </>
               ) : (
                 <Flex w="full" h="full" justify="center" alignItems="center">
