@@ -13,6 +13,8 @@ import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export default function Alugueis() {
   const [alugueis, setAlugueis] = useState([]);
+  var pendentes = false;
+  var aprovados = false;
 
   useEffect(() => {
     GetArmarios(setAlugueis);
@@ -59,7 +61,7 @@ export default function Alugueis() {
               alignItems="baseline"
             >
               {/* componente pesquisa */}
-              <InputPesquisa />
+              <InputPesquisa placeholder={"Pesquisa por rm"} />
             </Flex>
 
             <Flex
@@ -69,8 +71,8 @@ export default function Alugueis() {
               overflowX="hidden"
               overflowY="hidden"
             >
-              {alugueis ? (
-                alugueis.length !== 0 ? (
+              {alugueis.length !== 0 ? (
+                <>
                   <Flex w="full" direction="column" overflowY="auto">
                     <Table>
                       <HeadListAprovacao />
@@ -80,21 +82,30 @@ export default function Alugueis() {
                           return (
                             <BodyListAprovacao key={index} aprovacao={item} />
                           );
+                        } else {
+                          return (pendentes = true);
                         }
                       })}
                     </Table>
+                    {pendentes === true && (
+                      <Flex
+                        w="full"
+                        h="full"
+                        justify="center"
+                        alignItems="center"
+                      >
+                        <Text
+                          fontSize="2rem"
+                          textColor="#558085"
+                          fontWeight="bold"
+                          opacity="0.5"
+                        >
+                          Sem lista para aprovação
+                        </Text>
+                      </Flex>
+                    )}
                   </Flex>
-                ) : (
-                  <Flex w="full" h="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
-                  </Flex>
-                )
+                </>
               ) : (
                 <Flex w="full" h="full" justify="center" alignItems="center">
                   <Text
@@ -103,7 +114,7 @@ export default function Alugueis() {
                     fontWeight="bold"
                     opacity="0.5"
                   >
-                    Sem lista de aprovação
+                    Sem lista para aprovação
                   </Text>
                 </Flex>
               )}
@@ -140,7 +151,7 @@ export default function Alugueis() {
               alignItems="baseline"
             >
               {/* componente pesquisa */}
-              <InputPesquisa />
+              <InputPesquisa placeholder={"Pesquisa por rm"} />
             </Flex>
 
             <Flex
@@ -150,8 +161,8 @@ export default function Alugueis() {
               overflowX="hidden"
               overflowY="hidden"
             >
-              {alugueis ? (
-                alugueis.length !== 0 ? (
+              {alugueis.length !== 0 ? (
+                <>
                   <Flex w="full" direction="column" overflowY="auto">
                     <Table>
                       <HeadListAprovados />
@@ -161,21 +172,31 @@ export default function Alugueis() {
                           return (
                             <BodyListAprovados key={index} aprovado={item} />
                           );
+                        } else {
+                          return (aprovados = true);
                         }
                       })}
                     </Table>
                   </Flex>
-                ) : (
-                  <Flex w="full" h="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
-                  </Flex>
-                )
+
+                  {aprovados === true && (
+                    <Flex
+                      w="full"
+                      h="full"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Text
+                        fontSize="2rem"
+                        textColor="#558085"
+                        fontWeight="bold"
+                        opacity="0.5"
+                      >
+                        Sem lista de aprovados
+                      </Text>
+                    </Flex>
+                  )}
+                </>
               ) : (
                 <Flex w="full" h="full" justify="center" alignItems="center">
                   <Text
@@ -184,7 +205,7 @@ export default function Alugueis() {
                     fontWeight="bold"
                     opacity="0.5"
                   >
-                    Sem de aprovados
+                    Sem lista de aprovados
                   </Text>
                 </Flex>
               )}

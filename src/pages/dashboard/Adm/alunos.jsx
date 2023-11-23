@@ -55,33 +55,21 @@ function Alunos() {
               w="full"
               alignItems="baseline"
             >
-              <InputPesquisa />
+              <InputPesquisa placeholder={"Pesquisa por rm"} />
             </Flex>
 
             <Flex w="full" h="full" direction="column">
-              {alunos ? (
-                alunos.length !== 0 ? (
-                  <Flex w="full" direction="column" overflowY="auto">
-                    <Table>
-                      {/* titulo tabela */}
-                      <HeadListAlunos />
+              {alunos.length !== 0 ? (
+                <Flex w="full" direction="column" overflowY="auto">
+                  <Table>
+                    {/* titulo tabela */}
+                    <HeadListAlunos />
 
-                      {alunos.map((item, index) => (
-                        <BodyListAlunos key={index} aluno={item} />
-                      ))}
-                    </Table>
-                  </Flex>
-                ) : (
-                  <Flex w="full" h="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
-                  </Flex>
-                )
+                    {alunos.map((item, index) => (
+                      <BodyListAlunos key={index} aluno={item} />
+                    ))}
+                  </Table>
+                </Flex>
               ) : (
                 <Flex w="full" h="full" justify="center" marginTop="5rem">
                   <Text
@@ -93,6 +81,15 @@ function Alunos() {
                     Sem lista de alunos
                   </Text>
                 </Flex>
+                // <Flex w="full" h="full" justify="center" alignItems="center">
+                //   <Spinner
+                //     thickness="4px"
+                //     speed="0.65s"
+                //     emptyColor="gray.200"
+                //     color="blue.500"
+                //     size="xl"
+                //   />
+                // </Flex>
               )}
             </Flex>
           </Flex>

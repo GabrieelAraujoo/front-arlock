@@ -8,7 +8,8 @@ import {
   ModalHeader,
   ModalBody,
   useDisclosure,
-  Flex,useToast
+  Flex,
+  useToast,
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
@@ -16,12 +17,11 @@ import { PutAluno } from "../../../hook/alunos/usePutAlunos";
 
 export function BodyListAlunos({ aluno }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast(); 
+  const toast = useToast();
 
   function handleStatus(id) {
-     const res = PutAluno(id);
+    const res = PutAluno(id);
 
-    
     console.log(res);
 
     toast({
@@ -34,6 +34,7 @@ export function BodyListAlunos({ aluno }) {
 
     onClose();
   }
+
   return (
     <>
       <Tbody

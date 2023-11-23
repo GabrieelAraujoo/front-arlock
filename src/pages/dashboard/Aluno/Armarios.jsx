@@ -23,6 +23,9 @@ export function Armarios() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [armarios]);
 
+  // console.log(armarios);
+  // console.log(newData);
+
   return (
     <>
       <Main>

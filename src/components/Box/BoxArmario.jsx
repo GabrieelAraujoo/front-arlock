@@ -42,9 +42,28 @@ export function BoxArmario({ armario }) {
   }
 
   function handleReserva() {
-    onClose();
-    console.log(userData);
-    setReserva(userData);
+    var idTeste = 2;
+    var pagamento = "pix";
+
+    fetch(
+      `http://localhost/innotech/php/UPDATE/StatusAlugar.php?IDs=${armario.id}&ID=${idTeste}&pagamento=${pagamento}`
+    ) // Substitua "/api/usuarios" pela URL da sua API
+      .then((response) => response.json())
+      .then((data) => {
+        // const newData = {
+        //   message: data?.message,
+        // };
+
+        console.log(data);
+      })
+
+      .catch((error) => {
+        console.error(error);
+      });
+
+    // onClose();
+    // console.log(userData);
+    // setReserva(userData);
   }
 
   return (

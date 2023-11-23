@@ -63,8 +63,7 @@ function NewArmarios() {
         });
       });
     } else {
-      const url =
-        "https://naovai.000webhostapp.com/php/CREATE/createArmario.php";
+      const url = "http://localhost/innotech/php/CREATE/Armario.php";
 
       const letra = e.target.letra.value.toUpperCase();
       const status = e.target.status.value.toLowerCase();
@@ -169,6 +168,7 @@ function NewArmarios() {
                     name="curso"
                     id="curso"
                     value={formData.curso}
+                    placeholder="Curso"
                     onChange={changeValue}
                     isInvalid={error && error.errorCurso}
                   />
