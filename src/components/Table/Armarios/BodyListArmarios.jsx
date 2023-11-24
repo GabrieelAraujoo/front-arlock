@@ -9,35 +9,27 @@ import {
   useDisclosure,
   Flex,
   Text,
-  useToast,
+  useBoolean,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
-import React, { useState } from "react";
+import React from "react";
 import { DelArmarios } from "../../../hook/armarios/useDelArmarios";
 
 export function BodyListArmarios({ armarios }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [resultDelet, setResultDelet] = useState();
-  const toast = useToast();
+  const [showModal, setShowModal] = useBoolean();
 
   function handleDelete(id) {
-    const res = DelArmarios(id, setResultDelet);
-
-    console.log(resultDelet);
-    console.log(res);
-
-    toast({
-      title: "Excluido",
-      description: "Excluido com sucesso",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
+    DelArmarios(id);
 
     onClose();
+    setShowModal.on();
   }
 
+  function handleCloseModalConfirm() {
+    setShowModal.off();
+  }
 
   return (
     <>
@@ -59,6 +51,7 @@ export function BodyListArmarios({ armarios }) {
         </Td>
       </Tbody>
 
+      {/* Primeiro Modal */}
       <Flex>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -79,8 +72,8 @@ export function BodyListArmarios({ armarios }) {
             </ModalHeader>
             <ModalBody textAlign="center">
               <Text marginBottom="1.1rem" fontSize="14px">
-                Ao excluir esses armários, você impossibilita o acesso para eles
-                dentro da plataforma.
+                Ao excluir este armário, você impossibilita o acesso dele dentro
+                da plataforma. O histórico dele também será excluído.
               </Text>
               <Text fontSize="14px">Você realmente deseja excluir?</Text>
             </ModalBody>
@@ -111,6 +104,49 @@ export function BodyListArmarios({ armarios }) {
           </ModalContent>
         </Modal>
       </Flex>
+
+      {/* Modal atualizado */}
+      <Modal
+        isOpen={showModal}
+        onClose={setShowModal.off}
+        name="Second-Modal"
+        id="Second-Modal"
+      >
+        <ModalOverlay />
+        <ModalContent
+          background="#fff"
+          alignItems="center"
+          width={{ base: "90%", sm: "90%" }}
+          marginY="auto"
+        >
+          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
+            Armário excluído!
+          </ModalHeader>
+          <ModalBody w="full">
+            <Text
+              marginBottom="1.1rem"
+              fontSize="1rem"
+              marginRight="1rem"
+              textAlign="center"
+            >
+              O armário foi excluído com sucesso!
+            </Text>
+          </ModalBody>
+          <Flex
+            marginBottom="1.4rem"
+            textAlign="center"
+            marginTop={{ base: "10px" }}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <ButtonExit
+              title={"Fechar"}
+              marginTop="10px"
+              onClick={() => handleCloseModalConfirm()}
+            />
+          </Flex>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

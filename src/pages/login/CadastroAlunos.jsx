@@ -68,7 +68,7 @@ export default function CadastroAlunos() {
       //enviando para o firebase e banco
       createUserWithEmailAndPassword(auth, formData.email, formData.senha)
         .then((userCredential) => {
-          // Signed in
+          // enviando para o banco
           const user = userCredential.user;
           console.log(user);
 
@@ -86,27 +86,9 @@ export default function CadastroAlunos() {
             .post(url, fData)
             .then((Response) => {
               console.log(Response.data);
-
-              // return toast({
-              //   position: "bottom-right",
-              //   title: "Sucesso",
-              //   description: "Usuário criado com sucesso!",
-              //   status: "success",
-              //   duration: 5000,
-              //   isClosable: true,
-              // });
             })
             .catch((error) => {
               console.log(error);
-
-              // return toast({
-              //   position: "bottom-right",
-              //   title: "Sucesso",
-              //   description: "Erro ao criar usuário!",
-              //   status: "error",
-              //   duration: 5000,
-              //   isClosable: true,
-              // });
             });
 
           toast({

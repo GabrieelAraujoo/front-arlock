@@ -3,6 +3,7 @@ export async function GetMe(email, setNewData) {
     .then((response) => response.json())
     .then((data) => {
       const newData = {
+        id: data?.data?.ID,
         curso: data?.data?.curso,
         email: data?.data?.email,
         nome: data?.data?.nome,

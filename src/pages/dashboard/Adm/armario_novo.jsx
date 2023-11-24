@@ -24,6 +24,7 @@ import { SelectLabel } from "../../../components/Select/SelectCurso";
 import { listCursos } from "../../../Mock/listCursos";
 import { InputLabel } from "../../../components/Input/Geral";
 import axios from "axios";
+import { listOptions } from "../../../Mock/listOptions";
 
 function NewArmarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -46,14 +47,6 @@ function NewArmarios() {
     console.log(errors);
 
     if (errors.length !== 0) {
-      toast({
-        title: "Erro!",
-        status: "error",
-        description:
-          "Alguns Campos Obrigatórios não foram preenchidos, verefique os campos que estão em vermelho!",
-        duration: 5000,
-        isClosable: true,
-      });
       errors.map((erro) => {
         return toast({
           title: `${erro}`,
@@ -140,6 +133,7 @@ function NewArmarios() {
                     label={"Letra"}
                     name="letra"
                     id="letra"
+                    type="text"
                     marginRight={{ sm: "1.9rem" }}
                     value={formData.letra}
                     onChange={changeValue}
@@ -150,7 +144,7 @@ function NewArmarios() {
                     label={"Numero"}
                     name="numero"
                     id="numero"
-                    // type="number"
+                    type="number"
                     value={formData.numero}
                     onChange={changeValue}
                     isInvalid={error && error.errorNumero}
@@ -173,6 +167,19 @@ function NewArmarios() {
                     isInvalid={error && error.errorCurso}
                   />
 
+                  <SelectLabel
+                    label={"Status"}
+                    options={listOptions}
+                    name="status"
+                    id="status"
+                    value={formData.status}
+                    placeholder="Status"
+                    onChange={changeValue}
+                    isInvalid={error && error.errorStatus}
+                    mgLeft={{ sm: "1.9rem" }}
+                  />
+
+                  {/*
                   <InputLabel
                     label={"Status"}
                     name="status"
@@ -181,7 +188,7 @@ function NewArmarios() {
                     value={formData.status}
                     onChange={changeValue}
                     isInvalid={error && error.errorStatus}
-                  />
+                  /> */}
                 </Flex>
 
                 <Flex

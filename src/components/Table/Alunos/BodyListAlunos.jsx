@@ -9,7 +9,7 @@ import {
   ModalBody,
   useDisclosure,
   Flex,
-  useToast,
+  useBoolean,
 } from "@chakra-ui/react";
 import { LockIcon, UnlockIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
@@ -17,22 +17,21 @@ import { PutAluno } from "../../../hook/alunos/usePutAlunos";
 
 export function BodyListAlunos({ aluno }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
+
+  const [showModal, setShowModal] = useBoolean();
 
   function handleStatus(id) {
     const res = PutAluno(id);
 
     console.log(res);
 
-    toast({
-      title: "Atualizado!",
-      description: "Status atualizado com sucesso!",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    });
+    setShowModal.on();
 
     onClose();
+  }
+
+  function handleCloseModalConfirm() {
+    setShowModal.off();
   }
 
   return (
@@ -178,6 +177,49 @@ export function BodyListAlunos({ aluno }) {
           </Modal>
         </Flex>
       )}
+
+      {/* Modal atualizado */}
+      <Modal
+        isOpen={showModal}
+        onClose={setShowModal.off}
+        name="Second-Modal"
+        id="Second-Modal"
+      >
+        <ModalOverlay />
+        <ModalContent
+          background="#fff"
+          alignItems="center"
+          width={{ base: "90%", sm: "90%" }}
+          marginY="auto"
+        >
+          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
+            Cadastro atualizado!
+          </ModalHeader>
+          <ModalBody w="full">
+            <Text
+              marginBottom="1.1rem"
+              fontSize="1rem"
+              marginRight="1rem"
+              textAlign="center"
+            >
+              O cadastro foi atualizado com sucesso!
+            </Text>
+          </ModalBody>
+          <Flex
+            marginBottom="1.4rem"
+            textAlign="center"
+            marginTop={{ base: "10px" }}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <ButtonExit
+              title={"Fechar"}
+              marginTop="10px"
+              onClick={() => handleCloseModalConfirm()}
+            />
+          </Flex>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

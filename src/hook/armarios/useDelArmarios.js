@@ -1,4 +1,4 @@
-export async function DelArmarios(id, setResultDelet) {
+export async function DelArmarios(id) {
   // Realize a solicitação HTTP para obter a lista de usuários
   fetch(`http://localhost/innotech/php/DELETE/Armario.php?IDs=${id}`) // Substitua "/api/usuarios" pela URL da sua API
     .then((response) => response.json())
@@ -8,7 +8,6 @@ export async function DelArmarios(id, setResultDelet) {
       // };
 
       console.log(data);
-      setResultDelet(data.message);
       return data.message;
     })
 

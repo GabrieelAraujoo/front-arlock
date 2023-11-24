@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListArmarios } from "../../../components/Table/Armarios/HeadListArmarios";
@@ -94,20 +94,6 @@ function Armarios() {
                       Sem lista de armários
                     </Text>
                   </Flex>
-                  // <Flex
-                  //   w="full"
-                  //   h="full"
-                  //   justify="center"
-                  //   alignItems="center"
-                  // >
-                  //   <Spinner
-                  //     thickness="4px"
-                  //     speed="0.65s"
-                  //     emptyColor="gray.200"
-                  //     color="blue.500"
-                  //     size="xl"
-                  //   />
-                  // </Flex>
                 )}
               </Flex>
             </Flex>

@@ -33,27 +33,6 @@ function Perfil() {
     navigate("/");
   }
 
-  // async function handleEnviar() {
-  //   console.log(email);
-
-  //   fetch(
-  //     `https://naovai.000webhostapp.com/php/PUT/Aluno.php?email=${email}`
-  //     // , {
-  //     //   mode: "no-cors",
-  //     // }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       console.log("entrou aqui");
-  //     })
-
-  //     .catch((error) => {
-  //       console.error(error);
-  //       console.log("entrou aqui - erro");
-  //     });
-  // }
-
   return (
     <Main>
       <Container>

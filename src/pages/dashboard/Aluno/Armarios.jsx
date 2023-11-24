@@ -1,30 +1,32 @@
 /* eslint-disable array-callback-return */
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, useToast } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 import { GetMe } from "../../../hook/alunos/useGetMe";
+import { CustomerContext } from "../../../context/Autenticate";
 
 export function Armarios() {
+  const { email } = useContext(CustomerContext);
   const saveEmail = localStorage.getItem("email").replace('"', "");
   const savEmail = saveEmail.replace('"', "");
   const [newData, setNewData] = useState();
-  const toast = useToast();
 
   const [armarios, setArmarios] = useState([]);
 
   useEffect(() => {
-    GetMe(savEmail, setNewData);
+    if (email) {
+      GetMe(email, setNewData);
+    } else {
+      GetMe(savEmail, setNewData);
+    }
 
     GetArmarios(setArmarios);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [armarios]);
-
-  // console.log(armarios);
-  // console.log(newData);
+  }, [armarios, email]);
 
   return (
     <>
@@ -48,16 +50,6 @@ export function Armarios() {
               direction="column"
               paddingY="1rem"
             >
-              {/* <Text
-              fontSize="35px"
-              textColor="#558085"
-              fontWeight="bold"
-              marginLeft="1.3rem"
-              marginTop="1.3rem"
-            >
-              Armários Disponíveis
-            </Text> */}
-
               <Flex
                 w="full"
                 direction="column"
@@ -84,19 +76,6 @@ export function Armarios() {
                             armario={item}
                             setReserva={setReserva}
                           />
-                        );
-                      } else {
-                        return (
-                          <Flex w="full" h="full" justify="center">
-                            <Text
-                              fontSize={{ base: "1.5rem", lg: "2rem" }}
-                              textColor="#558085"
-                              fontWeight="bold"
-                              opacity="0.5"
-                            >
-                              Sem armários
-                            </Text>
-                          </Flex>
                         );
                       }
                     })}
