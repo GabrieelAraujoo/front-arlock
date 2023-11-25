@@ -23,8 +23,8 @@ export function BodyListArmarios({ armarios }) {
   function handleDelete(id) {
     DelArmarios(id);
 
-    onClose();
     setShowModal.on();
+    onClose();
   }
 
   function handleCloseModalConfirm() {

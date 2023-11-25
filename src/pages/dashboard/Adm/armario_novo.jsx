@@ -81,7 +81,7 @@ function NewArmarios() {
       toast({
         position: "bottom",
         title: "Sucesso",
-        description: "Usuário criado com sucesso!",
+        description: "Armário criado com sucesso!",
         status: "success",
         duration: 5000,
         isClosable: true,

@@ -22,6 +22,8 @@ import {
 import { validateFormNewUser } from "../../../utils/validateFormNewUser";
 import { InputLabel } from "../../../components/Input/Geral";
 import axios from "axios";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from "../../../services/firebaseConfig";
 
 function NewUsuarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -35,25 +37,26 @@ function NewUsuarios() {
     setformData({ ...formData, [name]: value });
   };
 
+  const auth = getAuth(app);
+
   async function createUser(e) {
     e.preventDefault();
 
-    // const errors = await validateFormNewUser(formData, error, setError);
+    const errors = await validateFormNewUser(formData, error, setError);
 
-    // console.log(formData);
-
-    // if (errors.length !== 0) {
-      
-    //   errors.map((erro) => {
-    //     return toast({
-    //       title: `${erro}`,
-    //       status: "warning",
-    //       duration: 5000,
-    //       isClosable: true,
-    //     });
-    //   });
-    // } else {
-      const url = "http://localhost/innotech/php/CREATE/Usuarios.php";
+    if (errors.length !== 0) {
+      errors.map((erro) => {
+        return toast({
+          title: `${erro}`,
+          status: "warning",
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+    } else {
+      createUserWithEmailAndPassword(auth, formData.email, "Teste@123456")
+        .then((userCredential) => {
+          const url = "http://localhost/innotech/php/CREATE/Usuarios.php";
 
           let fData = new FormData();
           fData.append("nome", formData.nome);
@@ -69,11 +72,38 @@ function NewUsuarios() {
             .catch((error) => {
               console.log(error);
             });
-    // }
+
+          toast({
+            position: "bottom",
+            title: "Sucesso",
+            description: "Usuário criado com sucesso!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          setTimeout(() => {
+            navigate("/Adm/Usuarios");
+          }, "1000");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          toast({
+            position: "bottom",
+            title: "Erro",
+            description: "Erro ao criar user, tente mais tarde.",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
+    }
   }
-
-  
-
 
   return (
     <>
@@ -106,52 +136,45 @@ function NewUsuarios() {
                 Criar Novo Usuário
               </Text>
 
-<form>
+              <form style={{ width: "100%" }} onSubmit={(e) => createUser(e)}>
+                <Flex
+                  w="full"
+                  paddingX="1.3rem"
+                  direction={{ base: "column", sm: "row", lg: "row" }}
+                >
+                  <InputLabel
+                    label={"Nome"}
+                    name="nome"
+                    id="nome"
+                    value={formData.nome}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorNome}
+                  />
 
+                  <InputLabel
+                    label={"Email"}
+                    name="email"
+                    id="email"
+                    marginLeft={{ sm: "1.9rem" }}
+                    value={formData.email}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorEmail}
+                  />
+                </Flex>
 
-              <Flex
-                w="full"
-                paddingX="1.3rem"
-                direction={{ base: "column", sm: "row", lg: "row" }}
-              >
-                <InputLabel
-                  label={"Nome"}
-                  name="nome"
-                  id="nome"
-                  value={formData.nome}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorNome}
-                />
-
-                <InputLabel
-                  label={"Email"}
-                  name="email"
-                  id="email"
-                  marginLeft={{ sm: "1.9rem" }}
-                  value={formData.email}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorEmail}
-                />
-              </Flex>
-
-              <Flex
-                w="full"
-                alignItems="baseline"
-                paddingX="1.3rem"
-                marginTop="3.5rem"
-              >
-                <ButtonExit
-                  title={"Voltar"}
-                  onClick={() => navigate("/Adm/Usuarios")}
-                />
-                <ButtonExit
-                  title={"Criar"}
-                  marginLeft="2rem"
-                  type="submit"
-                onClick={(e) => createUser(e)}
-                />
-              </Flex>
-</form>
+                <Flex
+                  w="full"
+                  alignItems="baseline"
+                  paddingX="1.3rem"
+                  marginTop="3.5rem"
+                >
+                  <ButtonExit
+                    title={"Voltar"}
+                    onClick={() => navigate("/Adm/Usuarios")}
+                  />
+                  <ButtonExit title={"Criar"} marginLeft="2rem" type="submit" />
+                </Flex>
+              </form>
             </Flex>
           </Flex>
         </Container>

@@ -20,14 +20,22 @@ export function BodyListAprovacao({ aprovacao }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   function handleAprova() {
-    // PutAprovaAluguel()
-    PutReprovaAluguel()
+    PutAprovaAluguel();
+    // PutReprovaAluguel()
   }
 
   return (
     <>
-        <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px" overflowX={{base: "hidden"}}>
-        <Td width="15%">{aprovacao.letra}{aprovacao.numero}</Td>
+      <Tbody
+        fontSize="13px"
+        paddingTop="12px"
+        paddingBottom="1px"
+        overflowX={{ base: "hidden" }}
+      >
+        <Td width="15%">
+          {aprovacao.letra}
+          {aprovacao.numero}
+        </Td>
         <Td width="20%">{aprovacao.nome}</Td>
         <Td width="10%">{aprovacao.rm}</Td>
         <Td width="25%">{aprovacao.curso}</Td>

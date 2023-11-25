@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
 import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { BoxGeral } from "../../../components/Box/BoxGeral";
+import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
+import { GetAlunos } from "../../../hook/alunos/useGetAlunos";
+import { GetUsuarios } from "../../../hook/usuarios/useGetUsuarios";
 
 function Home() {
+  const [armarios, setArmarios] = useState([]);
+  const [alunos, setAlunos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    GetArmarios(setArmarios);
+    GetAlunos(setAlunos);
+    GetUsuarios(setUsuarios);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  var countAlunosDesativados = [];
+
+  var countReservados = [];
+  var countAlugados = [];
+  var countDisponiveis = [];
+  var countInativos = [];
+
+  var valorTotalAlugados = 0;
   return (
     <Main>
       <Container>
@@ -47,20 +70,29 @@ function Home() {
 
                 <BoxGeral
                   marginTop="1rem"
-                  number={"5"}
+                  number={usuarios.length}
                   text={"Administradores Cadastrados"}
                   height={{ base: "145px", sm: "130px" }}
                 />
 
                 <BoxGeral
                   marginTop="1rem"
-                  number={"300"}
+                  number={alunos.length}
                   text={"Alunos Cadastrados"}
                   height={{ base: "135px", sm: "130px" }}
                 />
+
+                {alunos &&
+                  // eslint-disable-next-line array-callback-return
+                  alunos.map((item, index) => {
+                    if (item.status === "desativado") {
+                      countAlunosDesativados.push(item.status);
+                      return console.log(countAlunosDesativados);
+                    }
+                  })}
                 <BoxGeral
                   marginTop="16px"
-                  number={"50"}
+                  number={countAlunosDesativados.length}
                   text={"Alunos Bloqueados"}
                 />
               </Flex>
@@ -106,10 +138,44 @@ function Home() {
                   gridGap="1rem"
                   paddingTop="1rem"
                 >
-                  <BoxGeral number={"100"} text={"Armários Reservados"} />
-                  <BoxGeral number={"150"} text={"Armarios Alugados"} />
-                  <BoxGeral number={"50"} text={"Armários Disponíveis"} />
-                  <BoxGeral number={"100"} text={"Armários Inativos"} />
+                  {armarios &&
+                    // eslint-disable-next-line array-callback-return
+                    armarios.map((item, index) => {
+                      if (item.status === "ativado") {
+                        countDisponiveis.push(item.status);
+                        return console.log(countDisponiveis);
+                      } else if (item.status === "pendente") {
+                        countReservados.push(item.status);
+                        return console.log(countReservados);
+                      } else if (
+                        item.status === "desativado" ||
+                        item.status === "manutenção"
+                      ) {
+                        countInativos.push(item.status);
+                        return console.log(countInativos);
+                      } else if (item.statusAluguel === "aprovado") {
+                        countAlugados.push(item.status);
+                        valorTotalAlugados = countAlugados.length * 50.0;
+                        return console.log(countAlugados);
+                      }
+                    })}
+
+                  <BoxGeral
+                    number={countReservados.length}
+                    text={"Armários Reservados"}
+                  />
+                  <BoxGeral
+                    number={countAlugados.length}
+                    text={"Armarios Alugados"}
+                  />
+                  <BoxGeral
+                    number={countDisponiveis.length}
+                    text={"Armários Disponíveis"}
+                  />
+                  <BoxGeral
+                    number={countInativos.length}
+                    text={"Armários Inativos"}
+                  />
                 </Flex>
               </Flex>
 
@@ -147,12 +213,12 @@ function Home() {
                   gridRowGap={{ base: "1rem", lg: "0" }}
                 >
                   <BoxGeral
-                    number={"20"}
+                    number={countReservados.length}
                     text={"Pagamentos Pendentes"}
                     height={{ base: "145px", sm: "130px" }}
                   />
                   <BoxGeral
-                    number={"R$2.000"}
+                    number={`R$${valorTotalAlugados},00`}
                     text={"Valor total"}
                     height={{ base: "135px", sm: "130px" }}
                   />
