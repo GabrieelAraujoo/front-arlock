@@ -1,5 +1,5 @@
 export async function GetMe(email, setNewData) {
-  fetch(`http://localhost/innotech/php/PUT/Aluno.php?email=${email}`)
+  fetch(`http://localhost/innotech/php/UPDATE/AlunoLogin.php?email=${email}`)
     .then((response) => response.json())
     .then((data) => {
       const newData = {

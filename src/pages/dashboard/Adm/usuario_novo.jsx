@@ -21,56 +21,60 @@ import {
 } from "../../../utils/baseFormNewUser";
 import { validateFormNewUser } from "../../../utils/validateFormNewUser";
 import { InputLabel } from "../../../components/Input/Geral";
+import axios from "axios";
 
 function NewUsuarios() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState("");
   const [formData, setformData] = useState(baseFormNewUser);
   const [error, setError] = useState(errorFormNewUser);
   const toast = useToast();
 
   const changeValue = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    setformData(userData);
+    setformData({ ...formData, [name]: value });
   };
 
-  async function createUser() {
-    console.log(formData);
-    const errors = await validateFormNewUser(formData, error, setError);
+  async function createUser(e) {
+    e.preventDefault();
 
-    if (errors.length !== 0) {
-      toast({
-        title: "Erro!",
-        status: "error",
-        description:
-          "Alguns Campos Obrigatórios não foram preenchidos, verefique os campos que estão em vermelho!",
-        duration: 5000,
-        isClosable: true,
-      });
-      errors.map((erro) => {
-        return toast({
-          title: `${erro}`,
-          status: "warning",
-          duration: 5000,
-          isClosable: true,
-        });
-      });
-    } else {
-      // const res = await PostUserForm(id, user.token, formData);
-      // if (res) {
-      navigate("/Adm/Usuarios");
-      return toast({
-        position: "bottom-right",
-        title: "Sucesso",
-        description: "Usuário criado com sucesso!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
+    // const errors = await validateFormNewUser(formData, error, setError);
+
+    // console.log(formData);
+
+    // if (errors.length !== 0) {
+      
+    //   errors.map((erro) => {
+    //     return toast({
+    //       title: `${erro}`,
+    //       status: "warning",
+    //       duration: 5000,
+    //       isClosable: true,
+    //     });
+    //   });
+    // } else {
+      const url = "http://localhost/innotech/php/CREATE/Usuarios.php";
+
+          let fData = new FormData();
+          fData.append("nome", formData.nome);
+          fData.append("email", formData.email);
+          fData.append("type", "adm");
+          fData.append("senha", "Teste@123456");
+
+          axios
+            .post(url, fData)
+            .then((Response) => {
+              console.log(Response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+    // }
   }
+
+  
+
+
   return (
     <>
       <Main>
@@ -102,6 +106,9 @@ function NewUsuarios() {
                 Criar Novo Usuário
               </Text>
 
+<form>
+
+
               <Flex
                 w="full"
                 paddingX="1.3rem"
@@ -111,7 +118,7 @@ function NewUsuarios() {
                   label={"Nome"}
                   name="nome"
                   id="nome"
-                  value={userData.nome}
+                  value={formData.nome}
                   onChange={changeValue}
                   isInvalid={error && error.errorNome}
                 />
@@ -121,7 +128,7 @@ function NewUsuarios() {
                   name="email"
                   id="email"
                   marginLeft={{ sm: "1.9rem" }}
-                  value={userData.email}
+                  value={formData.email}
                   onChange={changeValue}
                   isInvalid={error && error.errorEmail}
                 />
@@ -138,11 +145,13 @@ function NewUsuarios() {
                   onClick={() => navigate("/Adm/Usuarios")}
                 />
                 <ButtonExit
-                  title={"Salvar"}
+                  title={"Criar"}
                   marginLeft="2rem"
-                  onClick={onOpen}
+                  type="submit"
+                onClick={(e) => createUser(e)}
                 />
               </Flex>
+</form>
             </Flex>
           </Flex>
         </Container>
@@ -194,6 +203,7 @@ function NewUsuarios() {
                 marginLeft={{ sm: "1rem" }}
                 paddingRight={{ base: "195%", sm: "95%" }}
                 paddingLeft={{ base: "195%", sm: "95%" }}
+                type="submit"
                 onClick={() => createUser()}
               />
             </Flex>

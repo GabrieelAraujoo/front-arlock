@@ -13,8 +13,6 @@ import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
 
 export default function Alugueis() {
   const [alugueis, setAlugueis] = useState([]);
-  var pendentes = false;
-  var aprovados = false;
 
   useEffect(() => {
     GetArmarios(setAlugueis);

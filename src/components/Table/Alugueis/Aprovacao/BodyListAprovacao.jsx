@@ -13,9 +13,16 @@ import {
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../Button";
 import React from "react";
+import { PutAprovaAluguel } from "../../../../hook/alugueis/usePutAprovaAlugueis";
+import { PutReprovaAluguel } from "../../../../hook/alugueis/usePutReprovaAluguel";
 
 export function BodyListAprovacao({ aprovacao }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function handleAprova() {
+    // PutAprovaAluguel()
+    PutReprovaAluguel()
+  }
 
   return (
     <>
@@ -91,14 +98,14 @@ export function BodyListAprovacao({ aprovacao }) {
                 marginLeft={{ sm: "1rem" }}
                 paddingRight={{ base: "185%", sm: "85%" }}
                 paddingLeft={{ base: "185%", sm: "85%" }}
-                onClick={onClose}
+                onClick={() => handleAprova()}
               />
             </Flex>
           </ModalContent>
         </Modal>
       </Flex>
 
-      <Flex>
+      {/* <Flex>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent
@@ -149,7 +156,7 @@ export function BodyListAprovacao({ aprovacao }) {
             </Flex>
           </ModalContent>
         </Modal>
-      </Flex>
+      </Flex> */}
     </>
   );
 }
