@@ -121,11 +121,10 @@ function Home() {
                       textAlign="justify"
                       fontSize={{ base: "15px", lg: "22px" }}
                     >
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Beatae nesciunt fuga culpa necessitatibus velit quae atque
-                      quo incidunt. Aperiam eligendi quaerat blanditiis
-                      praesentium excepturi ratione ab unde, accusantium
-                      laboriosam soluta.
+                      A ETEC Irmã Agostina é uma escola técnica
+                      profissionalizante que oference ensino médio integrado e
+                      cursos técnicos nas áreas de Gestão, Saúde, Indústria e
+                      Tecnologia.
                     </Text>
                   </Flex>
                 </Flex>
