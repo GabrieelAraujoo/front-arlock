@@ -8,6 +8,7 @@ export async function GetMe(email, setNewData) {
         email: data?.data?.email,
         nome: data?.data?.nome,
         rm: data?.data?.rm,
+        status: data?.data?.status,
       };
 
       setNewData(newData);

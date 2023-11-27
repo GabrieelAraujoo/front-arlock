@@ -169,12 +169,12 @@ export function BoxArmario({ armario }) {
                 Armário {armario.letra}
                 {armario.numero}
               </Text>
-              <Flex>
+              {/* <Flex>
                 <Text marginBottom="1.1rem" fontSize="14px" marginRight="1rem">
                   Localização:
                 </Text>
                 <Text fontSize="14px">{armario.localization}</Text>
-              </Flex>
+              </Flex> */}
               <Flex>
                 <Text marginBottom="1.1rem" fontSize="14px" marginRight="1rem">
                   Valor:
@@ -213,12 +213,12 @@ export function BoxArmario({ armario }) {
                       marginRight="1rem"
                     >
                       Efetue o pagamento através da chave disponível e clique em{" "}
-                      <b>RESERVAR</b>. No prazo de 48h, o armário é liberado.
+                      <b>RESERVAR</b>. No prazo de 48h o armário é liberado.
                     </Text>
-                    <Text fontSize="1rem">
-                      *qualquer que seja a forma de pagamento, o aluno só poderá
-                      utilizar o armário após liberação no sistema, caso
-                      contrário, está sujeito a suspensão.*
+                    <Text fontSize=".8rem">
+                      *Qualquer que seja a forma de pagamento, o aluno só poderá
+                      utilizar o armário após liberação, caso contrário, está
+                      sujeito a suspensão.*
                     </Text>
                   </Flex>
                 </>
@@ -235,10 +235,10 @@ export function BoxArmario({ armario }) {
                     secretário em 72h, caso não efetue o pagamento, o armário
                     volta a ficar disponível para reservas.
                   </Text>
-                  <Text fontSize="1rem">
-                    *qualquer que seja a forma de pagamento, o aluno só poderá
-                    utilizar o armário após liberação no sistema, caso
-                    contrário, está sujeito a suspensão.*
+                  <Text fontSize=".8rem">
+                    *Qualquer que seja a forma de pagamento, o aluno só poderá
+                    utilizar o armário após liberação, caso contrário, está
+                    sujeito a suspensão.*
                   </Text>
                 </Flex>
               )}
@@ -292,18 +292,13 @@ export function BoxArmario({ armario }) {
           <ModalBody w="full">
             <Text
               marginBottom="1.1rem"
-              fontSize="12px"
+              fontSize="1rem"
               marginRight="1rem"
               textAlign="center"
             >
               Parabéns, sua reserva foi concluída com sucesso!!
             </Text>
-            <Text
-              marginBottom="1.1rem"
-              fontSize="1rem"
-              marginRight="1rem"
-              textAlign="center"
-            >
+            <Text fontSize="1rem" marginRight="1rem" textAlign="center">
               Aguarde o prazo conforme estabelicido de acordo com a forma de
               pagamento para utilizar o armário. Em breve, você receberá uma
               notificação sobre a liberação do armário. Fique de olho!
@@ -312,12 +307,11 @@ export function BoxArmario({ armario }) {
           <Flex
             marginBottom="1.4rem"
             textAlign="center"
-            marginTop={{ base: "10px" }}
             justifyContent="center"
             alignItems="center"
           >
             <ButtonExit
-              title={"Cancelar"}
+              title={"Fechar"}
               marginTop="10px"
               onClick={() => handleCloseModalConfirm()}
             />

@@ -1,12 +1,8 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Image } from "@chakra-ui/react";
-// import {
-//   BoxNotificationAlert,
-//   BoxNotificationPayment,
-//   BoxNotificationRent,
-// } from "../../../components/Box/BoxNotification";
+import { Flex, Text } from "@chakra-ui/react";
+import { BoxNotificationAlert } from "../../../components/Box/BoxNotification";
 import PageTitle from "../../../components/PageTitle";
 
 function Home() {
@@ -24,12 +20,14 @@ function Home() {
             direction={{ sm: "column", base: "column", lg: "row" }}
           >
             {/* Flex de notificações */}
-            {/* <Flex
+            <Flex
               backgroundColor="white.100"
-              width={{ base: "full", lg: "30%" }}
+              width={{ base: "full", lg: "50%" }}
               direction="column"
               borderRadius="15px"
               padding="1rem"
+              marginTop={{ base: "2rem", lg: "0" }}
+              marginRight={{ base: "0", lg: "1rem" }}
             >
               <Text
                 marginTop="10px"
@@ -39,19 +37,18 @@ function Home() {
               >
                 Notificações
               </Text>
-
               <BoxNotificationAlert
-                title={"Dia 01/07 é a data limite para liberar o armário. "}
+                title={"Dia 15/12 é a data limite para liberar o armário."}
               />
-
-              <BoxNotificationRent
-                title={"Pagamento liberado, você já pode utilizar o armário B18"}
+              {/* <BoxNotificationRent
+                title={
+                  "Pagamento liberado, você já pode utilizar o armário B18"
+                }
               />
-
               <BoxNotificationPayment
                 title={"Você precisa efetuar o pagamento na secretária"}
-              />
-            </Flex> */}
+              /> */}
+            </Flex>
 
             {/* Flex com armairo, notificações e suporte */}
             <Flex
@@ -60,7 +57,7 @@ function Home() {
               marginTop={{ base: "2rem", lg: "0" }}
             >
               <Flex
-                backgroundColor="white"
+                backgroundColor="white.100"
                 width="100%"
                 borderRadius="15px"
                 display="grid"
@@ -70,7 +67,7 @@ function Home() {
                   direction={{ base: "column", lg: "row" }}
                 >
                   {/* flex da foto */}
-                  <Flex
+                  {/* <Flex
                     backgroundColor="#BFDDE0"
                     height="380px"
                     borderRadius="15px"
@@ -97,11 +94,10 @@ function Home() {
                     />
 
                     <Text textColor="#558085">Armário B19</Text>
-                  </Flex>
+                  </Flex> */}
 
                   {/* flex de informações */}
                   <Flex
-                    marginLeft={{ base: "0", lg: "1rem" }}
                     marginTop={{ base: "1rem", lg: "0" }}
                     backgroundColor="#BFDDE0"
                     height="380px"

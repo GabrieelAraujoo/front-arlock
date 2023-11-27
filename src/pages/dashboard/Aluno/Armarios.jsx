@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { BoxArmario } from "../../../components/Box/BoxArmario";
 import { GetArmarios } from "../../../hook/armarios/useGetArmarios";
@@ -39,7 +39,6 @@ export function Armarios() {
             textColor="#558085"
           >
             <PageTitle title={"Armários"} />
-
             <Flex
               backgroundColor="white.100"
               width="full"
@@ -50,35 +49,116 @@ export function Armarios() {
               direction="column"
               paddingY="1rem"
             >
-              <Flex
-                w="full"
-                direction="column"
-                overflowX={{ base: "scroll", lg: "hidden" }}
-              >
-                {armarios.length !== 0 ? (
+              {newData &&
+                (newData.status === "ativado" ? (
                   <Flex
-                    width="100%"
-                    display="grid"
-                    gridTemplateColumns={{
-                      base: "auto auto",
-                      sm: "auto auto auto auto",
-                      md: "auto auto auto auto auto",
-                      lg: "auto auto auto auto auto auto auto auto",
-                    }}
-                    gridGap="0.5rem"
-                    padding="1rem"
+                    w="full"
+                    direction="column"
+                    overflowX={{ base: "scroll", lg: "hidden" }}
                   >
-                    {armarios.map((item, index, setReserva) => {
-                      if (item.curso === newData.curso) {
-                        return (
-                          <BoxArmario
-                            key={index}
-                            armario={item}
-                            setReserva={setReserva}
-                          />
-                        );
-                      }
-                    })}
+                    {armarios.length !== 0 ? (
+                      <Flex
+                        width="100%"
+                        display="grid"
+                        gridTemplateColumns={{
+                          base: "auto auto",
+                          sm: "auto auto auto auto",
+                          md: "auto auto auto auto auto",
+                          lg: "auto auto auto auto auto auto auto auto",
+                        }}
+                        gridGap="0.5rem"
+                        padding="1rem"
+                      >
+                        {armarios.map((item, index, setReserva) => {
+                          if (
+                            item.rm === newData.rm &&
+                            item.statusAluguel === "aprovado"
+                          ) {
+                            return (
+                              <Flex
+                                width="130px"
+                                height="186px"
+                                background="#bfdde0"
+                                borderRadius="12px"
+                                direction="column"
+                                alignItems="center"
+                                justifyContent="space-around"
+                                backgroundColor="#60E8F8"
+                              >
+                                <Flex
+                                  width="full"
+                                  direction="column"
+                                  alignItems="center"
+                                >
+                                  <Box
+                                    width="70%"
+                                    height="8px"
+                                    background="#558085"
+                                    borderRadius="10px"
+                                    marginBottom=".4rem"
+                                  />
+                                  <Box
+                                    width="70%"
+                                    height="8px"
+                                    background="#558085"
+                                    borderRadius="10px"
+                                    marginBottom=".4rem"
+                                  />
+                                  <Box
+                                    width="70%"
+                                    height="8px"
+                                    background="#558085"
+                                    borderRadius="10px"
+                                  />
+                                </Flex>
+
+                                <Flex width="full" marginLeft="2.2rem">
+                                  <Flex
+                                    width="20px"
+                                    height="20px"
+                                    background="#558085"
+                                    borderRadius="50%"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                  >
+                                    <Box
+                                      width="10px"
+                                      height="10px"
+                                      borderRadius="50%"
+                                      background="#D9D9D9"
+                                    />
+                                  </Flex>
+                                </Flex>
+
+                                <Text textColor="#558085" fontSize="13px">
+                                  Meu Armário {item.letra} {item.numero}
+                                </Text>
+                              </Flex>
+                            );
+                          }
+                          if (item.curso === newData.curso) {
+                            return (
+                              <BoxArmario
+                                key={index}
+                                armario={item}
+                                setReserva={setReserva}
+                              />
+                            );
+                          }
+                        })}
+                      </Flex>
+                    ) : (
+                      <Flex w="full" h="full" justify="center">
+                        <Text
+                          fontSize={{ base: "1.5rem", lg: "2rem" }}
+                          textColor="#558085"
+                          fontWeight="bold"
+                          opacity="0.5"
+                        >
+                          Sem lista de armários
+                        </Text>
+                      </Flex>
+                    )}
                   </Flex>
                 ) : (
                   <Flex w="full" h="full" justify="center">
@@ -88,11 +168,11 @@ export function Armarios() {
                       fontWeight="bold"
                       opacity="0.5"
                     >
-                      Sem lista de armários
+                      Conta desativada, por favor, entrar em contato com a
+                      secretária
                     </Text>
                   </Flex>
-                )}
-              </Flex>
+                ))}
             </Flex>
           </Flex>
         </Container>

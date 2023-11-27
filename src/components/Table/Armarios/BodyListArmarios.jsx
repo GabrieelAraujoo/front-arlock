@@ -6,10 +6,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  useDisclosure,
   Flex,
   Text,
   useBoolean,
+  useDisclosure,
+  Tooltip,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
@@ -18,12 +19,16 @@ import { DelArmarios } from "../../../hook/armarios/useDelArmarios";
 
 export function BodyListArmarios({ armarios }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const [showModal, setShowModal] = useBoolean();
 
   function handleDelete(id) {
-    DelArmarios(id);
+    const res = DelArmarios(id);
 
-    setShowModal.on();
+    console.log(res);
+
+    // setShowModal.on();
+
     onClose();
   }
 
@@ -40,14 +45,17 @@ export function BodyListArmarios({ armarios }) {
         <Td width="25%">{armarios.curso}</Td>
         <Td width="15%">{armarios.status}</Td>
         <Td>
-          <DeleteIcon
-            marginLeft="9px"
-            height="20px"
-            width="20px"
-            color="gray.400"
-            cursor="pointer"
-            onClick={onOpen}
-          />
+          <Tooltip label="Deletar">
+            <DeleteIcon
+              marginLeft="9px"
+              height="20px"
+              width="20px"
+              color="gray.400"
+              cursor="pointer"
+              isDisable={true}
+              onClick={onOpen}
+            />
+          </Tooltip>
         </Td>
       </Tbody>
 
@@ -71,33 +79,23 @@ export function BodyListArmarios({ armarios }) {
               Excluir Armários?
             </ModalHeader>
             <ModalBody textAlign="center">
-              <Text marginBottom="1.1rem" fontSize="14px">
+              <Text marginBottom="1.1rem" fontSize="1rem">
                 Ao excluir este armário, você impossibilita o acesso dele dentro
                 da plataforma. O histórico dele também será excluído.
               </Text>
-              <Text fontSize="14px">Você realmente deseja excluir?</Text>
+              <Text fontSize="1rem">Você realmente deseja excluir?</Text>
             </ModalBody>
+
             <Flex
-              marginBottom="1.4rem"
-              marginTop={{ base: "10px" }}
-              textAlign="center"
-              direction={{ base: "column", sm: "row", lg: "row" }}
-              justifyContent="center"
-              alignItems="center"
+              w="full"
+              alignItems="baseline"
+              paddingX="1.3rem"
+              marginBottom="1rem"
             >
-              <ButtonExit
-                title={"Voltar"}
-                marginTop="10px"
-                paddingRight={{ base: "185%", sm: "85%" }}
-                paddingLeft={{ base: "185%", sm: "85%" }}
-                onClick={onClose}
-              />
+              <ButtonExit title={"Voltar"} onClick={onClose} />
               <ButtonExit
                 title={"Excluir"}
-                marginTop={{ base: "10px" }}
-                marginLeft={{ sm: "1rem" }}
-                paddingRight={{ base: "185%", sm: "85%" }}
-                paddingLeft={{ base: "185%", sm: "85%" }}
+                marginLeft="2rem"
                 onClick={() => handleDelete(armarios.id)}
               />
             </Flex>
@@ -108,7 +106,7 @@ export function BodyListArmarios({ armarios }) {
       {/* Modal atualizado */}
       <Modal
         isOpen={showModal}
-        onClose={setShowModal.off}
+        onClose={showModal.off}
         name="Second-Modal"
         id="Second-Modal"
       >
@@ -122,16 +120,7 @@ export function BodyListArmarios({ armarios }) {
           <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
             Armário excluído!
           </ModalHeader>
-          <ModalBody w="full">
-            <Text
-              marginBottom="1.1rem"
-              fontSize="1rem"
-              marginRight="1rem"
-              textAlign="center"
-            >
-              O armário foi excluído com sucesso!
-            </Text>
-          </ModalBody>
+
           <Flex
             marginBottom="1.4rem"
             textAlign="center"

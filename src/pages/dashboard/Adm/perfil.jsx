@@ -46,7 +46,7 @@ function Perfil() {
               direction="column"
             >
               <Text
-                fontSize={{ lg: "35px", md: "35px", base: "25px" }}
+                fontSize={{ base: "24px", md: "30px", lg: "30px" }}
                 textColor="#558085"
                 fontWeight="bold"
                 marginLeft="1.3rem"

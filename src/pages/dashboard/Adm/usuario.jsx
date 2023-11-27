@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, IconButton, Table, Spinner } from "@chakra-ui/react";
+import { Flex, Text, IconButton, Table } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListUsuarios } from "../../../components/Table/Usuarios/HeadListUsuarios";
@@ -41,7 +41,7 @@ function Usuarios() {
             paddingBottom="2rem"
           >
             <Text
-              fontSize="35px"
+              fontSize={{ base: "24px", md: "30px", lg: "30px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"

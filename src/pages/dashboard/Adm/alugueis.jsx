@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Spinner, Table } from "@chakra-ui/react";
+import { Flex, Text, Table } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
 import { HeadListAprovacao } from "../../../components/Table/Alugueis/Aprovacao/HeadListAprovacao";
@@ -42,7 +42,7 @@ export default function Alugueis() {
             overflowY="hidden"
           >
             <Text
-              fontSize="35px"
+              fontSize={{ base: "24px", md: "30px", lg: "30px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"
@@ -64,6 +64,7 @@ export default function Alugueis() {
 
             <Flex
               w="full"
+              minH="300px"
               h="full"
               direction="column"
               overflowX="hidden"
@@ -88,7 +89,7 @@ export default function Alugueis() {
               ) : (
                 <Flex w="full" h="full" justify="center" alignItems="center">
                   <Text
-                    fontSize="2rem"
+                    fontSize={{ base: "24px", md: "30px", lg: "30px" }}
                     textColor="#558085"
                     fontWeight="bold"
                     opacity="0.5"
@@ -113,7 +114,7 @@ export default function Alugueis() {
             overflowY="hidden"
           >
             <Text
-              fontSize="35px"
+              fontSize={{ base: "24px", md: "30px", lg: "30px" }}
               textColor="#558085"
               fontWeight="bold"
               marginLeft="1.3rem"
@@ -159,7 +160,7 @@ export default function Alugueis() {
               ) : (
                 <Flex w="full" h="full" justify="center" alignItems="center">
                   <Text
-                    fontSize="2rem"
+                    fontSize={{ base: "24px", md: "30px", lg: "30px" }}
                     textColor="#558085"
                     fontWeight="bold"
                     opacity="0.5"

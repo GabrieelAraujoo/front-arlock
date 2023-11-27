@@ -9,7 +9,7 @@ import {
 import DrawerMenu from "../Drawer/Menu/DrawerMenu";
 import { MdMenu } from "react-icons/md";
 
-export default function PageTitle({ title, subtitle }) {
+export default function PageTitle({ title }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const variant = useBreakpointValue({
     base: false,
@@ -29,7 +29,7 @@ export default function PageTitle({ title, subtitle }) {
       >
         <Text
           marginLeft="1rem"
-          fontSize="25px"
+          fontSize={{ base: "20px", md: "30px", lg: "30px" }}
           textColor="#558085"
           fontWeight="bold"
         >
