@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Main } from "../../layout/Main";
 import { ContainerLogOff } from "../../layout/Container";
 import {
@@ -12,6 +12,10 @@ import {
 import { InputLabelIcon } from "../../components/Input/Login";
 import { InputLabel } from "../../components/Input/Geral";
 import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import app from "../../services/firebaseConfig";
+import { LockIcon } from "@chakra-ui/icons";
+import { CustomerContext } from "../../context/Autenticate";
 
 export default function Login() {
   const [status, setStatus] = useState(true);
@@ -27,7 +31,11 @@ export default function Login() {
 
   const [loading, setLoading] = useBoolean();
 
+  const auth = getAuth(app);
+
   const loginData = JSON.parse(localStorage.getItem("loginData"));
+
+  const { submit } = useContext(CustomerContext);
 
   useEffect(() => {
     if (loginData) {
@@ -37,81 +45,6 @@ export default function Login() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  async function checkLogin() {
-    setLoading.on();
-
-    if (remember) {
-      const loginData = {
-        email,
-        password,
-      };
-
-      localStorage.setItem("loginData", JSON.stringify(loginData));
-    } else {
-      localStorage.removeItem("loginData");
-    }
-
-    if (email === "") {
-      toast({
-        title: 'Campo "E-mail" está vazio',
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorEmail.on();
-    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 2) {
-      toast({
-        title: "Endereço de email invalido.",
-        description: "Inclua um endereço de email válido.",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorEmail.on();
-    } else if (password === "") {
-      toast({
-        title: 'Campo "Senha" está vazio',
-        status: "info",
-        duration: 5000,
-        isClosable: true,
-      });
-
-      setLoading.off();
-
-      setErrorPassword.on();
-    } else {
-      var type = "";
-
-      if (email === "adm@gmail.com") {
-        type = "adm";
-      } else type = "aluno";
-
-      const typeLocal = {
-        type,
-      };
-
-      localStorage.setItem("token", JSON.stringify("123456"));
-      localStorage.setItem("type", JSON.stringify(typeLocal));
-
-      if (type === "adm") {
-        navigate("/Adm/Home");
-      } else if (type === "aluno") {
-        navigate("/Aluno/Home");
-      }
-      // const res = await signIn(email, password);
-
-      // if (!res) {
-      //   setLoading.off();
-      // }
-    }
-  }
 
   function changeShowPassword() {
     if (status === true) {
@@ -131,10 +64,112 @@ export default function Login() {
     if (name === "email") {
       setEmail(value);
       setErrorEmail.off();
-    } else {
+    } else if (name === "senha") {
       setPassword(value);
       setErrorPassword.off();
     }
+  }
+
+  function checkLogin() {
+    setLoading.on();
+
+    if (remember) {
+      const loginData = {
+        email,
+        password,
+      };
+
+      localStorage.setItem("loginData", JSON.stringify(loginData));
+    } else {
+      localStorage.removeItem("loginData");
+    }
+
+    if (email === "") {
+      toast({
+        title: 'Campo "E-mail" está vazio',
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setLoading.off();
+
+      setErrorEmail.on();
+    } else if (email.indexOf("@") === -1 || email.indexOf("@") <= 2) {
+      toast({
+        title: "Endereço de email invalido.",
+        description: "Inclua um endereço de email válido.",
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setLoading.off();
+
+      setErrorEmail.on();
+    } else if (password === "") {
+      toast({
+        title: 'Campo "Senha" está vazio',
+        status: "warning",
+        duration: 5000,
+        isClosable: true,
+      });
+
+      setLoading.off();
+
+      setErrorPassword.on();
+    } else {
+      handleSignIn();
+    }
+  }
+
+  function handleSignIn() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        var type = "";
+
+        if (email === "admin@gmail.com") {
+          type = "adm";
+        } else type = "aluno";
+
+        const typeLocal = {
+          type,
+        };
+
+        submit({ email });
+        localStorage.setItem("token", JSON.stringify(user.accessToken));
+        localStorage.setItem("type", JSON.stringify(typeLocal));
+        localStorage.setItem("email", JSON.stringify(email));
+
+        if (type === "adm") {
+          navigate("/Adm/Home");
+        } else if (type === "aluno") {
+          navigate("/Aluno/Home");
+        }
+
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        toast({
+          position: "bottom",
+          title: "Erro",
+          description: "Erro. Tente mais tarde.",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+
+        setLoading.off();
+
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+      });
   }
 
   return (
@@ -156,6 +191,24 @@ export default function Login() {
             marginBottom="30px"
             borderRadius="10px"
           >
+            <Flex marginBottom="1rem">
+              <LockIcon color="#558085" height="70px" width="70px" />
+
+              <Flex
+                direction="column"
+                alignItems="flex-start"
+                marginTop="27px"
+                marginLeft="3px"
+                marginBottom="1rem"
+              >
+                <Text fontWeight="bold" textColor="#A3CCB8">
+                  ARLOCK
+                </Text>
+                <Text fontWeight="bold" fontSize="10px">
+                  ETECIA
+                </Text>
+              </Flex>
+            </Flex>
             <Text
               color="#558085"
               fontWeight="bold"
@@ -180,15 +233,10 @@ export default function Login() {
                 showPassword={changeShowPassword}
                 status={status}
                 type={status ? "password" : "text"}
-                name="password"
+                name="senha"
                 id="password"
                 value={password}
                 onChange={changeData}
-                onKeyUp={(e) => {
-                  if (e.keyCode === 13 || e.which === 13) {
-                    checkLogin();
-                  }
-                }}
               />
             </Flex>
             <Flex
@@ -228,14 +276,11 @@ export default function Login() {
               width="100%"
               marginY="1.5rem"
               fontWeight="normal"
-              // onClick={() => sendRoute("/aluno/home")}
               isLoading={loading}
-              type="submit"
-              onClick={checkLogin}
+              onClick={() => checkLogin()}
             >
               Entrar
             </Button>
-
             <Flex
               justifyContent="center"
               w="full"

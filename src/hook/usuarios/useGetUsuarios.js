@@ -1,6 +1,6 @@
 export async function GetUsuarios(setUsuarios) {
   // Realize a solicitação HTTP para obter a lista de usuários
-  fetch("https://naovai.000webhostapp.com/php/GET/Usuarios.php") // Substitua "/api/usuarios" pela URL da sua API
+  fetch("http://localhost/innotech/php/GET/Usuarios.php") // Substitua "/api/usuarios" pela URL da sua API
     .then((response) => response.json())
     .then((data) => {
       const newData = data.map((item) => ({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Flex,
   Text,
@@ -9,41 +9,80 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
+  useBoolean,
 } from "@chakra-ui/react";
 import { ButtonExit } from "../Button";
 import { SelectLabel } from "../Select/SelectCurso";
 import { listPayment } from "../../Mock/listPayment";
+import { GetMe } from "../../hook/alunos/useGetMe";
+import { CustomerContext } from "../../context/Autenticate";
 
-export function BoxArmario({ armario, setReserva }) {
+export function BoxArmario({ armario }) {
+  const { email } = useContext(CustomerContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [userData, setUserData] = useState("");
+
   const [typePayment, setTypePayment] = useState("");
+  const saveEmail = localStorage.getItem("email").replace('"', "");
+  const savEmail = saveEmail.replace('"', "");
+  const [newData, setNewData] = useState();
+
+  const [showModal, setShowModal] = useBoolean();
+
+  useEffect(() => {
+    if (email) {
+      GetMe(email, setNewData);
+    } else {
+      GetMe(savEmail, setNewData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
 
   const changeValue = (e) => {
-    const { name, value } = e.target;
-    const letter = "armarioNumero";
-    const number = "armarioLetra";
-
-    setUserData({
-      ...userData,
-      [name]: value,
-      [letter]: armario.letra,
-      [number]: armario.numero,
-    });
-
+    const { value } = e.target;
     setTypePayment(value);
   };
 
   function handleSelected() {
-    if (armario.status === true) {
+    if (armario.status === "ativado") {
       onOpen();
     }
   }
 
   function handleReserva() {
+    var idAluno = newData.id;
+    var pagamento = typePayment;
+
+    fetch(
+      `http://localhost/innotech/php/UPDATE/StatusAlugar.php?IDs=${armario.id}&ID=${idAluno}&pagamento=${pagamento}`
+    ) // Substitua "/api/usuarios" pela URL da sua API
+      .then((response) => response.json())
+      .then((data) => {
+        // const newData = {
+        //   message: data?.message,
+        // };
+
+        console.log(data);
+      })
+
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setTimeout(() => {
+      setTypePayment("");
+    }, "1000");
+
     onClose();
-    console.log(userData);
-    setReserva(userData);
+    setShowModal.on();
+  }
+
+  function handleCloseModal() {
+    setTypePayment("");
+    onClose();
+  }
+
+  function handleCloseModalConfirm() {
+    setShowModal.off();
   }
 
   return (
@@ -52,12 +91,12 @@ export function BoxArmario({ armario, setReserva }) {
         width="130px"
         height="186px"
         background="#bfdde0"
-        opacity={armario.status === true ? "100%" : "50%"}
+        opacity={armario.status === "ativado" ? "100%" : "50%"}
         borderRadius="12px"
         direction="column"
         alignItems="center"
         justifyContent="space-around"
-        cursor={armario.status === true ? "pointer" : "not-allowed"}
+        cursor={armario.status === "ativado" ? "pointer" : "not-allowed"}
         _hover={{ background: "#60E8F8" }}
         onClick={() => handleSelected()}
       >
@@ -108,7 +147,12 @@ export function BoxArmario({ armario, setReserva }) {
       </Flex>
 
       {/* Primeiro modal */}
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        name="First-Modal"
+        id="First-Modal"
+      >
         <ModalOverlay />
         <ModalContent
           background="#fff"
@@ -125,12 +169,12 @@ export function BoxArmario({ armario, setReserva }) {
                 Armário {armario.letra}
                 {armario.numero}
               </Text>
-              <Flex>
+              {/* <Flex>
                 <Text marginBottom="1.1rem" fontSize="14px" marginRight="1rem">
                   Localização:
                 </Text>
                 <Text fontSize="14px">{armario.localization}</Text>
-              </Flex>
+              </Flex> */}
               <Flex>
                 <Text marginBottom="1.1rem" fontSize="14px" marginRight="1rem">
                   Valor:
@@ -143,10 +187,10 @@ export function BoxArmario({ armario, setReserva }) {
                 </Text>
                 <SelectLabel
                   label={"Payment"}
+                  placeholder={"Escolha o Pagamento"}
                   options={listPayment}
                   name="payment"
                   id="payment"
-                  value={userData.curso}
                   onChange={changeValue}
                 />
               </Flex>
@@ -165,16 +209,16 @@ export function BoxArmario({ armario, setReserva }) {
                   <Flex direction="column">
                     <Text
                       marginBottom="1.1rem"
-                      fontSize="12px"
+                      fontSize="1rem"
                       marginRight="1rem"
                     >
                       Efetue o pagamento através da chave disponível e clique em{" "}
-                      <b>RESERVAR</b>. No prazo de 48h, o armário é liberado.
+                      <b>RESERVAR</b>. No prazo de 48h o armário é liberado.
                     </Text>
-                    <Text fontSize="12px">
-                      *qualquer que seja a forma de pagamento, o aluno só poderá
-                      utilizar o armário após liberação no sistema, caso
-                      contrário, está sujeito a suspensão.*
+                    <Text fontSize=".8rem">
+                      *Qualquer que seja a forma de pagamento, o aluno só poderá
+                      utilizar o armário após liberação, caso contrário, está
+                      sujeito a suspensão.*
                     </Text>
                   </Flex>
                 </>
@@ -184,17 +228,17 @@ export function BoxArmario({ armario, setReserva }) {
                 <Flex direction="column" marginTop="1rem">
                   <Text
                     marginBottom="1.1rem"
-                    fontSize="12px"
+                    fontSize="1rem"
                     marginRight="1rem"
                   >
                     Você deve <b>RESERVAR</b> e efetuar o pagamento na
                     secretário em 72h, caso não efetue o pagamento, o armário
                     volta a ficar disponível para reservas.
                   </Text>
-                  <Text fontSize="12px">
-                    *qualquer que seja a forma de pagamento, o aluno só poderá
-                    utilizar o armário após liberação no sistema, caso
-                    contrário, está sujeito a suspensão.*
+                  <Text fontSize=".8rem">
+                    *Qualquer que seja a forma de pagamento, o aluno só poderá
+                    utilizar o armário após liberação, caso contrário, está
+                    sujeito a suspensão.*
                   </Text>
                 </Flex>
               )}
@@ -213,7 +257,7 @@ export function BoxArmario({ armario, setReserva }) {
               marginTop="10px"
               paddingRight={{ base: "125%", sm: "65%" }}
               paddingLeft={{ base: "125%", sm: "65%" }}
-              onClick={onClose}
+              onClick={() => handleCloseModal()}
             />
             <ButtonExit
               title={"Reservar"}
@@ -223,6 +267,53 @@ export function BoxArmario({ armario, setReserva }) {
               paddingLeft={{ base: "125%", sm: "65%" }}
               isDisabled={typePayment === "" ? true : false}
               onClick={() => handleReserva()}
+            />
+          </Flex>
+        </ModalContent>
+      </Modal>
+
+      {/* Modal confirma */}
+      <Modal
+        isOpen={showModal}
+        onClose={setShowModal.off}
+        name="Second-Modal"
+        id="Second-Modal"
+      >
+        <ModalOverlay />
+        <ModalContent
+          background="#fff"
+          alignItems="center"
+          width={{ base: "90%", sm: "90%" }}
+          marginY="auto"
+        >
+          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
+            Reserva Concluída!
+          </ModalHeader>
+          <ModalBody w="full">
+            <Text
+              marginBottom="1.1rem"
+              fontSize="1rem"
+              marginRight="1rem"
+              textAlign="center"
+            >
+              Parabéns, sua reserva foi concluída com sucesso!!
+            </Text>
+            <Text fontSize="1rem" marginRight="1rem" textAlign="center">
+              Aguarde o prazo conforme estabelicido de acordo com a forma de
+              pagamento para utilizar o armário. Em breve, você receberá uma
+              notificação sobre a liberação do armário. Fique de olho!
+            </Text>
+          </ModalBody>
+          <Flex
+            marginBottom="1.4rem"
+            textAlign="center"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <ButtonExit
+              title={"Fechar"}
+              marginTop="10px"
+              onClick={() => handleCloseModalConfirm()}
             />
           </Flex>
         </ModalContent>

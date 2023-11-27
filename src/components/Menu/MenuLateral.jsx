@@ -122,13 +122,13 @@ export default function MenuLateral() {
           />
 
           <MenuTitle
-            title={"Aluguéis"}
+            title={"Armários"}
             onClick={() => sendRoute("/Aluno/Armarios")}
             cursor="pointer"
             borderRadius="10px"
             _hover={{ color: "#034951", bgColor: "#BFDDE0" }}
-            _focus={{ bgColor: "#BFDDE0", color: "#034951" }}
-            color={pathname === "/Aluno/Alugueis" ? "#034951" : "#558085"}
+            _focus={{ bgColor: "#034951", color: "#034951" }}
+            color={pathname === "/Aluno/Armarios" ? "#034951" : "#558085"}
           />
         </>
       )}

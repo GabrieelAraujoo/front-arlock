@@ -6,27 +6,34 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  useDisclosure,
   Flex,
   Text,
+  useBoolean,
+  useDisclosure,
+  Tooltip,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { ButtonExit } from "../../../components/Button";
-import React, { useState } from "react";
+import React from "react";
 import { DelArmarios } from "../../../hook/armarios/useDelArmarios";
 
-export function BodyListArmarios({ armarios, setDeleteArmario }) {
+export function BodyListArmarios({ armarios }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [resultDelet, setResultDelet] = useState();
+
+  const [showModal, setShowModal] = useBoolean();
 
   function handleDelete(id) {
-    const res = DelArmarios(id, setResultDelet);
+    const res = DelArmarios(id);
 
-    console.log(resultDelet);
     console.log(res);
 
-    setDeleteArmario(true);
+    // setShowModal.on();
+
     onClose();
+  }
+
+  function handleCloseModalConfirm() {
+    setShowModal.off();
   }
 
   return (
@@ -34,22 +41,25 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
       <Tbody fontSize="13px" paddingTop="12px" paddingBottom="1px">
         <Td width="5%">{armarios.id}</Td>
         <Td width="5%">{armarios.letra}</Td>
-        <Td width="15%">{armarios.quantidade}</Td>
+        <Td width="15%">{armarios.numero}</Td>
         <Td width="25%">{armarios.curso}</Td>
-        <Td width="15%">{armarios.manutencao}</Td>
-        <Td width="15%">{armarios.alugados}</Td>
+        <Td width="15%">{armarios.status}</Td>
         <Td>
-          <DeleteIcon
-            marginLeft="9px"
-            height="20px"
-            width="20px"
-            color="gray.400"
-            cursor="pointer"
-            onClick={onOpen}
-          />
+          <Tooltip label="Deletar">
+            <DeleteIcon
+              marginLeft="9px"
+              height="20px"
+              width="20px"
+              color="gray.400"
+              cursor="pointer"
+              isDisable={true}
+              onClick={onOpen}
+            />
+          </Tooltip>
         </Td>
       </Tbody>
 
+      {/* Primeiro Modal */}
       <Flex>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -69,39 +79,63 @@ export function BodyListArmarios({ armarios, setDeleteArmario }) {
               Excluir Armários?
             </ModalHeader>
             <ModalBody textAlign="center">
-              <Text marginBottom="1.1rem" fontSize="14px">
-                Ao excluir esses armários, você impossibilita o acesso para eles
-                dentro da plataforma.
+              <Text marginBottom="1.1rem" fontSize="1rem">
+                Ao excluir este armário, você impossibilita o acesso dele dentro
+                da plataforma. O histórico dele também será excluído.
               </Text>
-              <Text fontSize="14px">Você realmente deseja excluir?</Text>
+              <Text fontSize="1rem">Você realmente deseja excluir?</Text>
             </ModalBody>
+
             <Flex
-              marginBottom="1.4rem"
-              marginTop={{ base: "10px" }}
-              textAlign="center"
-              direction={{ base: "column", sm: "row", lg: "row" }}
-              justifyContent="center"
-              alignItems="center"
+              w="full"
+              alignItems="baseline"
+              paddingX="1.3rem"
+              marginBottom="1rem"
             >
-              <ButtonExit
-                title={"Voltar"}
-                marginTop="10px"
-                paddingRight={{ base: "185%", sm: "85%" }}
-                paddingLeft={{ base: "185%", sm: "85%" }}
-                onClick={onClose}
-              />
+              <ButtonExit title={"Voltar"} onClick={onClose} />
               <ButtonExit
                 title={"Excluir"}
-                marginTop={{ base: "10px" }}
-                marginLeft={{ sm: "1rem" }}
-                paddingRight={{ base: "185%", sm: "85%" }}
-                paddingLeft={{ base: "185%", sm: "85%" }}
+                marginLeft="2rem"
                 onClick={() => handleDelete(armarios.id)}
               />
             </Flex>
           </ModalContent>
         </Modal>
       </Flex>
+
+      {/* Modal atualizado */}
+      <Modal
+        isOpen={showModal}
+        onClose={showModal.off}
+        name="Second-Modal"
+        id="Second-Modal"
+      >
+        <ModalOverlay />
+        <ModalContent
+          background="#fff"
+          alignItems="center"
+          width={{ base: "90%", sm: "90%" }}
+          marginY="auto"
+        >
+          <ModalHeader fontSize="20px" textColor="#558085" marginTop="5px">
+            Armário excluído!
+          </ModalHeader>
+
+          <Flex
+            marginBottom="1.4rem"
+            textAlign="center"
+            marginTop={{ base: "10px" }}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <ButtonExit
+              title={"Fechar"}
+              marginTop="10px"
+              onClick={() => handleCloseModalConfirm()}
+            />
+          </Flex>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

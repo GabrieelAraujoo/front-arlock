@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import {
-  Flex,
-  Text,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
+import { Flex, Text, useToast } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { ButtonExit } from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
@@ -21,34 +11,29 @@ import {
 } from "../../../utils/baseFormNewUser";
 import { validateFormNewUser } from "../../../utils/validateFormNewUser";
 import { InputLabel } from "../../../components/Input/Geral";
+import axios from "axios";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from "../../../services/firebaseConfig";
 
 function NewUsuarios() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const [userData, setUserData] = useState("");
   const [formData, setformData] = useState(baseFormNewUser);
   const [error, setError] = useState(errorFormNewUser);
   const toast = useToast();
 
   const changeValue = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    setformData(userData);
+    setformData({ ...formData, [name]: value });
   };
 
-  async function createUser() {
-    console.log(formData);
+  const auth = getAuth(app);
+
+  async function createUser(e) {
+    e.preventDefault();
+
     const errors = await validateFormNewUser(formData, error, setError);
 
     if (errors.length !== 0) {
-      toast({
-        title: "Erro!",
-        status: "error",
-        description:
-          "Alguns Campos Obrigatórios não foram preenchidos, verefique os campos que estão em vermelho!",
-        duration: 5000,
-        isClosable: true,
-      });
       errors.map((erro) => {
         return toast({
           title: `${erro}`,
@@ -58,19 +43,57 @@ function NewUsuarios() {
         });
       });
     } else {
-      // const res = await PostUserForm(id, user.token, formData);
-      // if (res) {
-      navigate("/Adm/Usuarios");
-      return toast({
-        position: "bottom-right",
-        title: "Sucesso",
-        description: "Usuário criado com sucesso!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
+      createUserWithEmailAndPassword(auth, formData.email, "Teste@123456")
+        .then((userCredential) => {
+          const url = "http://localhost/innotech/php/CREATE/Usuarios.php";
+
+          let fData = new FormData();
+          fData.append("nome", formData.nome);
+          fData.append("email", formData.email);
+          fData.append("type", "adm");
+          fData.append("senha", "Teste@123456");
+
+          axios
+            .post(url, fData)
+            .then((Response) => {
+              console.log(Response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          toast({
+            position: "bottom",
+            title: "Sucesso",
+            description: "Usuário criado com sucesso!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          setTimeout(() => {
+            navigate("/Adm/Usuarios");
+          }, "1000");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          toast({
+            position: "bottom",
+            title: "Erro",
+            description: "Erro ao criar user, tente mais tarde.",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          console.log(errorCode);
+          console.log(errorMessage);
+        });
     }
   }
+
   return (
     <>
       <Main>
@@ -86,14 +109,14 @@ function NewUsuarios() {
             <Flex
               backgroundColor="white"
               width="full"
-              height="280px"
+              height={{ sm: "300px", base: "380px" }}
               borderRadius="15px"
               alignItems="flex-start"
               marginTop="2rem"
               direction="column"
             >
               <Text
-                fontSize="35px"
+                fontSize={{ base: "24px", md: "30px", lg: "30px" }}
                 textColor="#558085"
                 fontWeight="bold"
                 marginLeft="1.3rem"
@@ -102,100 +125,49 @@ function NewUsuarios() {
                 Criar Novo Usuário
               </Text>
 
-              <Flex w="full" paddingX="1.3rem">
-                <InputLabel
-                  label={"Nome"}
-                  name="nome"
-                  id="nome"
-                  value={userData.nome}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorNome}
-                />
+              <form style={{ width: "100%" }} onSubmit={(e) => createUser(e)}>
+                <Flex
+                  w="full"
+                  paddingX="1.3rem"
+                  direction={{ base: "column", sm: "row", lg: "row" }}
+                >
+                  <InputLabel
+                    label={"Nome"}
+                    name="nome"
+                    id="nome"
+                    value={formData.nome}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorNome}
+                  />
 
-                <InputLabel
-                  label={"Email"}
-                  name="email"
-                  id="email"
-                  value={userData.email}
-                  onChange={changeValue}
-                  isInvalid={error && error.errorEmail}
-                  marginLeft="2rem"
-                />
-              </Flex>
+                  <InputLabel
+                    label={"Email"}
+                    name="email"
+                    id="email"
+                    marginLeft={{ sm: "1.9rem" }}
+                    value={formData.email}
+                    onChange={changeValue}
+                    isInvalid={error && error.errorEmail}
+                  />
+                </Flex>
 
-              <Flex
-                w="full"
-                alignItems="baseline"
-                paddingX="1.3rem"
-                marginTop="3.5rem"
-              >
-                <ButtonExit
-                  title={"Voltar"}
-                  onClick={() => navigate("/Adm/Usuarios")}
-                />
-                <ButtonExit
-                  title={"Salvar"}
-                  marginLeft="2rem"
-                  onClick={onOpen}
-                />
-              </Flex>
+                <Flex
+                  w="full"
+                  alignItems="baseline"
+                  paddingX="1.3rem"
+                  marginTop="3.5rem"
+                >
+                  <ButtonExit
+                    title={"Voltar"}
+                    onClick={() => navigate("/Adm/Usuarios")}
+                  />
+                  <ButtonExit title={"Criar"} marginLeft="2rem" type="submit" />
+                </Flex>
+              </form>
             </Flex>
           </Flex>
         </Container>
       </Main>
-
-      <Flex>
-        <Modal isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay />
-          <ModalContent
-            background="#fff"
-            alignItems="center"
-            height={{ base: "360px", sm: "330px" }}
-            width={{ base: "90%", sm: "90%" }}
-            marginY="auto"
-          >
-            <ModalHeader
-              marginBottom="2.3rem"
-              fontSize="20px"
-              textColor="#558085"
-              marginTop="5px"
-            >
-              Criar Usuário?
-            </ModalHeader>
-            <ModalBody textAlign="center">
-              <Text marginBottom="1.1rem" fontSize="14px">
-                Ao criar esse usuário, você possibilita o acesso dele dentro da
-                plataforma.
-              </Text>
-              <Text fontSize="14px">Você realmente deseja criar?</Text>
-            </ModalBody>
-            <Flex
-              marginBottom="1.4rem"
-              marginTop={{ base: "10px" }}
-              textAlign="center"
-              direction={{ base: "column", sm: "row", lg: "row" }}
-              justifyContent="center"
-              alignItems="center"
-            >
-              <ButtonExit
-                title={"Voltar"}
-                marginTop="10px"
-                paddingRight={{ base: "195%", sm: "95%" }}
-                paddingLeft={{ base: "195%", sm: "95%" }}
-                onClick={onClose}
-              />
-              <ButtonExit
-                title={"Criar"}
-                marginTop={{ base: "10px" }}
-                marginLeft={{ sm: "1rem" }}
-                paddingRight={{ base: "195%", sm: "95%" }}
-                paddingLeft={{ base: "195%", sm: "95%" }}
-                onClick={() => createUser()}
-              />
-            </Flex>
-          </ModalContent>
-        </Modal>
-      </Flex>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Main } from "../../../layout/Main";
 import { Container } from "../../../layout/Container";
-import { Flex, Text, Spinner } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import PageTitle from "../../../components/PageTitle";
 import { Table } from "@chakra-ui/react";
 import { InputPesquisa } from "../../../components/Input/Pesquisa";
@@ -17,74 +17,50 @@ function Alunos() {
     GetAlunos(setAlunos);
   }, [alunos]);
 
-  // function teste() {
-  //   fetch("https://naovai.000webhostapp.com/php/POST/CreateAluno.php", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       rm: "12345",
-  //       nome: "Gene",
-  //       curso: "Desenvolvimento de Sistemas",
-  //       email: "adm@gmail.com",
-  //       senha: "123456",
-  //       type: "adm",
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data); // Atualiza o estado com os dados dos usuários
-  //     })
-  //     .catch((error) => {
-  //       console.error("Erro alunos:", error);
-  //     });
-  // }
-
   return (
-    <Main>
-      <Container>
-        <Flex
-          width="full"
-          padding="2rem"
-          direction="column"
-          textColor="#558085"
-        >
-          <PageTitle title={"Alunos"} />
-
+    <>
+      <Main>
+        <Container>
           <Flex
-            backgroundColor="white"
             width="full"
-            height="full"
-            borderRadius="15px"
-            alignItems="flex-start"
-            marginTop="1rem"
+            padding="2rem"
             direction="column"
-            paddingBottom="2rem"
+            textColor="#558085"
           >
-            <Text
-              fontSize="35px"
-              textColor="#558085"
-              fontWeight="bold"
-              marginLeft="1.3rem"
-              marginTop="1.3rem"
-            >
-              Lista de Alunos
-            </Text>
+            <PageTitle title={"Alunos"} />
 
             <Flex
-              justify="space-between"
-              align="center"
-              paddingLeft="20px"
-              w="full"
-              alignItems="baseline"
+              backgroundColor="white"
+              width="full"
+              height="full"
+              borderRadius="15px"
+              alignItems="flex-start"
+              marginTop="1rem"
+              direction="column"
+              paddingBottom="2rem"
             >
-              <InputPesquisa />
-            </Flex>
+              <Text
+                fontSize={{ base: "24px", md: "30px", lg: "30px" }}
+                textColor="#558085"
+                fontWeight="bold"
+                marginLeft="1.3rem"
+                marginTop="1.3rem"
+              >
+                Lista de Alunos
+              </Text>
 
-            <Flex w="full" h="full" direction="column">
-              {alunos ? (
-                alunos.length !== 0 ? (
+              <Flex
+                justify="space-between"
+                align="center"
+                paddingLeft="20px"
+                w="full"
+                alignItems="baseline"
+              >
+                <InputPesquisa placeholder={"Pesquisa por rm"} />
+              </Flex>
+
+              <Flex w="full" h="full" direction="column">
+                {alunos.length !== 0 ? (
                   <Flex w="full" direction="column" overflowY="auto">
                     <Table>
                       {/* titulo tabela */}
@@ -96,33 +72,32 @@ function Alunos() {
                     </Table>
                   </Flex>
                 ) : (
-                  <Flex w="full" h="full" justify="center" alignItems="center">
-                    <Spinner
-                      thickness="4px"
-                      speed="0.65s"
-                      emptyColor="gray.200"
-                      color="blue.500"
-                      size="xl"
-                    />
+                  <Flex w="full" h="full" justify="center" marginTop="5rem">
+                    <Text
+                      fontSize="2rem"
+                      textColor="#558085"
+                      fontWeight="bold"
+                      opacity="0.5"
+                    >
+                      Sem lista de alunos
+                    </Text>
                   </Flex>
-                )
-              ) : (
-                <Flex w="full" h="full" justify="center" marginTop="5rem">
-                  <Text
-                    fontSize="2rem"
-                    textColor="#558085"
-                    fontWeight="bold"
-                    opacity="0.5"
-                  >
-                    Sem lista de alunos
-                  </Text>
-                </Flex>
-              )}
+                  // <Flex w="full" h="full" justify="center" alignItems="center">
+                  //   <Spinner
+                  //     thickness="4px"
+                  //     speed="0.65s"
+                  //     emptyColor="gray.200"
+                  //     color="blue.500"
+                  //     size="xl"
+                  //   />
+                  // </Flex>
+                )}
+              </Flex>
             </Flex>
           </Flex>
-        </Flex>
-      </Container>
-    </Main>
+        </Container>
+      </Main>
+    </>
   );
 }
 

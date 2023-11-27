@@ -90,12 +90,23 @@ export const theme = extendTheme({
   },
 });
 
-export function SelectLabel({ placeholder, options, ...rest }) {
+export function SelectLabel({ placeholder, options, mgLeft, ...rest }) {
   return (
-    <InputGroup display="Flex" flexDir="column" mt="1.5rem" h="35px">
+    <InputGroup
+      display="Flex"
+      flexDir="column"
+      mt="1.5rem"
+      h="46px"
+      marginLeft={mgLeft}
+    >
       <Box>
         <FormControl variant="floating" id="first-name" isRequired>
-          <Select placeholder="Selecione a Opção" h="45px" {...rest}>
+          <Select
+            borderColor="#558085"
+            placeholder={placeholder}
+            h="45px"
+            {...rest}
+          >
             {options.map((item) => {
               return (
                 <option key={item.id} value={item.name}>

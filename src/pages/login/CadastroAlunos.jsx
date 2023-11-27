@@ -12,20 +12,22 @@ import {
   errorFormCadastro,
 } from "../../utils/baseFormCadastro";
 import { validateFormCadastro } from "../../utils/validateFormCadastro";
+import axios from "axios";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "../../services/firebaseConfig";
 
 export default function CadastroAlunos() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true);
   const [confirmShowPassword, setConfirmShowPassword] = useState(true);
-  const [userData, setUserData] = useState("");
+
   const [formData, setformData] = useState(baseFormCadastro);
   const [error, setError] = useState(errorFormCadastro);
   const toast = useToast();
 
   const changeValue = (e) => {
     const { name, value } = e.target;
-    setUserData({ ...userData, [name]: value });
-    setformData(userData);
+    setformData({ ...formData, [name]: value });
   };
 
   function changeShowPassword() {
@@ -44,18 +46,16 @@ export default function CadastroAlunos() {
     }
   }
 
-  async function createUser() {
+  const auth = getAuth(app);
+
+  async function handleCreateUser(e) {
+    e.preventDefault();
     console.log(formData);
+
     const errors = await validateFormCadastro(formData, error, setError);
+
+    //verificando erros
     if (errors.length !== 0) {
-      toast({
-        title: "Erro!",
-        status: "error",
-        description:
-          "Alguns Campos Obrigatórios não foram preenchidos, verefique os campos que estão em vermelho!",
-        duration: 5000,
-        isClosable: true,
-      });
       errors.map((erro) => {
         return toast({
           title: `${erro}`,
@@ -65,26 +65,64 @@ export default function CadastroAlunos() {
         });
       });
     } else {
-      // const res = await PostUserForm(id, user.token, formData);
-      // if (res) {
-      navigate("/");
-      return toast({
-        position: "bottom-right",
-        title: "Sucesso",
-        description: "Usuário criado com sucesso!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      // } else {
-      //   return toast({
-      //     title: "Erro",
-      //     description: "Algo deu errado! não conseguimos criar usuário",
-      //     status: "error",
-      //     duration: 5000,
-      //     isClosable: true,
-      //   });
-      // }
+      //enviando para o firebase e banco
+      createUserWithEmailAndPassword(auth, formData.email, formData.senha)
+        .then((userCredential) => {
+          // enviando para o banco
+          const user = userCredential.user;
+          console.log(user);
+
+          const url = "http://localhost/innotech/php/CREATE/Aluno.php";
+
+          let fData = new FormData();
+          fData.append("nome", formData.nome);
+          fData.append("email", formData.email);
+          fData.append("senha", formData.senha);
+          fData.append("rm", formData.rm);
+          fData.append("curso", formData.curso);
+          fData.append("type", "aluno");
+
+          axios
+            .post(url, fData)
+            .then((Response) => {
+              console.log(Response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+
+          toast({
+            position: "bottom",
+            title: "Sucesso",
+            description: "Usuário criado com sucesso!",
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          setTimeout(() => {
+            navigate("/");
+          }, "1000");
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          toast({
+            position: "bottom",
+            title: "Erro",
+            description: "Erro ao criar user, tente mais tarde.",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
+
+          console.log(errorCode);
+          console.log(errorMessage);
+          // ...
+        });
     }
   }
 
@@ -117,8 +155,7 @@ export default function CadastroAlunos() {
               Cadastre-se
             </Text>
             <form
-              action="https://naovai.000webhostapp.com/src/test1.php"
-              method="post"
+            // onSubmit={(e) => handleCreateUser(e)}
             >
               <Flex w="full" direction={{ lg: "row", base: "column" }}>
                 <InputLabel
@@ -126,7 +163,7 @@ export default function CadastroAlunos() {
                   marginRight={{ lg: "2rem", base: "0" }}
                   name="nome"
                   id="nome"
-                  value={userData.nome}
+                  value={formData.nome}
                   onChange={changeValue}
                   isInvalid={error && error.errorNome}
                 />
@@ -135,7 +172,7 @@ export default function CadastroAlunos() {
                   label={"Email"}
                   name="email"
                   id="email"
-                  value={userData.email}
+                  value={formData.email}
                   onChange={changeValue}
                   isInvalid={error && error.errorEmail}
                 />
@@ -147,7 +184,7 @@ export default function CadastroAlunos() {
                   marginRight={{ lg: "2rem", base: "0" }}
                   name="rm"
                   id="rm"
-                  value={userData.rm}
+                  value={formData.rm}
                   onChange={changeValue}
                   isInvalid={error && error.errorRm}
                 />
@@ -157,7 +194,8 @@ export default function CadastroAlunos() {
                   options={listCursos}
                   name="curso"
                   id="curso"
-                  value={userData.curso}
+                  value={formData.curso}
+                  placeholder="Selecionar curso"
                   onChange={changeValue}
                   isInvalid={error && error.errorCurso}
                 />
@@ -172,7 +210,7 @@ export default function CadastroAlunos() {
                   marginRight={{ lg: "2rem", base: "0" }}
                   name="senha"
                   id="senha"
-                  value={userData.senha}
+                  value={formData.senha}
                   onChange={changeValue}
                   isInvalid={error && error.errorSenha}
                 />
@@ -182,7 +220,7 @@ export default function CadastroAlunos() {
                   name="confirmarSenha"
                   id="confirmarSenha"
                   status={confirmShowPassword}
-                  value={userData.confirmarSenha}
+                  value={formData.confirmarSenha}
                   onChange={changeValue}
                   type={confirmShowPassword ? "password" : "text"}
                   showPassword={changeShowConfirmPassword}
@@ -204,8 +242,8 @@ export default function CadastroAlunos() {
                   width="60%"
                   marginY="1.5rem"
                   fontWeight="normal"
-                  onClick={() => createUser()}
                   type="submit"
+                  onClick={(e) => handleCreateUser(e)}
                 >
                   Cadastre-se
                 </Button>
