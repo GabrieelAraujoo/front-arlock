@@ -44,8 +44,8 @@ function Home() {
                 title={
                   "Pagamento liberado, você já pode utilizar o armário B18"
                 }
-              />
-              <BoxNotificationPayment
+              /> */}
+              {/* <BoxNotificationPayment
                 title={"Você precisa efetuar o pagamento na secretária"}
               /> */}
             </Flex>
